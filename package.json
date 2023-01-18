@@ -5,8 +5,10 @@
   "main": "index.js",
   "scripts": {
     "init": "ts-node database/init_data.ts",
+    "test": "echo \"Error: no test specified\" && exit 1",
     "server": "ts-node server.ts",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "ts-node-dev server.ts",
+    "format": "prettier --write ."
   },
   "author": "",
   "license": "ISC",
@@ -14,6 +16,7 @@
     "@types/express": "^4.17.15",
     "@types/node": "^18.11.18",
     "@types/pg": "^8.6.6",
+    "prettier": "2.8.3",
     "ts-node": "^10.9.1",
     "typescript": "^4.9.4"
   },
@@ -29,6 +32,7 @@
     "jsonfile": "^6.1.0",
     "pg": "^8.8.0",
     "request": "^2.88.2",
+    "ts-node-dev": "^2.0.0",
     "winston": "^3.8.2"
   }
 }

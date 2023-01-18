@@ -7,5 +7,5 @@ export const env = {
 	DB_USERNAME: process.env.DB_USERNAME,
 	DB_PASSWORD: process.env.DB_PASSWORD,
 	GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID,
-	GOOGLE_SECRET: process.env.GOOGLE_SECRET,
+	GOOGLE_SECRET: process.env.GOOGLE_SECRET
 }
