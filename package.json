@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "init": "ts-node /Users/lvccwk/Desktop/study_with_me/database/init_data.ts",
-    "main": "ts-node main.ts",
+    "init": "ts-node database/init_data.ts",
+    "server": "ts-node server.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",

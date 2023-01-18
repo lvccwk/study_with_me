@@ -70,7 +70,6 @@ CREATE TABLE blog(
 CREATE TABLE chatroom(
     id SERIAL primary key,
     content VARCHAR(255),
-    teacher_id INTEGER,
     FOREIGN KEY (teacher_id) REFERENCES teacher(id),
     from_user INTEGER,
     FOREIGN KEY (from_user) REFERENCES users(id),
@@ -79,6 +78,8 @@ CREATE TABLE chatroom(
     created_at TIMESTAMP,
     updated_at TIMESTAMP
 );
+
+
 
 CREATE TABLE forum(
     id SERIAL primary key,
@@ -99,9 +100,11 @@ CREATE TABLE forum_post(
     updated_at TIMESTAMP
 );
 
+ALTER TABLE forum_post RENAME COLUMN content TO title;
+
 CREATE TABLE forum_post_comment(
     id SERIAL primary key,
-    content VARCHAR(255),  
+    content TEXT,  
     author_id INTEGER,
     FOREIGN KEY (author_id) REFERENCES users(id),
     forum_post_id INTEGER,
@@ -109,3 +112,15 @@ CREATE TABLE forum_post_comment(
     created_at TIMESTAMP,
     updated_at TIMESTAMP
 );
+
+SELECT * FROM users;
+SELECT * FROM teacher;
+SELECT * FROM subject;
+SELECT * FROM teacher_subject;
+SELECT * FROM blog;
+SELECT * FROM student;
+SELECT * FROM school;
+SELECT * FROM chatroom;
+SELECT * FROM forum_post;
+SELECT * FROM forum_post_comment;
+SELECT * FROM forum;
