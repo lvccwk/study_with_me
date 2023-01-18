@@ -38,7 +38,7 @@ CREATE TABLE student(
 );
 
 
-CREATE TABLE teacher(
+CwREATE TABLE teacher(
     id SERIAL primary key,
     user_id INTEGER,
     FOREIGN KEY (user_id) REFERENCES users(id),
