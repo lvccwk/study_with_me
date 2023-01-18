@@ -122,9 +122,3 @@ CREATE TABLE forum_post_comment(
 -- SELECT * FROM forum_post_comment;
 -- SELECT * FROM forum;
 
-INSERT INTO public.blog
-(id, teacher_id, image, "content", created_at, updated_at)
-VALUES(3, 1, 'image01.jpg', '測試中文內容', '2023-01-18 12:18:49.700', '2023-01-18 12:18:49.700');
-INSERT INTO public.blog
-(id, teacher_id, image, "content", created_at, updated_at)
-VALUES(4, 2, 'image02.jpg', 'TESTCONTENT', '2023-01-18 12:18:49.700', '2023-01-18 12:18:49.700');
