@@ -90,7 +90,7 @@ CREATE TABLE forum(
 
 CREATE TABLE forum_post(
     id SERIAL primary key, 
-    content VARCHAR(255),
+    title VARCHAR(255),
     status VARCHAR(255),
     forum_id INTEGER,
     FOREIGN KEY (forum_id) REFERENCES forum(id),    
@@ -100,7 +100,6 @@ CREATE TABLE forum_post(
     updated_at TIMESTAMP
 );
 
-ALTER TABLE forum_post RENAME COLUMN content TO title;
 
 CREATE TABLE forum_post_comment(
     id SERIAL primary key,
@@ -113,14 +112,14 @@ CREATE TABLE forum_post_comment(
     updated_at TIMESTAMP
 );
 
-SELECT * FROM users;
-SELECT * FROM teacher;
-SELECT * FROM subject;
-SELECT * FROM teacher_subject;
-SELECT * FROM blog;
-SELECT * FROM student;
-SELECT * FROM school;
-SELECT * FROM chatroom;
-SELECT * FROM forum_post;
-SELECT * FROM forum_post_comment;
-SELECT * FROM forum;
+-- SELECT * FROM users;
+-- SELECT * FROM teacher;
+-- SELECT * FROM subject;
+-- SELECT * FROM teacher_subject;
+-- SELECT * FROM blog;
+-- SELECT * FROM student;
+-- SELECT * FROM school;
+-- SELECT * FROM chatroom;
+-- SELECT * FROM forum_post;
+-- SELECT * FROM forum_post_comment;
+-- SELECT * FROM forum;
