@@ -1,5 +1,5 @@
-import express from 'express'
-import HTTP from 'http'
+import express from 'express';
+import HTTP from 'http';
 
 let app = express()
 let server = new HTTP.Server(app)
