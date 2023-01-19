@@ -11,22 +11,9 @@ const client = new pg.Client({
 async function main() {
 	await client.connect() // "dial-in" to the postgres server
 
-	// const data = [{id:1,name: "Tom Chan",},{id:2,name:"Mary Chan"}]
-
-	// for (let datum of data){
-	// 	await client.query(`INSERT INTO users (id,username,email,password,type,created_at,updated_at) values (${datum.id},${datum.name},$3,$4,$5,now(),now())`);
-	// }
 	//users table - 01
 	// await client.query("INSERT INTO users (id,username,email,password,type,created_at,updated_at) values ($1,$2,$3,$4,$5,now(),now())", [
 	// "1","Tom Chan","tom@gmail.com","admin","student"
-	// // "2","Mary Chan","mary@gmail.com","marychan","teacher"
-	// ]);
-	await client.query(
-		'INSERT INTO users (id,username,email,password,type,created_at,updated_at) values ($1,$2,$3,$4,$5,now(),now())',
-		['1', 'Tom Chan', 'tom@gmail.com', 'admin', 'student']
-	)
-	// await client.query("INSERT INTO users (id,username,email,password,type,created_at,updated_at) values ($1,$2,$3,$4,$5,now(),now())", [
-	// "3","Tom Chan","tom@gmail.com","tomchan","student"
 	// ]);
 
 	// //teacher - 02
@@ -81,7 +68,7 @@ async function main() {
 
 	await client.end() // close connection with the database
 }
-main()
+	main()
 
 // ----------------------------------------17/1/2023, first time connect database records -------------------------------------------
 
