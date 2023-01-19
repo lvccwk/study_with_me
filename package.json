@@ -4,6 +4,7 @@
 	"description": "",
 	"main": "index.js",
 	"scripts": {
+		"start": "nodemon server.ts",
 		"init": "ts-node database/init_data.ts",
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"server": "ts-node server.ts",
