@@ -12,17 +12,6 @@ INSERT INTO public.users
 (username, email, "password", "type", created_at, updated_at)
 VALUES('Billy Wong', 'billy@gmail.com', 'admin', 'teacher', '2023-01-18 12:18:49.676', '2023-01-18 12:18:49.676');
 
-<<<<<<< HEAD
--- //blog
-INSERT INTO public.blog
-(id, teacher_id, image, "content", created_at, updated_at)
-VALUES(1, 1, 'image01.jpg', '測試中文內容', '2023-01-18 12:18:49.700', '2023-01-18 12:18:49.700');
-INSERT INTO public.blog
-(id, teacher_id, image, "content", created_at, updated_at)
-VALUES(2, 2, 'image02.jpg', 'TESTCONTENT', '2023-01-18 12:18:49.700', '2023-01-18 12:18:49.700');
-=======
->>>>>>> 6211b720d075328b59776a1d872c9bef8fe8ddf4
-
 -- step 2 
 INSERT INTO public.teacher
 (user_id, created_at, updated_at)

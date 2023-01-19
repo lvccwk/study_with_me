@@ -104,3 +104,4 @@ CREATE TABLE forum_post_comment(
 -- SELECT * FROM forum_post;
 -- SELECT * FROM forum_post_comment;
 -- SELECT * FROM forum;
+
