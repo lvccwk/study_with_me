@@ -68,7 +68,7 @@ async function main() {
 
 	await client.end() // close connection with the database
 }
-	main()
+main()
 
 // ----------------------------------------17/1/2023, first time connect database records -------------------------------------------
 

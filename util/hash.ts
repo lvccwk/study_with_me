@@ -6,8 +6,8 @@ const SALT_ROUNDS = 2
  * @params plainPassword: supplied when signup
  */
 export async function hashPassword(plainPassword: string) {
-    const hash: string = await bcrypt.hash(plainPassword, SALT_ROUNDS)
-    return hash
+	const hash: string = await bcrypt.hash(plainPassword, SALT_ROUNDS)
+	return hash
 }
 
 /**
@@ -15,12 +15,12 @@ export async function hashPassword(plainPassword: string) {
  * @params hashedPassword: looked up from database
  */
 export async function checkPassword(
-    plainPassword: string,
-    hashedPassword: string
+	plainPassword: string,
+	hashedPassword: string
 ) {
-    const isMatched: boolean = await bcrypt.compare(
-        plainPassword,
-        hashedPassword
-    )
-    return isMatched
+	const isMatched: boolean = await bcrypt.compare(
+		plainPassword,
+		hashedPassword
+	)
+	return isMatched
 }
