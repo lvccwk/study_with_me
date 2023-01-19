@@ -7,6 +7,7 @@ let server = new HTTP.Server(app)
 app.use(express.static('template_design'))
 app.use(express.static('public'))
 
+
 app.use((req, res) => {
 	res.redirect('404.html')
 })

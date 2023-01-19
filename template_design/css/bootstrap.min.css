@@ -7140,6 +7140,7 @@ fieldset:disabled .btn {
 	color: rgba(var(--bs-success-rgb), var(--bs-text-opacity)) !important;
 }
 .text-info {
+	font-size: 5rem;
 	--bs-text-opacity: 1;
 	color: rgba(var(--bs-info-rgb), var(--bs-text-opacity)) !important;
 }

@@ -522,10 +522,12 @@ strong {
 
 .date-text,
 .location-text {
+	font-size: 1.5rem;
 	border: 1px solid var(--white-color);
 	color: var(--white-color);
 	display: inline-block;
 	padding: 10px 20px;
+
 }
 
 .date-text {
