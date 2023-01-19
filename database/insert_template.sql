@@ -1,19 +1,4 @@
 -- step 1 
-<<<<<<< HEAD
-INSERT INTO public.users
-(username, email, "password", "type", created_at, updated_at)
-VALUES('Tom Chan', 'tom@gmail.com', 'admin', 'student', '2023-01-18 12:18:49.673', '2023-01-18 12:18:49.673');
-INSERT INTO public.users
-(username, email, "password", "type", created_at, updated_at)
-VALUES('Mary Chan', 'mary@gmail.com', 'admin', 'student', '2023-01-18 12:18:49.674', '2023-01-18 12:18:49.674');
-INSERT INTO public.users
-(username, email, "password", "type", created_at, updated_at)
-VALUES('Peter Wong', 'peter@gmail.com', 'admin', 'teacher', '2023-01-18 12:18:49.675', '2023-01-18 12:18:49.675');
-INSERT INTO public.users
-(username, email, "password", "type", created_at, updated_at)
-VALUES('Billy Wong', 'billy@gmail.com', 'admin', 'teacher', '2023-01-18 12:18:49.676', '2023-01-18 12:18:49.676');
-
-=======
 INSERT INTO public.users (
         username,
         email,
@@ -78,7 +63,6 @@ VALUES(
         '2023-01-18 12:18:49.676',
         '2023-01-18 12:18:49.676'
     );
->>>>>>> 38551d1996dfa479ecf8a0f1b1f37aaf5cc045c4
 -- step 2 
 INSERT INTO public.teacher (user_id, created_at, updated_at)
 VALUES(
