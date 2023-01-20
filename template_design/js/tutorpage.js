@@ -7,7 +7,7 @@ var $grid = $('.grid').isotope({
     layoutMode: 'fitRows',
     getSortData: {
       name: '.name',
-      symbol: '.symbol',
+      subject: '.subject',
       number: '.number parseInt',
       category: '[data-category]',
       weight: function( itemElem ) {

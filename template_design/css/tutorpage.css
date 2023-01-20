@@ -64,9 +64,9 @@ body {
 
 /* ---- isotope ---- */
 
-.grid {
+/* .grid {
   border: 1px solid #333;
-}
+} */
 
 /* clear fix */
 .grid:after {
@@ -104,7 +104,7 @@ body {
   font-weight: normal;
 }
 
-.element-item .symbol {
+.element-item .subject {
   position: absolute;
   left: 10px;
   top: 0px;
