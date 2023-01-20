@@ -55,9 +55,9 @@ https://templatemo.com/tm-575-leadership-event
 					<i class="bi-bullseye brand-logo"></i>
 					<span class="brand-text">study<br />with me</span>
 				</a>
-
+			
 				<a class="nav-link custom-btn btn d-lg-none" href="#">登入</a>
-
+			
 				<div class="collapse navbar-collapse" id="navbarNav">
 					<ul class="navbar-nav ms-auto">
 						<li class="nav-item">
@@ -130,7 +130,7 @@ https://templatemo.com/tm-575-leadership-event
 										答、實時操題訓練。</span
 									>
 								</div>
-								<li class="nav-item">
+								<li class="nav-item" id="signin-form">
 									<form>
 										<label for="username">用戶名稱:</label
 										><br />
@@ -143,23 +143,35 @@ https://templatemo.com/tm-575-leadership-event
 										<input
 											type="password"
 											id="pwd"
-											name="pwd"
-										/>
-									</form>
+											name="password"/>
+									
 
-									<button
-										type="button"
-										class="btn btn-primary"
-									>
-										登入
-									</button>
+									<!-- <input
+										type="submit"
+										value="登入"> -->
+										
+										<br>
+										<label for="pwd">email:</label><br />
+										<input
+											type="email"
+											id="pwd"
+											name="email"/>
+									
+
+									<input
+										type="submit"
+										value="登入">
+									
+								</form>
 									<a
 										type="button"
 										class="btn btn-primary"
 										href="/register.html"
 									>
+									
 									註冊</a
 									><br />
+								
 									<div>
 										<button class="google" href="#">
 											
@@ -371,5 +383,6 @@ https://templatemo.com/tm-575-leadership-event
 		<script src="/js/jquery.sticky.js"></script>
 		<!-- <script src="/js/click-scroll.js"></script>  -->
 		<script src="/js/custom.js"></script>
+		<script src="/js/login.js"></script>
 	</body>
 </html>
