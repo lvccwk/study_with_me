@@ -1,4 +1,4 @@
-@import './login1.css';
+/* @import './login1.css'; */
 
 .empty-block-404 {
 	background-color: var(--navbar-bg-color);
@@ -9,6 +9,11 @@
     background-color: #273054;
     margin-top: 25px;
 }
+
+form {
+    color: white;
+}
+
 .google {
     color: white;
 }
