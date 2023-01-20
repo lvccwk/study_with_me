@@ -1,4 +1,4 @@
-#tutorcontainter {
+/* #tutorcontainter {
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-around;
@@ -11,5 +11,4 @@
 	padding-left: calc(var(--bs-gutter-x) * 0.5);
 	margin-top: var(--bs-gutter-y);
     border-top: 10px;
-}
-
+} */
