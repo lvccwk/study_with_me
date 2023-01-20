@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style/style.css">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+
+    <title>Memo Wall</title>
+</head>
+
+<body>
+
+    <main>
+        <div class="admin-container">
+
+            <div class="new-memo-container">
+                <form action="/memos" method="post" enctype="multipart/form-data">
+                    <textarea class='memo' name="content">
+                    At w3schools.com you will learn how to m
+                    </textarea>
+
+                    <div>
+                        <input type="file" name="image">
+
+                    </div>
+                    <div>
+                        <input type="submit" value="提交">
+
+                    </div>
+                </form>
+            </div>
+
+            <div class="signin-form">
+                <div class="title">連儂管理員專用</div>
+                <form action="/login" , method="POST">
+                    <div>
+
+                        <input type="text" name="username" value="alex">
+                    </div>
+                    <div>
+                        <input type="password" name="password" value="alex">
+
+                    </div>
+                    <div>
+                        <input type="submit" value="提交">
+
+                    </div>
+                </form>
+                <div>
+                    <a href="#">Login with google</a>
+
+                </div>
+            </div>
+
+        </div>
+
+        <div class="memo-container">
+            <div class="memo-wrapper">
+                <div class="memo-icon first">
+
+                    <span class="material-symbols-outlined ">
+                        delete
+                    </span>
+                </div>
+
+                <div class="memo-icon second">
+
+                    <span class="material-symbols-outlined ">
+                        edit_note
+                    </span>
+                </div>
+
+                <textarea class='memo'>1</textarea>
+            </div>
+            <div class="memo-wrapper">
+                <div class="memo-icon first">
+
+                    <span class="material-symbols-outlined ">
+                        delete
+                    </span>
+                </div>
+
+                <div class="memo-icon second">
+
+                    <span class="material-symbols-outlined ">
+                        edit_note
+                    </span>
+                </div>
+
+                <textarea class='memo'>2</textarea>
+            </div>
+
+
+
+        </div>
+    </main>
+
+    <div class="title-container">
+        <div class="title-char">網</div>
+        <div class="title-char">上</div>
+        <div class="title-char">連</div>
+        <div class="title-char">儂</div>
+        <div class="title-char">牆</div>
+    </div>
+
+</body>
+
+</html>

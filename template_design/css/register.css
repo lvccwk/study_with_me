@@ -1,4 +1,4 @@
-@import './register1.css';
+/* @import './register1.css'; */
 
 .empty-block-404 {
 	background-color: var(--navbar-bg-color);
@@ -9,3 +9,8 @@
     background-color: #273054;
     margin-top: 25px;
 }
+
+.nav-item {
+    color: white;
+}
+
