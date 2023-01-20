@@ -1,0 +1,11 @@
+@import './login1.css';
+
+.empty-block-404 {
+	background-color: var(--navbar-bg-color);
+	height: 100%;
+}
+
+.btn-primary {
+    background-color: #273054;
+    margin-top: 25px;
+}
