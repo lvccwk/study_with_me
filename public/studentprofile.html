@@ -23,6 +23,11 @@
 
     <link href="/css/templatemo-leadership-event.css" rel="stylesheet" />
 
+	<link href="/css/tutorpage.css" rel="stylesheet" />
+	
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	rel="stylesheet">
+
     <!--
 
 TemplateMo 575 Leadership Event
@@ -60,7 +65,7 @@ https://templatemo.com/tm-575-leadership-event
 				<div class="collapse navbar-collapse" id="navbarNav">
 					<ul class="navbar-nav ms-auto">
 						<li class="nav-item">
-							<a class="nav-link click-scroll" href="#section_1"
+							<a class="nav-link click-scroll" href="/index.html"
 								>主頁</a
 							>
 						</li>
@@ -84,7 +89,7 @@ https://templatemo.com/tm-575-leadership-event
 						</li>
 
 						<li class="nav-item">
-							<a class="nav-link click-scroll" href="#section_5"
+							<a class="nav-link click-scroll" href="/studentprofile.html"
 								>學生資料</a
 							>
 						</li>
@@ -113,568 +118,450 @@ https://templatemo.com/tm-575-leadership-event
 			</div>
 		</nav>
 
-	
 
-			<section class="about section-padding" id="section_2">
-				<div class="container">
-					<div class="row">
-						<div class="col-lg-10 col-12">
-							<h2 class="mb-4">
-								關於<u class="text-info">我們</u>
-							</h2>
-						</div>
-
-						<div class="col-lg-6 col-12">
-							<h3 class="mb-3">
-								揀唔到啱自己嘅課程？
-
-
-							</h3>
-
-							<p>
-								Leadership Event 
-							</p>
-
-							<a
-								class="custom-btn custom-border-btn btn custom-link mt-3 me-3"
-								href="#section_3"
-								>自我學習</a
-							>
-
-							<a
-								class="custom-btn btn custom-link mt-3"
-								href="#section_4"
-								>安排上課</a
-							>
-						</div>
-
-						<div class="col-lg-6 col-12 mt-5 mt-lg-0">
-							<h4>
-								學習顧問 1 on 1 諮詢，幫你度身打造最fit課程組合！
-							</h4>
-
-							<div class="avatar-group border-top py-5 mt-5">
-								<img
-									src="images/avatar/portrait-good-looking-brunette-young-asian-woman.jpg"
-									class="img-fluid avatar-image"
-									alt=""
-								/>
-
-								<img
-									src="images/avatar/happy-asian-man-standing-with-arms-crossed-grey-wall.jpg"
-									class="img-fluid avatar-image avatar-image-left"
-									alt=""
-								/>
-
-								<img
-									src="images/avatar/senior-man-white-sweater-eyeglasses.jpg"
-									class="img-fluid avatar-image avatar-image-left"
-									alt=""
-								/>
-
-								<img
-									src="images/avatar/pretty-smiling-joyfully-female-with-fair-hair-dressed-casually-looking-with-satisfaction.jpg"
-									class="img-fluid avatar-image avatar-image-left"
-									alt=""
-								/>
-
-								<p class="d-inline">
-									120+ 導師已加入我們團隊
-								</p>
-							</div>
-						</div>
-					</div>
-				</div>
-			</section>
+		
+			
 
 			<section class="speakers section-padding" id="section_3">
 				<div class="container">
 					<div class="row">
 						<div
-							class="col-lg-6 col-12 d-flex flex-column justify-content-center align-items-center"
-						>
+							class="col-lg-6 col-12 d-flex flex-column justify-content-center align-items-center">
 							<div class="speakers-text-info">
 								<h2 class="mb-4">
-									要登入先睇到既 <u class="text-info">學生list</u>
+									 <u class="text-info">學生</u>
 								</h2>
 
 								<p>
-									
+									<!-- 星星級導師 全面助你面對學業難關 -->
 								</p>
 							</div>
 						</div>
+					
+				、
+					<!----------------------Fliter bar ---------------------->
+			  
+					<h1>Isotope - filtering &amp; sorting</h1>
+					<h2>Filter</h2>
+					<div id="filters" class="button-group">  <button class="button is-checked" data-filter="*">show all</button>
+					  <button class="button" data-filter=".metal">metal</button>
+					  <button class="button" data-filter=".transition">transition</button>
+					  <button class="button" data-filter=".alkali, .alkaline-earth">alkali and alkaline-earth</button>
+					  <button class="button" data-filter=":not(.transition)">not transition</button>
+					  <button class="button" data-filter=".metal:not(.transition)">metal but not transition</button>
+					  <button class="button" data-filter="numberGreaterThan50">number > 50</button>
+					  <button class="button" data-filter="ium">name ends with &ndash;ium</button>
+					</div>
+					
+					<h2>Sort</h2>
+					<div id="sorts" class="button-group">  <button class="button is-checked" data-sort-by="original-order">original order</button>
+					  <button class="button" data-sort-by="name">name</button>
+					  <button class="button" data-sort-by="symbol">symbol</button>
+					  <button class="button" data-sort-by="number">number</button>
+					  <button class="button" data-sort-by="weight">weight</button>
+					  <button class="button" data-sort-by="category">category</button>
+					</div>
+					
+					<div class="grid">
+					  <div class="element-item transition metal " data-category="transition">
 
-						
-
-						<div class="col-lg-12 col-12">
-							<div class="row">
-								<div class="col-lg-3 col-md-6 col-12">
-									<div
-										class="speakers-thumb speakers-thumb-small"
-									>
-										<img
+						<h3 class="name">Natalie</h3>
+						<img
 											src="images/avatar/portrait-good-looking-brunette-young-asian-woman.jpg"
 											class="img-fluid speakers-image"
 											alt=""
 										/>
-
-										<div class="speakers-info">
-											<h5 class="speakers-title mb-0">
-												Natalie
-											</h5>
-
-											<p class="speakers-text mb-0">
-											英文
-											</p>
-
-											<ul class="social-icon">
-												<li>
-													<a
-														href="#"
-														class="social-icon-link bi-facebook"
-													></a>
-												</li>
-
-												<li>
-													<a
-														href="#"
-														class="social-icon-link bi-instagram"
-													></a>
-												</li>
-											</ul>
-										</div>
-									</div>
-								</div>
-
-								<div class="col-lg-3 col-md-6 col-12">
-									<div
-										class="speakers-thumb speakers-thumb-small"
-									>
-										<img
-											src="images/avatar/senior-man-white-sweater-eyeglasses.jpg"
-											class="img-fluid speakers-image"
-											alt=""
-										/>
-
-										<div class="speakers-info">
-											<h5 class="speakers-title mb-0">
-												Thomas
-											</h5>
-
-											<p class="speakers-text mb-0">
-												中文
-											</p>
-
-											<ul class="social-icon">
-												<li>
-													<a
-														href="#"
-														class="social-icon-link bi-instagram"
-													></a>
-												</li>
-
-												<li>
-													<a
-														href="#"
-														class="social-icon-link bi-whatsapp"
-													></a>
-												</li>
-											</ul>
-										</div>
-									</div>
-								</div>
-
-								<div class="col-lg-3 col-md-6 col-12">
-									<div
-										class="speakers-thumb speakers-thumb-small"
-									>
-										<img
-											src="images/avatar/pretty-smiling-joyfully-female-with-fair-hair-dressed-casually-looking-with-satisfaction.jpg"
-											class="img-fluid speakers-image"
-											alt=""
-										/>
-
-										<div class="speakers-info">
-											<h5 class="speakers-title mb-0">
-												Isabella
-											</h5>
-
-											<p class="speakers-text mb-0">
-												經濟
-											</p>
-
-											<ul class="social-icon">
-												<li>
-													<a
-														href="#"
-														class="social-icon-link bi-facebook"
-													></a>
-												</li>
-
-												<li>
-													<a
-														href="#"
-														class="social-icon-link bi-instagram"
-													></a>
-												</li>
-
-												<li>
-													<a
-														href="#"
-														class="social-icon-link bi-whatsapp"
-													></a>
-												</li>
-											</ul>
-										</div>
-									</div>
-								</div>
+						<p class="symbol">英文</p>
+						<p class="number">80</p>
+						<p class="weight">200.59</p>
+					  </div>
+					  <div class="element-item metalloid " data-category="metalloid">
+						<h3 class="name">Tellurium</h3>
+						<p class="symbol">Te</p>
+						<p class="number">52</p>
+						<p class="weight">127.6</p>
+					  </div>
+					  <div class="element-item post-transition metal " data-category="post-transition">
+						<h3 class="name">Bismuth</h3>
+						<p class="symbol">Bi</p>
+						<p class="number">83</p>
+						<p class="weight">208.980</p>
+					  </div>
+					  <div class="element-item post-transition metal " data-category="post-transition">
+						<h3 class="name">Lead</h3>
+						<p class="symbol">Pb</p>
+						<p class="number">82</p>
+						<p class="weight">207.2</p>
+					  </div>
+					  <div class="element-item transition metal " data-category="transition">
+						<h3 class="name">Gold</h3>
+						<p class="symbol">Au</p>
+						<p class="number">79</p>
+						<p class="weight">196.967</p>
+					  </div>
+					  <div class="element-item alkali metal " data-category="alkali">
+						<h3 class="name">Potassium</h3>
+						<p class="symbol">K</p>
+						<p class="number">19</p>
+						<p class="weight">39.0983</p>
+					  </div>
+					  <div class="element-item alkali metal " data-category="alkali">
+						<h3 class="name">Sodium</h3>
+						<p class="symbol">Na</p>
+						<p class="number">11</p>
+						<p class="weight">22.99</p>
+					  </div>
+					  <div class="element-item transition metal " data-category="transition">
+						<h3 class="name">Cadmium</h3>
+						<p class="symbol">Cd</p>
+						<p class="number">48</p>
+						<p class="weight">112.411</p>
+					  </div>
+					  <div class="element-item alkaline-earth metal " data-category="alkaline-earth">
+						<h3 class="name">Calcium</h3>
+						<p class="symbol">Ca</p>
+						<p class="number">20</p>
+						<p class="weight">40.078</p>
+					  </div>
+					  <div class="element-item transition metal " data-category="transition">
+						<h3 class="name">Rhenium</h3>
+						<p class="symbol">Re</p>
+						<p class="number">75</p>
+						<p class="weight">186.207</p>
+					  </div>
+					  <div class="element-item post-transition metal " data-category="post-transition">
+						<h3 class="name">Thallium</h3>
+						<p class="symbol">Tl</p>
+						<p class="number">81</p>
+						<p class="weight">204.383</p>
+					  </div>
+					  <div class="element-item metalloid " data-category="metalloid">
+						<h3 class="name">Antimony</h3>
+						<p class="symbol">Sb</p>
+						<p class="number">51</p>
+						<p class="weight">121.76</p>
+					  </div>
+					  <div class="element-item transition metal " data-category="transition">
+						<h3 class="name">Cobalt</h3>
+						<p class="symbol">Co</p>
+						<p class="number">27</p>
+						<p class="weight">58.933</p>
+					  </div>
+					  <div class="element-item lanthanoid metal inner-transition " data-category="lanthanoid">
+						<h3 class="name">Ytterbium</h3>
+						<p class="symbol">Yb</p>
+						<p class="number">70</p>
+						<p class="weight">173.054</p>
+					  </div>
+					  <div class="element-item noble-gas nonmetal " data-category="noble-gas">
+						<h3 class="name">Argon</h3>
+						<p class="symbol">Ar</p>
+						<p class="number">18</p>
+						<p class="weight">39.948</p>
+					  </div>
+					  <div class="element-item diatomic nonmetal " data-category="diatomic">
+						<h3 class="name">Nitrogen</h3>
+						<p class="symbol">N</p>
+						<p class="number">7</p>
+						<p class="weight">14.007</p>
+					  </div>
+					  <div class="element-item actinoid metal inner-transition " data-category="actinoid">
+						<h3 class="name">Uranium</h3>
+						<p class="symbol">U</p>
+						<p class="number">92</p>
+						<p class="weight">238.029</p>
+					  </div>
+					  <div class="element-item actinoid metal inner-transition " data-category="actinoid">
+						<h3 class="name">Plutonium</h3>
+						<p class="symbol">Pu</p>
+						<p class="number">94</p>
+						<p class="weight">(244)</p>
+					  </div>
+					</div>
+					
+					<!----------------------Fliter bar ---------------------->
 
 
-								<div class="col-lg-3 col-md-6 col-12">
-									<div
-										class="speakers-thumb speakers-thumb-small"
-									>
-										<img
-											src="images/avatar/portrait-good-looking-brunette-young-asian-woman.jpg"
-											class="img-fluid speakers-image"
-											alt=""
-										/>
+					<div class="col-lg-12 col-12">
+						<div class="row">
+							<div class="col-lg-6 col-md-6 col-12">
+								<div
+									class="speakers-thumb speakers-thumb-small"
+								>
+									<img
+										src="images/avatar/portrait-good-looking-brunette-young-asian-woman.jpg"
+										class="img-fluid speakers-image"
+										alt=""
+									/>
 
-										<div class="speakers-info">
-											<h5 class="speakers-title mb-0">
-												Natalie
-											</h5>
+									<div class="speakers-info">
+										<h5 class="speakers-title mb-0">
+											Natalie
+										</h5>
 
-											<p class="speakers-text mb-0">
-											英文
-											</p>
+										<p class="speakers-text mb-0">
+										英文
+										</p>
 
-											<ul class="social-icon">
-												<li>
-													<a
-														href="#"
-														class="social-icon-link bi-facebook"
-													></a>
-												</li>
+										<ul class="social-icon">
+											<li>
+												<a
+													href="#"
+													class="social-icon-link bi-facebook"
+												></a>
+											</li>
 
-												<li>
-													<a
-														href="#"
-														class="social-icon-link bi-instagram"
-													></a>
-												</li>
-											</ul>
-										</div>
-									</div>
-								</div>
-
-								<div class="col-lg-3 col-md-6 col-12">
-									<div
-										class="speakers-thumb speakers-thumb-small"
-									>
-										<img
-											src="images/avatar/portrait-good-looking-brunette-young-asian-woman.jpg"
-											class="img-fluid speakers-image"
-											alt=""
-										/>
-
-										<div class="speakers-info">
-											<h5 class="speakers-title mb-0">
-												Natalie
-											</h5>
-
-											<p class="speakers-text mb-0">
-											英文
-											</p>
-
-											<ul class="social-icon">
-												<li>
-													<a
-														href="#"
-														class="social-icon-link bi-facebook"
-													></a>
-												</li>
-
-												<li>
-													<a
-														href="#"
-														class="social-icon-link bi-instagram"
-													></a>
-												</li>
-											</ul>
-										</div>
-									</div>
-								</div>
-
-								<div class="col-lg-3 col-md-6 col-12">
-									<div
-										class="speakers-thumb speakers-thumb-small"
-									>
-										<img
-											src="images/avatar/portrait-good-looking-brunette-young-asian-woman.jpg"
-											class="img-fluid speakers-image"
-											alt=""
-										/>
-
-										<div class="speakers-info">
-											<h5 class="speakers-title mb-0">
-												Natalie
-											</h5>
-
-											<p class="speakers-text mb-0">
-											英文
-											</p>
-
-											<ul class="social-icon">
-												<li>
-													<a
-														href="#"
-														class="social-icon-link bi-facebook"
-													></a>
-												</li>
-
-												<li>
-													<a
-														href="#"
-														class="social-icon-link bi-instagram"
-													></a>
-												</li>
-											</ul>
-										</div>
-									</div>
-								</div>
-
-								<div class="col-lg-3 col-md-6 col-12">
-									<div
-										class="speakers-thumb speakers-thumb-small"
-									>
-										<img
-											src="images/avatar/portrait-good-looking-brunette-young-asian-woman.jpg"
-											class="img-fluid speakers-image"
-											alt=""
-										/>
-
-										<div class="speakers-info">
-											<h5 class="speakers-title mb-0">
-												Natalie
-											</h5>
-
-											<p class="speakers-text mb-0">
-											英文
-											</p>
-
-											<ul class="social-icon">
-												<li>
-													<a
-														href="#"
-														class="social-icon-link bi-facebook"
-													></a>
-												</li>
-
-												<li>
-													<a
-														href="#"
-														class="social-icon-link bi-instagram"
-													></a>
-												</li>
-											</ul>
-										</div>
-									</div>
-								</div>
-
-								<div class="col-lg-3 col-md-6 col-12">
-									<div
-										class="speakers-thumb speakers-thumb-small"
-									>
-										<img
-											src="images/avatar/portrait-good-looking-brunette-young-asian-woman.jpg"
-											class="img-fluid speakers-image"
-											alt=""
-										/>
-
-										<div class="speakers-info">
-											<h5 class="speakers-title mb-0">
-												Natalie
-											</h5>
-
-											<p class="speakers-text mb-0">
-											英文
-											</p>
-
-											<ul class="social-icon">
-												<li>
-													<a
-														href="#"
-														class="social-icon-link bi-facebook"
-													></a>
-												</li>
-
-												<li>
-													<a
-														href="#"
-														class="social-icon-link bi-instagram"
-													></a>
-												</li>
-											</ul>
-										</div>
-									</div>
-								</div>
-								<div class="col-lg-3 col-md-6 col-12">
-									<div
-										class="speakers-thumb speakers-thumb-small"
-									>
-										<img
-											src="images/avatar/portrait-good-looking-brunette-young-asian-woman.jpg"
-											class="img-fluid speakers-image"
-											alt=""
-										/>
-
-										<div class="speakers-info">
-											<h5 class="speakers-title mb-0">
-												Natalie
-											</h5>
-
-											<p class="speakers-text mb-0">
-											英文
-											</p>
-
-											<ul class="social-icon">
-												<li>
-													<a
-														href="#"
-														class="social-icon-link bi-facebook"
-													></a>
-												</li>
-
-												<li>
-													<a
-														href="#"
-														class="social-icon-link bi-instagram"
-													></a>
-												</li>
-											</ul>
-										</div>
-									</div>
-								</div>
-								<div class="col-lg-3 col-md-6 col-12">
-									<div
-										class="speakers-thumb speakers-thumb-small"
-									>
-										<img
-											src="images/avatar/portrait-good-looking-brunette-young-asian-woman.jpg"
-											class="img-fluid speakers-image"
-											alt=""
-										/>
-
-										<div class="speakers-info">
-											<h5 class="speakers-title mb-0">
-												Natalie
-											</h5>
-
-											<p class="speakers-text mb-0">
-											英文
-											</p>
-
-											<ul class="social-icon">
-												<li>
-													<a
-														href="#"
-														class="social-icon-link bi-facebook"
-													></a>
-												</li>
-
-												<li>
-													<a
-														href="#"
-														class="social-icon-link bi-instagram"
-													></a>
-												</li>
-											</ul>
-										</div>
-									</div>
-								</div>
-								<div class="col-lg-3 col-md-6 col-12">
-									<div
-										class="speakers-thumb speakers-thumb-small"
-									>
-										<img
-											src="images/avatar/portrait-good-looking-brunette-young-asian-woman.jpg"
-											class="img-fluid speakers-image"
-											alt=""
-										/>
-
-										<div class="speakers-info">
-											<h5 class="speakers-title mb-0">
-												Natalie
-											</h5>
-
-											<p class="speakers-text mb-0">
-											英文
-											</p>
-
-											<ul class="social-icon">
-												<li>
-													<a
-														href="#"
-														class="social-icon-link bi-facebook"
-													></a>
-												</li>
-
-												<li>
-													<a
-														href="#"
-														class="social-icon-link bi-instagram"
-													></a>
-												</li>
-											</ul>
-										</div>
-									</div>
-								</div>
-
-								<div class="col-lg-3 col-md-6 col-12">
-									<div
-										class="speakers-thumb speakers-thumb-small"
-									>
-										<img
-											src="images/avatar/indoor-shot-beautiful-happy-african-american-woman-smiling-cheerfully-keeping-her-arms-folded-relaxing-indoors-after-morning-lectures-university.jpg"
-											class="img-fluid speakers-image"
-											alt=""
-										/>
-
-										<div class="speakers-info">
-											<h5 class="speakers-title mb-0">
-												Samantha
-											</h5>
-
-											<p class="speakers-text mb-0">
-												生物
-											</p>
-
-											<ul class="social-icon">
-												<li>
-													<a
-														href="#"
-														class="social-icon-link bi-instagram"
-													></a>
-												</li>
-
-												<li>
-													<a
-														href="#"
-														class="social-icon-link bi-whatsapp"
-													></a>
-												</li>
-											</ul>
-										</div>
+											<li>
+												<a
+													href="#"
+													class="social-icon-link bi-instagram"
+												></a>
+											</li>
+										</ul>
 									</div>
 								</div>
 							</div>
+
+							<div class="col-lg-6 col-md-6 col-12">
+								<div
+									class="speakers-thumb speakers-thumb-small"
+								>
+									<img
+										src="images/avatar/senior-man-white-sweater-eyeglasses.jpg"
+										class="img-fluid speakers-image"
+										alt=""
+									/>
+
+									<div class="speakers-info">
+										<h5 class="speakers-title mb-0">
+											Thomas
+										</h5>
+
+										<p class="speakers-text mb-0">
+											中文
+										</p>
+
+										<ul class="social-icon">
+											<li>
+												<a
+													href="#"
+													class="social-icon-link bi-instagram"
+												></a>
+											</li>
+
+											<li>
+												<a
+													href="#"
+													class="social-icon-link bi-whatsapp"
+												></a>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+
+							<div class="col-lg-6 col-md-6 col-12">
+								<div
+									class="speakers-thumb speakers-thumb-small"
+								>
+									<img
+										src="images/avatar/pretty-smiling-joyfully-female-with-fair-hair-dressed-casually-looking-with-satisfaction.jpg"
+										class="img-fluid speakers-image"
+										alt=""
+									/>
+
+									<div class="speakers-info">
+										<h5 class="speakers-title mb-0">
+											Isabella
+										</h5>
+
+										<p class="speakers-text mb-0">
+											經濟
+										</p>
+
+										<ul class="social-icon">
+											<li>
+												<a
+													href="#"
+													class="social-icon-link bi-facebook"
+												></a>
+											</li>
+
+											<li>
+												<a
+													href="#"
+													class="social-icon-link bi-instagram"
+												></a>
+											</li>
+
+											<li>
+												<a
+													href="#"
+													class="social-icon-link bi-whatsapp"
+												></a>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+
+							<div class="col-lg-6 col-md-6 col-12">
+								<div
+									class="speakers-thumb speakers-thumb-small"
+								>
+									<img
+										src="images/avatar/indoor-shot-beautiful-happy-african-american-woman-smiling-cheerfully-keeping-her-arms-folded-relaxing-indoors-after-morning-lectures-university.jpg"
+										class="img-fluid speakers-image"
+										alt=""
+									/>
+
+									<div class="speakers-info">
+										<h5 class="speakers-title mb-0">
+											Samantha
+										</h5>
+
+										<p class="speakers-text mb-0">
+											生物
+										</p>
+
+										<ul class="social-icon">
+											<li>
+												<a
+													href="#"
+													class="social-icon-link bi-instagram"
+												></a>
+											</li>
+
+											<li>
+												<a
+													href="#"
+													class="social-icon-link bi-whatsapp"
+												></a>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+							
+							<div class="col-lg-6 col-md-6 col-12">
+								<div
+									class="speakers-thumb speakers-thumb-small"
+								>
+									<img
+										src="images/avatar/pretty-smiling-joyfully-female-with-fair-hair-dressed-casually-looking-with-satisfaction.jpg"
+										class="img-fluid speakers-image"
+										alt=""
+									/>
+
+									<div class="speakers-info">
+										<h5 class="speakers-title mb-0">
+											Isabella
+										</h5>
+
+										<p class="speakers-text mb-0">
+											經濟
+										</p>
+
+										<ul class="social-icon">
+											<li>
+												<a
+													href="#"
+													class="social-icon-link bi-facebook"
+												></a>
+											</li>
+
+											<li>
+												<a
+													href="#"
+													class="social-icon-link bi-instagram"
+												></a>
+											</li>
+
+											<li>
+												<a
+													href="#"
+													class="social-icon-link bi-whatsapp"
+												></a>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+							
+							<div class="col-lg-6 col-md-6 col-12">
+								<div
+									class="speakers-thumb speakers-thumb-small"
+								>
+									<img
+										src="images/avatar/pretty-smiling-joyfully-female-with-fair-hair-dressed-casually-looking-with-satisfaction.jpg"
+										class="img-fluid speakers-image"
+										alt=""
+									/>
+
+									<div class="speakers-info">
+										<h5 class="speakers-title mb-0">
+											Isabella
+										</h5>
+
+										<p class="speakers-text mb-0">
+											經濟
+										</p>
+
+										<ul class="social-icon">
+											<li>
+												<a
+													href="#"
+													class="social-icon-link bi-facebook"
+												></a>
+											</li>
+
+											<li>
+												<a
+													href="#"
+													class="social-icon-link bi-instagram"
+												></a>
+											</li>
+
+											<li>
+												<a
+													href="#"
+													class="social-icon-link bi-whatsapp"
+												></a>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+
+
+				<div><br><br><br><br></div>
+
+			<section class="call-to-action section-padding">
+				<div class="container">
+					<div class="row align-items-center">
+						<div class="col-lg-7 col-12">
+							<h2 class="text-white mb-4">
+								加入我們
+								<u class="text-info">導師團隊</u>
+							</h2>
+
+							<p class="text-white">
+								Lorem ipsum dolor sit amet, consectetur
+								adipiscing elit, sed do eiusmod tempor
+								incididunt ut dolore
+							</p>
+						</div>
+
+						<div class="col-lg-3 col-12 ms-lg-auto mt-4 mt-lg-0">
+							<a href="#section_5" class="custom-btn btn"
+								>立即註冊成為導師</a
+							>
 						</div>
 					</div>
 				</div>
-			</section>
+			</div>
 
-	
+		
 
 		<footer class="site-footer">
 			<div class="container">
@@ -730,7 +617,7 @@ https://templatemo.com/tm-575-leadership-event
 							</li>
 
 							<li class="footer-menu-item">
-								<a href="/tutorpage.html" class="footer-menu-link"
+								<a href="#" class="footer-menu-link"
 									>導師資料</a
 								>
 							</li>
@@ -769,13 +656,20 @@ https://templatemo.com/tm-575-leadership-event
 					</div>
 				</div>
 			</div>
+
+
+			
 		</footer>
 
 		<!-- JAVASCRIPT FILES -->
 		<!-- <script src="/js/jquery.min.js"></script>
 		<script src="/js/bootstrap.min.js"></script>
 		<script src="/js/jquery.sticky.js"></script>
-		<script src="/js/click-scroll.js"></script> 
+		<script src="/js/click-scroll.js"></script>
 		<script src="/js/custom.js"></script> -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.js"></script>
+		<script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
+		<script src="/js/tutorpage.js"></script> 
 	</body>
 </html>
