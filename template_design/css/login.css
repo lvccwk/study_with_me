@@ -1,0 +1,30 @@
+/* @import './login1.css'; */
+
+.empty-block-404 {
+	background-color: var(--navbar-bg-color);
+	height: 100%;
+}
+
+.btn-primary {
+    background-color: #273054;
+    margin-top: 25px;
+}
+
+.nav-item {
+    color: white;
+}
+
+
+form {
+    color: white;
+}
+
+.google {
+    margin-top: 25px;
+    padding: 0px;
+}
+
+/* .video-wrap {
+    filter: blur(8px);
+  -webkit-filter: blur(8px);
+} */

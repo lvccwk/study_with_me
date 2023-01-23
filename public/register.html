@@ -1,33 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
 
-		<meta name="description" content="" />
-		<meta name="author" content="" />
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-		<title>Study With Me Log-In Homepage</title>
+    <meta name="description" content="" />
+    <meta name="author" content="" />
 
-		<!-- CSS FILES -->
-		<link rel="preconnect" href="https://fonts.googleapis.com" />
+    <title>Study With Me Register Homepage</title>
 
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- CSS FILES -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
 
-		<link
-			href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap"
-			rel="stylesheet"
-		/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
-		<link href="/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet" />
 
-		<link href="/css/bootstrap-icons.css" rel="stylesheet" />
+    <link href="/css/bootstrap.min.css" rel="stylesheet" />
 
-		<link href="/css/templatemo-leadership-event.css" rel="stylesheet" />
+    <link href="/css/bootstrap-icons.css" rel="stylesheet" />
 
-		<link href="/css/login.css" rel="stylesheet" />
+    <link href="/css/templatemo-leadership-event.css" rel="stylesheet" />
 
-		<!--
+    <link href="/css/register.css" rel="stylesheet" />
+
+    <!--
 
 TemplateMo 575 Leadership Event
 
@@ -53,11 +51,14 @@ https://templatemo.com/tm-575-leadership-event
 
 				<a href="index.html" class="navbar-brand mx-auto mx-lg-0">
 					<i class="bi-bullseye brand-logo"></i>
-					<span class="brand-text">study<br />with me</span>
+					<span class="brand-text"
+						>study<br/>with me</span>
 				</a>
-			
-				<a class="nav-link custom-btn btn d-lg-none" href="#">登入</a>
-			
+
+				<a class="nav-link custom-btn btn d-lg-none" href="#"
+					>登入</a
+				>
+
 				<div class="collapse navbar-collapse" id="navbarNav">
 					<ul class="navbar-nav ms-auto">
 						<li class="nav-item">
@@ -73,9 +74,7 @@ https://templatemo.com/tm-575-leadership-event
 						</li>
 
 						<li class="nav-item">
-							<a
-								class="nav-link click-scroll"
-								href="/tutorpage.html"
+							<a class="nav-link click-scroll" href="/tutorpage.html"
 								>導師資料</a
 							>
 						</li>
@@ -103,6 +102,16 @@ https://templatemo.com/tm-575-leadership-event
 								>聯絡我們</a
 							>
 						</li>
+
+                        
+							<a
+								class="nav-link custom-btn btn d-none d-lg-block"
+								href="#"
+								>登入</a
+							>
+						
+
+		
 					</ul>
 				</div>
 			</div>
@@ -115,7 +124,7 @@ https://templatemo.com/tm-575-leadership-event
 						<div class="col-lg-5 col-12 m-auto">
 							<div class="hero-text">
 								<h1 class="text-white mb-4">
-									<u class="text-info">STUDY</u><br />WITH ME
+									<u class="text-info">STUDY</u><br>WITH ME
 								</h1>
 
 								<div
@@ -126,59 +135,32 @@ https://templatemo.com/tm-575-leadership-event
 									> -->
 
 									<span class="location-text"
-										>一站式中小學補習問功課平台<br />提供全科24小時功課問
+										>一站式中小學補習問功課平台<br>提供全科24小時功課問
 										答、實時操題訓練。</span
 									>
-								</div>
-								<li class="nav-item" id="signin-form">
+								</div> 
+								<li class="nav-item">
 									<form>
-										<label for="username">用戶名稱:</label
-										><br />
-										<input
-											type="text"
-											id="username"
-											name="username"
-										/><br />
-										<label for="pwd">密碼:</label><br />
-										<input
-											type="password"
-											id="pwd"
-											name="password"/>
-									
-
-									<!-- <input
-										type="submit"
-										value="登入"> -->
+                                        <label for="username">用戶名稱:</label><br>
+										<input type="text" id="username" name="username"><br>
+										<label for="password">密碼:</label><br>
+										<input type="password" id="pwd" name="password"><br>
+                                        <label for="username">電郵地址:</label><br>
+										<input type="email" id="email" name="email"><br>
+										<label for="occupation">職業:</label><br>
+										<select type="text" id="occupation" name="occupation">
+											<option value="teacher">老師</option>
+											<option value="student">學生</option>
+											</select>
+                                        
 										
-										<br>
-										<label for="pwd">email:</label><br />
-										<input
-											type="email"
-											id="pwd"
-											name="email"/>
+										
+                                        
+									</form>
 									
-
-									<input
-										type="submit"
-										value="登入">
+                                      <button type="button" class="btn btn-primary">註冊</button>
 									
-								</form>
-									<a
-										type="button"
-										class="btn btn-primary"
-										href="/register.html"
-									>
 									
-									註冊</a
-									><br />
-								
-									<div>
-										<button class="google" href="#">
-											
-											<img src="/images/btn_google_signin_dark_normal_web.png">
-											</button
-										>
-									</div>
 								</li>
 								<a
 									href="#section_2"
@@ -276,7 +258,6 @@ https://templatemo.com/tm-575-leadership-event
 					</div>
 				</div>
 			</section>
-		</main>
 
 		<footer class="site-footer">
 			<div class="container">
@@ -332,9 +313,7 @@ https://templatemo.com/tm-575-leadership-event
 							</li>
 
 							<li class="footer-menu-item">
-								<a
-									href="/tutorpage.html"
-									class="footer-menu-link"
+								<a href="/tutorpage.html" class="footer-menu-link"
 									>導師資料</a
 								>
 							</li>
@@ -346,14 +325,11 @@ https://templatemo.com/tm-575-leadership-event
 							</li>
 
 							<li class="footer-menu-item">
-								<a href="#" class="footer-menu-link"
-									>學習資源</a
-								>
+								<a href="#" class="footer-menu-link">學習資源</a>
 							</li>
 
 							<li class="footer-menu-item">
 								<a href="#" class="footer-menu-link">討論區</a>
-							</li>
 						</ul>
 					</div>
 
@@ -365,6 +341,7 @@ https://templatemo.com/tm-575-leadership-event
 								Copyright © 2022 Study with me
 
 								<br />All Rights Reserved.
+
 							</p>
 
 							<a
@@ -378,11 +355,10 @@ https://templatemo.com/tm-575-leadership-event
 		</footer>
 
 		<!-- JAVASCRIPT FILES -->
-		<script src="/js/jquery.min.js"></script>
+		<!-- <script src="/js/jquery.min.js"></script>
 		<script src="/js/bootstrap.min.js"></script>
 		<script src="/js/jquery.sticky.js"></script>
-		<!-- <script src="/js/click-scroll.js"></script>  -->
-		<script src="/js/custom.js"></script>
-		<script src="/js/login.js"></script>
+		<script src="/js/click-scroll.js"></script> 
+		<script src="/js/custom.js"></script> -->
 	</body>
 </html>
