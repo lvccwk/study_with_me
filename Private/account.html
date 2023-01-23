@@ -17,13 +17,23 @@
 
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet" />
 
+    <link href="/css/account.css" rel="stylesheet" />
+
     <link href="/css/bootstrap.min.css" rel="stylesheet" />
 
     <link href="/css/bootstrap-icons.css" rel="stylesheet" />
 
+    <link href="/css/calendar.css" rel="stylesheet" />
+
     <link href="/css/templatemo-leadership-event.css" rel="stylesheet" />
 
-    <link href="/css/account.css" rel="stylesheet" />
+    <link href="/css/schedule.css" rel="stylesheet" />
+
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+        rel="stylesheet" />
+
 
 
     <!--
@@ -138,7 +148,7 @@ https://templatemo.com/tm-575-leadership-event
                         </div>
                     </div>
 
-                    <div class="col-lg-4 col-md-6 col-12">
+                    <div class="col-lg-4 col-md-6 col-12 welcome-div">
                         <!-- <div class="highlight-thumb">
                             <img src="/images/highlight/miguel-henriques--8atMWER8bI-unsplash.jpg"
                                 class="highlight-image img-fluid" alt="" />
@@ -174,10 +184,63 @@ https://templatemo.com/tm-575-leadership-event
         <section class="about section-padding" id="section_2">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-10 col-12">
-                        <h2 class="mb-4">
-                            Our <u class="text-info">Story</u>
-                        </h2>
+                    <div class="col-lg-10 col-12 calendar">
+                        <div class="wrapper">
+                            <header>
+                                <p class="current-date"></p>
+                                <div class="icons">
+                                    <span id="prev" class="material-symbols-rounded">chevron_left</span>
+                                    <span id="next" class="material-symbols-rounded">chevron_right</span>
+                                </div>
+                            </header>
+                            <div class="calendar">
+                                <ul class="weeks">
+                                    <li>Sun</li>
+                                    <li>Mon</li>
+                                    <li>Tue</li>
+                                    <li>Wed</li>
+                                    <li>Thu</li>
+                                    <li>Fri</li>
+                                    <li>Sat</li>
+                                </ul>
+                                <ul class="days"></ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-10 col-12 schedule">
+                        <h3>Date: </h3>
+                        <div class="col-12 schedule-table">
+                            <div class="schedule-row">
+                                <div class="col-2 schedule-box">
+                                    <span>12:00 AM</span>
+                                </div>
+                                <div class="col-8 schedule-box booking">
+                                </div>
+                                <div class="col-2 schedule-box">
+                                    <span>edit</span>
+                                </div>
+                            </div>
+                            <div class="schedule-row">
+                                <div class="col-2 schedule-box">
+                                    <span>1:00 AM</span>
+                                </div>
+                                <div class="col-8 schedule-box booking">
+                                </div>
+                                <div class="col-2 schedule-box">
+                                    <span>edit</span>
+                                </div>
+                            </div>
+                            <div class="schedule-row">
+                                <div class="col-2 schedule-box">
+                                    <span>1:00 AM</span>
+                                </div>
+                                <div class="col-8 schedule-box booking">
+                                </div>
+                                <div class="col-2 schedule-box">
+                                    <span>edit</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="col-lg-6 col-12">
@@ -1138,12 +1201,14 @@ https://templatemo.com/tm-575-leadership-event
     </footer>
 
     <!-- JAVASCRIPT FILES -->
-    <!-- <script src="/js/jquery.min.js"></script>
+    <script src="/js/jquery.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
     <script src="/js/jquery.sticky.js"></script>
-    <script src="/js/click-scroll.js"></script>
+    <!-- <script src="/js/click-scroll.js"></script> -->
     <script src="/js/custom.js"></script>
-    <script src="/js/account.js"></script> -->
+    <script src="/js/account.js"></script>
+    <script src="/js/calendar.js" defer></script>
+    <script src="/js/schedule.js"></script>
 
 </body>
 

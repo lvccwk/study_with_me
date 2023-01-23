@@ -1,5 +1,7 @@
 @import './templatemo-leadership-event.css';
-
+:root {
+    --main-bg-color: brown;
+  }
 .profile {
     position: relative;
     display: flex;
@@ -33,4 +35,10 @@
 .welcome-msg {
     text-transform: none;
     color: var(--white-color)
+}
+
+.welcome-div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
