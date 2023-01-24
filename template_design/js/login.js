@@ -6,9 +6,8 @@ signinformElm.addEventListener('submit', async (e) => {
     // prep
 
     let uploadData = {
-        username: signinformElm.username.value,
-        password: signinformElm.password.value,
-        email:signinformElm.email.value
+        email:signinformElm.email.value,
+        password: signinformElm.password.value
     }
     console.log(uploadData)
     // send 
@@ -20,19 +19,17 @@ signinformElm.addEventListener('submit', async (e) => {
         body: JSON.stringify(uploadData)
     })
 
-
+    console.log(res);
     // post handling
 
-    let data = await res.json()
-    console.log(data);
+    // let data = await res.json()
+    // console.log(data);
     
-    if (res.ok) {
+    if (!res.ok) {
         return
+    } else {
+        window.location = res.url
     }
-
-    window.location = '/admin.html'
-
-
 })
 
 

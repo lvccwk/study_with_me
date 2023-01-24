@@ -51,10 +51,10 @@ io.use((socket, next) => {
 // 		socket.request['session'].save()
 // 	}
 
-// 	io.to(socket.id).emit(
-// 		`server-greeting`,
-// 		`新connection啊? 你好啊 from server ${date}`
-// 	)
+// 	// io.to(socket.id).emit(
+// 	// 	`server-greeting`,
+// 	// 	`新connection啊? 你好啊 from server ${date}`
+// 	// )
 // 	// socket.emit(`server-greeting`, `新connection啊？ 你好啊 from server ${date}`);
 // })
 
@@ -64,13 +64,22 @@ type Message = {
 	createdAt: string
 }
 
-// const chance = new Chance()
 let users: any = {}
 let messages: Message[] = []
 
 io.on('connection', (socket) => {
 	let req = socket.request as express.Request
+	let date = Date.now()
+	console.log(`find socket !!!!!!!! ${socket.id}`)
 	console.log('user connected')
+
+	if (req.session.id) {
+		console.log(`已安排 ${socket.id} 進入 chatroom`)
+		console.log(req.body)
+		socket.join('even_' + date)
+		socket.request['session'].save()
+	}
+
 	// users[socket.id] = { name: chance.name() }
 	users[socket.id] = { name: req.sessionID }
 
