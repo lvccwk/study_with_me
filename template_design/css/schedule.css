@@ -6,11 +6,16 @@
 
 .schedule-box {
     /* padding: 1vh 0vw; */
+    border-width: 0px 2px;
+    border-style: solid;
+    border-color: black;
 }
 
 .schedule-row {
     display: flex;
     border-color: black;
+    border-bottom: 2px;
+    border-style: solid;
     /* flex-wrap: wrap; */
 }
 
@@ -18,4 +23,10 @@
     border: 2px;
     box-sizing: border-box;
     border-style: solid;
+}
+
+.schedule-row-top {
+    display: flex;
+    border-color: black;
+    /* flex-wrap: wrap; */
 }
