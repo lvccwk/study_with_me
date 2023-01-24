@@ -1,5 +1,5 @@
 /* @import './login1.css'; */
-@import url(https://fonts.googleapis.com/css?family=Roboto:500);
+
 .empty-block-404 {
 	background-color: var(--navbar-bg-color);
 	height: 100%;
@@ -24,7 +24,6 @@ form {
     padding: 0px;
 }
 
-  
 /* .video-wrap {
     filter: blur(8px);
   -webkit-filter: blur(8px);

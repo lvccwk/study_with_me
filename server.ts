@@ -6,8 +6,6 @@ import dotenv from 'dotenv'
 import { Server as SocketIO } from 'socket.io'
 import expressSession from 'express-session'
 import { userRoutes } from './routes/userRoutes'
-import { expressSessionConfig, grantExpress } from './util/plugin-config'
-// import fetch from 'cross-fetch'
 
 dotenv.config()
 let app = express()
@@ -28,8 +26,6 @@ export interface chatroom {
 
 client.connect()
 app.use(userRoutes)
-app.use(expressSessionConfig)
-app.use(grantExpress as express.RequestHandler)
 
 export const sessionMiddleware = expressSession({
 	secret: 'study with me chatroom',
