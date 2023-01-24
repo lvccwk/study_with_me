@@ -1,8 +1,6 @@
-// import { moment } from './moment.js';
-
 const store = window.localStorage;
 
-const container = $(".container");
+const container = $(".schedule-table");
 
 const now = moment();
 
@@ -32,20 +30,28 @@ function color(time) {
 }
 
 hoursOfTheDay.forEach((hr) => {
+    const form = $(`<form></form>`);
+
     const grid = $(
-        `<form data-name="${hr.text}" class="grid grid-cols-12  border-gray-500 "></form>.`
+        `<div class="schedule-row" id="booking-1"></div>`
     );
 
     const time = $(
-        `<div class="flex items-center justify-center col-span-2 h-16">${hr.text}</div>`
+        `<div class="col-1 schedule-box">${hr.text}</div>`
     );
 
+    const student = $(`<div class="col-2 schedule-box"><select class="form-select" aria-label=".form-select-lg example">
+  <option selected>students</option>
+  <option value="James">James</option>
+  <option value="Lawrence">Lawrence</option>
+  <option value="Newton">Newton</option>
+</select></div>`)
+
     const textArea = $(
-        `<textarea name="${hr.text
-        }" maxLength="50" style="resize: none; overflow: hidden;" class="col-span-8 h-16 p-6 ${color(
-            hr
-        )}">${store.getItem(hr.text) || ""}</textarea>`
+        `<div class="col-5 col-lg-6 schedule-box booking">about homework</div>`
     );
+
+    const status = $(`<div class="col-2 col-lg-1 schedule-box"><span>confirm</span></div>`);
 
     textArea.keydown((e) => {
         if (e.keyCode == 13 && !e.shiftKey) {
@@ -54,8 +60,8 @@ hoursOfTheDay.forEach((hr) => {
         }
     });
 
-    const saveButton = $(
-        `<button type="submit" class="col-span-2 h-16 bg-indigo-500 text-white font-bold hover:bg-indigo-400 transition duration-500 ease-in-out"><i class="fas fa-save text-xl"></i></button>`
+    const buttons = $(
+        `<div class="col-2 schedule-box"><button type="submit">Cancel</button><button type="submit">Edit</button></div>`
     );
 
     grid.submit((e) => {
@@ -67,8 +73,12 @@ hoursOfTheDay.forEach((hr) => {
     });
 
     grid.append(time);
+    grid.append(student);
     grid.append(textArea);
-    grid.append(saveButton);
+    grid.append(status);
+    grid.append(buttons);
 
-    container.append(grid);
+    form.append(grid)
+
+    container.append(form);
 });
