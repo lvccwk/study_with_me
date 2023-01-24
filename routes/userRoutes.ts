@@ -1,64 +1,26 @@
 import express from 'express'
 // import { client } from '../app'
-import { checkPassword, hashPassword } from '../util/hash'
+// import { checkPassword, hashPassword } from '../util/hash'
+// import { checkPassword } from '../util/hash'
 import { logger } from '../util/logger'
-import fetch from 'cross-fetch'
-import crypto from 'crypto'
+// import fetch from 'cross-fetch'
+// import crypto from 'crypto'
 import { client } from '../util/db'
+import { User } from '../util/interface'
 export const userRoutes = express.Router()
+let app = express()
+app.use(express.json())
+
+declare module 'express-session' {
+	interface SessionData {
+		counter?: number
+		user?: User
+	}
+}
 
 userRoutes.post('/login', login)
 userRoutes.get('/logout', logout)
-userRoutes.get('/me', getSessionProfile)
-userRoutes.get('/login/google', loginGoogle)
 
-async function loginGoogle(req: express.Request, res: express.Response) {
-	try {
-		const accessToken = req.session?.['grant'].response.access_token
-		const fetchRes = await fetch(
-			'https://www.googleapis.com/oauth2/v2/userinfo',
-			{
-				method: 'get',
-				headers: {
-					Authorization: `Bearer ${accessToken}`
-				}
-			}
-		)
-
-		const googleUserProfile = await fetchRes.json()
-		let user = (
-			await client.query(
-				`SELECT * FROM users WHERE users.username = $1`,
-				[googleUserProfile.email]
-			)
-		).rows[0]
-
-		if (!user) {
-			// registration
-
-			let hashedPassword = await hashPassword(crypto.randomUUID())
-			user = (
-				await client.query(
-					`INSERT INTO users 
-						(username,password, created_at, updated_at)
-						VALUES ($1,$2, now(),now()) RETURNING *`,
-					[googleUserProfile.email, hashedPassword]
-				)
-			).rows[0]
-		}
-
-		delete user.password
-		req.session['user'] = user
-
-		// console.log('loading goold login')
-		return res.redirect('/')
-	} catch (error) {
-		logger.error(error)
-		res.status(500).json({
-			message: '[USR003] - Server error'
-		})
-	}
-}
 function logout(req: express.Request, res: express.Response) {
 	try {
 		delete req.session.user
@@ -74,14 +36,13 @@ function logout(req: express.Request, res: express.Response) {
 	}
 }
 
-function getSessionProfile(req: express.Request, res: express.Response) {
-	res.json(req.session.user || {})
-}
 async function login(req: express.Request, res: express.Response) {
 	try {
 		logger.info('body = ', req.body)
-		let { username, password } = req.body
-		if (!username || !password) {
+		let { username, password, email } = req.body
+		console.log(req.body)
+
+		if (!username || !password || !email) {
 			res.status(402).json({
 				message: 'Invalid input'
 			})
@@ -101,9 +62,7 @@ async function login(req: express.Request, res: express.Response) {
 			})
 			return
 		}
-
-		let isPasswordValid = await checkPassword(password, foundUser.password)
-		if (!isPasswordValid) {
+		if (foundUser.password !== password) {
 			res.status(402).json({
 				message: 'Invalid password'
 			})
@@ -112,7 +71,7 @@ async function login(req: express.Request, res: express.Response) {
 
 		delete foundUser.password
 		req.session.user = foundUser
-
+		console.log('hihihi')
 		console.log('foundUser = ', foundUser)
 
 		res.redirect('/admin.html')
