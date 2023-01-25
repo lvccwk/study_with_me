@@ -1,10 +1,9 @@
 import express from 'express'
-// import { client } from '../app'
-// import { checkPassword, hashPassword } from '../util/hash'
+import { hashPassword } from '../util/hash'
 // import { checkPassword } from '../util/hash'
 import { logger } from '../util/logger'
-// import fetch from 'cross-fetch'
-// import crypto from 'crypto'
+import fetch from 'cross-fetch'
+import crypto from 'crypto'
 import { client } from '../util/db'
 import { User } from '../util/interface'
 export const userRoutes = express.Router()
@@ -22,6 +21,104 @@ declare module 'express-session' {
 userRoutes.post('/login', login)
 userRoutes.get('/logout', logout)
 userRoutes.post('/register', register)
+userRoutes.get('/login/google', loginGoogle)
+
+async function loginGoogle(req: express.Request, res: express.Response) {
+	try {
+		const accessToken = req.session?.['grant'].response.access_token
+		const fetchRes = await fetch(
+			'https://www.googleapis.com/oauth2/v2/userinfo',
+			{
+				method: 'get',
+				headers: {
+					Authorization: `Bearer ${accessToken}`
+				}
+			}
+		)
+
+		const googleUserProfile = await fetchRes.json()
+		let user = (
+			await client.query(`SELECT * FROM users WHERE users.email = $1`, [
+				googleUserProfile.email
+			])
+		).rows[0]
+
+		if (!user) {
+			// registration
+
+			let hashedPassword = await hashPassword(crypto.randomUUID())
+			// console.log(googleUserProfile.email)
+			// let emailPrefix = googleUserProfile.email.split('@')[0]
+			user = (
+				await client.query(
+					`INSERT INTO users
+						(email, password, created_at, updated_at)
+						VALUES ($1,$2, now(),now()) RETURNING *`,
+					[googleUserProfile.email, hashedPassword]
+				)
+			).rows[0]
+		}
+		console.log(user)
+		delete user.password
+		// req.session['user'] = user
+
+		// console.log('loading goold login')
+		return res.redirect('/account.html')
+	} catch (error) {
+		logger.error(error)
+		res.status(500).json({
+			message: '[USR003] - Server error'
+		})
+	}
+}
+
+// async function loginGoogle(req: express.Request, res: express.Response) {
+// 	console.log('123')
+// 	try {
+// 		const accessToken = req.session?.['grant'].response.access_token
+// 		const fetchRes = await fetch(
+// 			'https://www.googleapis.com/oauth2/v2/userinfo',
+// 			{
+// 				method: 'get',
+// 				headers: {
+// 					Authorization: `Bearer ${accessToken}`
+// 				}
+// 			}
+// 		)
+// 		console.log('a')
+// 		const googleUserProfile = await fetchRes.json()
+// 		let users = (
+// 			await client.query(`SELECT * FROM users WHERE users.email = $1`, [
+// 				googleUserProfile.email
+// 			])
+// 		).rows
+
+// 		let user = users[0]
+// 		console.log('b', user)
+// 		if (!user) {
+// 			// Create the user when the user does not exist
+// 			console.log('no user')
+// 			let emailPrefix = googleUserProfile.email.split('@')[0]
+// 			console.log(emailPrefix)
+// 			user = (
+// 				await client.query(
+// 					`INSERT INTO users (email,username) VALUES ($1,$2) RETURNING *`,
+// 					[googleUserProfile.email, emailPrefix]
+// 				)
+// 			).rows[0]
+// 		}
+
+// 		req.session['user'] = user
+// 		console.log(req.session['user'])
+// 		return res.redirect('/account.html')
+// 	} catch (error) {
+// 		console.log('ERR0R: ' + error)
+// 		res.status(500).json({
+// 			message: '[SERVER ERROR]'
+// 		})
+// 	}
+// }
+
 async function register(req: express.Request, res: express.Response) {
 	try {
 		let { username, password, email, type } = req.body
@@ -108,7 +205,7 @@ async function login(req: express.Request, res: express.Response) {
 		console.log(`check req session ${req.session}`)
 		console.log('foundUser = ', foundUser)
 
-		res.redirect('/admin.html')
+		res.redirect('/account.html')
 	} catch (error) {
 		logger.error(error)
 		res.status(500).json({

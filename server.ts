@@ -6,7 +6,7 @@ import dotenv from 'dotenv'
 import { Server as SocketIO } from 'socket.io'
 import expressSession from 'express-session'
 import { userRoutes } from './routes/userRoutes'
-
+import { grantExpress, expressSessionConfig } from './plugin-config'
 dotenv.config()
 let app = express()
 let server = new HTTP.Server(app)
@@ -35,6 +35,8 @@ export const sessionMiddleware = expressSession({
 })
 
 app.use(sessionMiddleware)
+app.use(expressSessionConfig)
+app.use(grantExpress as express.RequestHandler)
 
 io.use((socket, next) => {
 	let req = socket.request as express.Request

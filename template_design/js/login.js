@@ -29,6 +29,7 @@ signinformElm.addEventListener('submit', async (e) => {
         return
     } else {
         window.location = res.url
+        // window.location = '/account.html'
     }
 })
 
