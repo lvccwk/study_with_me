@@ -25,7 +25,6 @@ export interface chatroom {
 }
 
 client.connect()
-app.use(userRoutes)
 
 export const sessionMiddleware = expressSession({
 	secret: 'study with me chatroom',
@@ -69,22 +68,25 @@ type Message = {
 let users: any = {}
 let messages: Message[] = []
 
+app.use(userRoutes)
 io.on('connection', (socket) => {
 	let req = socket.request as express.Request
 	let date = Date.now()
-	console.log(`find socket !!!!!!!! ${socket.id}`)
-	console.log('user connected')
+	// users[socket.id] = { name: chance.name() }
+	users = { name: req.session.user?.username }
+	users[socket.id] = { name: req.session.user?.username }
+	// console.log(`find socket !!!!!!!! ${users.name}`)
+	console.log(`${users.name} connected`)
 
 	if (req.session.id) {
-		console.log(`已安排 ${socket.id} 進入 chatroom`)
-		console.log(req.body)
+		console.log(`已安排 ${users.name} 進入 chatroom`)
+		// console.log(req.body)
 		socket.join('even_' + date)
+		console.log('even_' + date)
 		socket.request['session'].save()
 	}
 
-	// users[socket.id] = { name: chance.name() }
-	users[socket.id] = { name: req.sessionID }
-
+	//html > script
 	socket.on('chat message', (msg) => {
 		console.log(msg)
 
@@ -97,7 +99,7 @@ io.on('connection', (socket) => {
 	})
 
 	socket.on('disconnect', () => {
-		console.log('user disconnected')
+		console.log(`${users.name} disconnected`)
 	})
 })
 

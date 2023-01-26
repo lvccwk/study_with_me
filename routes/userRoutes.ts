@@ -6,7 +6,9 @@ import fetch from 'cross-fetch'
 import crypto from 'crypto'
 import { client } from '../util/db'
 import { User } from '../util/interface'
-export const userRoutes = express.Router()
+import { formParsePromise } from '../util/formidable'
+
+// import { uploadInfo } from '../util/interface'
 // import { sessionMiddleware } from '../server'
 let app = express()
 app.use(express.json())
@@ -18,10 +20,14 @@ declare module 'express-session' {
 	}
 }
 
+export const userRoutes = express.Router()
 userRoutes.post('/login', login)
 userRoutes.get('/logout', logout)
 userRoutes.post('/register', register)
+userRoutes.get('/subject', getSubject)
 userRoutes.get('/login/google', loginGoogle)
+// userRoutes.post('/admin', createMemos)
+// userRoutes.post('/admin/', uploadInfo)
 
 async function loginGoogle(req: express.Request, res: express.Response) {
 	try {
@@ -42,27 +48,32 @@ async function loginGoogle(req: express.Request, res: express.Response) {
 				googleUserProfile.email
 			])
 		).rows[0]
+		//填多2個資料
 
 		if (!user) {
 			// registration
 
 			let hashedPassword = await hashPassword(crypto.randomUUID())
-			// console.log(googleUserProfile.email)
+			console.log(googleUserProfile.email)
 			// let emailPrefix = googleUserProfile.email.split('@')[0]
 			user = (
 				await client.query(
 					`INSERT INTO users
-						(email, password, created_at, updated_at)
-						VALUES ($1,$2, now(),now()) RETURNING *`,
-					[googleUserProfile.email, hashedPassword]
+						(username, email, password, created_at, updated_at)
+						VALUES ($1,$2,$3, now(),now()) RETURNING *`,
+					[
+						googleUserProfile.email,
+						googleUserProfile.email,
+						hashedPassword
+					]
 				)
 			).rows[0]
 		}
 		console.log(user)
-		delete user.password
-		// req.session['user'] = user
 
-		// console.log('loading goold login')
+		req.session['user'] = user
+
+		console.log('loading google login')
 		return res.redirect('/account.html')
 	} catch (error) {
 		logger.error(error)
@@ -121,10 +132,11 @@ async function loginGoogle(req: express.Request, res: express.Response) {
 
 async function register(req: express.Request, res: express.Response) {
 	try {
-		let { username, password, email, type } = req.body
-		console.log({ username, password, email, type })
-
-		if (!username || !password || !email || !type) {
+		let { fields, files } = await formParsePromise(req)
+		let { username, password, email, type, subject, image } = fields
+		console.log({ username, password, email, type, subject, image })
+		console.log(files)
+		if (!username || !password || !email || !type || !subject) {
 			res.status(402).json({
 				message: 'Invalid input'
 			})
@@ -132,8 +144,8 @@ async function register(req: express.Request, res: express.Response) {
 		}
 
 		let selectUserResult = await client.query(
-			`INSERT INTO users (username, password, email, type, created_at, updated_at) values ($1,$2,$3,$4,now(),now())`,
-			[username, password, email, type]
+			`INSERT INTO users (username, password, email, type, subject, image, created_at, updated_at) values ($1,$2,$3,$4,$5,$6,now(),now())`,
+			[username, password, email, type, subject, image]
 		)
 
 		console.log(selectUserResult)
@@ -141,6 +153,23 @@ async function register(req: express.Request, res: express.Response) {
 		logger.error(error)
 		res.status(500).json({
 			message: '[USR002] - Server error'
+		})
+	}
+}
+
+async function getSubject(req: express.Request, res: express.Response) {
+	try {
+		let selectUserResult = await client.query(`select * from subject`)
+
+		let foundSubject = selectUserResult.rows
+
+		res.json({
+			data: foundSubject
+		})
+	} catch (error) {
+		logger.error(error)
+		res.status(500).json({
+			message: '[USR001] - Server error'
 		})
 	}
 }
@@ -196,11 +225,11 @@ async function login(req: express.Request, res: express.Response) {
 		delete foundUser.password
 
 		console.log(foundUser.username)
-		// req.session.user = {
-		// 	username: foundUser.username,
-		// 	password: '',
-		// 	email: foundUser.email
-		// }
+		req.session.user = {
+			username: foundUser.username,
+			password: '',
+			email: foundUser.email
+		}
 
 		console.log(`check req session ${req.session}`)
 		console.log('foundUser = ', foundUser)

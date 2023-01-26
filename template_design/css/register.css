@@ -1,4 +1,7 @@
+
+
 /* @import './register1.css'; */
+
 
 .empty-block-404 {
 	background-color: var(--navbar-bg-color);
@@ -14,3 +17,12 @@
     color: white;
 }
 
+.reg-button {
+    height: 30px;
+    width: 175px;
+}
+
+.subject-button {
+    height: 30px;
+    width: 175px;
+}
