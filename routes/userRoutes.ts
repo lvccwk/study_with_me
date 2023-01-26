@@ -133,22 +133,45 @@ async function loginGoogle(req: express.Request, res: express.Response) {
 async function register(req: express.Request, res: express.Response) {
 	try {
 		let { fields, files } = await formParsePromise(req)
-		let { username, password, email, type, subject, image } = fields
-		console.log({ username, password, email, type, subject, image })
+		let { username, password, email, type, subjectId, image } = fields
+		console.log({ username, password, email, type, subjectId, image })
 		console.log(files)
-		if (!username || !password || !email || !type || !subject) {
+		if (!username || !password || !email || !type || !subjectId) {
 			res.status(402).json({
 				message: 'Invalid input'
 			})
 			return
 		}
 
-		let selectUserResult = await client.query(
-			`INSERT INTO users (username, password, email, type, subject, image, created_at, updated_at) values ($1,$2,$3,$4,$5,$6,now(),now())`,
-			[username, password, email, type, subject, image]
+		let newUser = await client.query(
+			`INSERT INTO users (username, password, email, type, created_at, updated_at) values ($1,$2,$3,$4,now(),now()) returning id`,
+			[username, password, email, type]
 		)
 
-		console.log(selectUserResult)
+		let newTeacher = await client.query(
+			`INSERT INTO teacher (user_id, created_at, updated_at) values ($1,now(),now()) returning id`,
+			[newUser.rows[0].id]
+		)
+
+		let newSubject = await client.query(
+			`INSERT INTO teacher_subject (subject_id,teacher_id, created_at, updated_at) values ($1,$2,now(),now()) returning id`,
+			[subjectId, newTeacher.rows[0].id]
+		)
+
+		let imageUser = await client.query(
+			`INSERT INTO image (user_id,image_icon, created_at, updated_at) values ($1,$2,now(),now()) returning id`,
+			[newUser.rows[0].id, image]
+		)
+
+		// let selectUserResult2 = await client.query(
+		// 	`INSERT INTO users (username, password, email, type, subject, image, created_at, updated_at) values ($1,$2,$3,$4,$5,$6,now(),now())`,
+		// 	[subject, image]
+		// )
+		res.json({
+			data: newSubject,
+			imageUser,
+			message: 'register ok'
+		})
 	} catch (error) {
 		logger.error(error)
 		res.status(500).json({

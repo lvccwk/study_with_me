@@ -93,7 +93,14 @@ CREATE TABLE forum_post_comment(
     created_at TIMESTAMP,
     updated_at TIMESTAMP
 );
--- SELECT * FROM users;
+CREATE TABLE image(
+    id SERIAL primary key,
+    user_id INTEGER,
+    FOREIGN KEY (user_id) REFERENCES users(id),
+    image_icon VARCHAR(255),
+    created_at TIMESTAMP,
+    updated_at TIMESTAMP
+) -- SELECT * FROM users;
 -- SELECT * FROM teacher;
 -- SELECT * FROM subject;
 -- SELECT * FROM teacher_subject;
@@ -104,4 +111,3 @@ CREATE TABLE forum_post_comment(
 -- SELECT * FROM forum_post;
 -- SELECT * FROM forum_post_comment;
 -- SELECT * FROM forum;
-
