@@ -4,6 +4,7 @@ CREATE TABLE users(
     username VARCHAR(255) not null,
     display_name VARCHAR(255),
     email VARCHAR(255) not null,
+    display_nama VARCHAR(255),
     password VARCHAR(255) not null,
     type VARCHAR,
     created_at TIMESTAMP,
@@ -83,6 +84,17 @@ CREATE TABLE forum(
     created_at TIMESTAMP,
     updated_at TIMESTAMP
 );
+-- //10
+CREATE TABLE forum_post_comment(
+    id SERIAL primary key,
+    content TEXT,
+    author_id INTEGER,
+    FOREIGN KEY (author_id) REFERENCES users(id),
+    forum_post_id INTEGER,
+    FOREIGN KEY (forum_post_id) REFERENCES forum_post(id),
+    created_at TIMESTAMP,
+    updated_at TIMESTAMP
+);
 -- //111
 CREATE TABLE forum_post(
     id SERIAL primary key,
@@ -95,17 +107,6 @@ CREATE TABLE forum_post(
     created_at TIMESTAMP,
     updated_at TIMESTAMP
 );
--- //10
-CREATE TABLE forum_post_comment(
-    id SERIAL primary key,
-    content TEXT,
-    author_id INTEGER,
-    FOREIGN KEY (author_id) REFERENCES users(id),
-    forum_post_id INTEGER,
-    FOREIGN KEY (forum_post_id) REFERENCES forum_post(id),
-    created_at TIMESTAMP,
-    updated_at TIMESTAMP
-);
 -- //12
 CREATE TABLE image(
     id SERIAL primary key,
@@ -114,4 +115,52 @@ CREATE TABLE image(
     image_icon VARCHAR(255),
     created_at TIMESTAMP,
     updated_at TIMESTAMP
-)
+) --//13
+CREATE TABLE schedule(
+    id SERIAL primary key,
+    title text,
+    subject_id INTEGER,
+    end_date DATE,
+    description VARCHAR(255),
+    launch_data DATE,
+    launch_time TIME,
+    created_at TIMESTAMP,
+    updated_at TIMESTAMP
+) -- //1
+-- SELECT * FROM users;
+-- SELECT * FROM teacher;
+-- SELECT * FROM subject;
+-- SELECT * FROM teacher_subject;
+-- SELECT * FROM blog;
+-- SELECT * FROM student;
+-- SELECT * FROM school;
+-- SELECT * FROM chatroom;
+-- SELECT * FROM forum_post;
+-- SELECT * FROM forum_post_comment;
+-- SELECT * FROM forum;
+SELECT DISTINCT subject.chinese_name,
+    users.username,
+    image.image_icon,
+    subject.id,
+    users.type
+from users
+    join teacher on teacher.user_id = users.id
+    join teacher_subject on teacher_subject.teacher_id = teacher.id
+    join subject on subject.id = teacher_subject.subject_id
+    join image on image.user_id = users.id
+WHERE users.type = 'teacher'
+LIMIT 5 -- LIMIT 5 OFFSET 1
+;
+SELECT DISTINCT subject.chinese_name
+from subject
+SELECT users.username,
+    image.image_icon,
+    subject.id,
+    subject.chinese_name,
+    users.type
+from users
+    join teacher on teacher.user_id = users.id
+    join teacher_subject on teacher_subject.teacher_id = teacher.id
+    join subject on subject.id = teacher_subject.subject_id
+    join image on image.user_id = users.id
+WHERE users.type = 'student'

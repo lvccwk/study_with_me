@@ -29,6 +29,7 @@ userRoutes.get('/login/google', loginGoogle)
 userRoutes.get('/tutorpage', getTutorInfo)
 userRoutes.get('/studentpage', getStudentInfo)
 userRoutes.get('/homepage-tutor', getTutorHome)
+userRoutes.get('/chatroom', getUserlist)
 
 // userRoutes.get('/getgoogle', getGoogleInfo)
 
@@ -68,11 +69,11 @@ userRoutes.get('/homepage-tutor', getTutorHome)
 
 async function loginGoogle(
 	req: express.Request,
-	res: express.Response,
-	next: express.NextFunction
+	res: express.Response
+	// next: express.NextFunction
 ) {
-	res.redirect('/register.html')
-	next()
+	// res.redirect('/register.html')
+	// next()
 	try {
 		const accessToken = req.session?.['grant'].response.access_token
 		const fetchRes = await fetch(
@@ -127,54 +128,6 @@ async function loginGoogle(
 		})
 	}
 }
-
-// async function loginGoogle(req: express.Request, res: express.Response) {
-// 	console.log('123')
-// 	try {
-// 		const accessToken = req.session?.['grant'].response.access_token
-// 		const fetchRes = await fetch(
-// 			'https://www.googleapis.com/oauth2/v2/userinfo',
-// 			{
-// 				method: 'get',
-// 				headers: {
-// 					Authorization: `Bearer ${accessToken}`
-// 				}
-// 			}
-// 		)
-// 		console.log('a')
-// 		const googleUserProfile = await fetchRes.json()
-// 		let users = (
-// 			await client.query(`SELECT * FROM users WHERE users.email = $1`, [
-// 				googleUserProfile.email
-// 			])
-// 		).rows
-
-// 		let user = users[0]
-// 		console.log('b', user)
-// 		if (!user) {
-// 			// Create the user when the user does not exist
-// 			console.log('no user')
-// 			let emailPrefix = googleUserProfile.email.split('@')[0]
-// 			console.log(emailPrefix)
-// 			user = (
-// 				await client.query(
-// 					`INSERT INTO users (email,username) VALUES ($1,$2) RETURNING *`,
-// 					[googleUserProfile.email, emailPrefix]
-// 				)
-// 			).rows[0]
-// 		}
-
-// 		req.session['user'] = user
-// 		console.log(req.session['user'])
-// 		return res.redirect('/account.html')
-// 	} catch (error) {
-// 		console.log('ERR0R: ' + error)
-// 		res.status(500).json({
-// 			message: '[SERVER ERROR]'
-// 		})
-// 	}
-// }
-
 async function register(req: express.Request, res: express.Response) {
 	try {
 		let { fields, files } = await formParsePromise(req)
@@ -454,6 +407,25 @@ async function getTutorHome(req: express.Request, res: express.Response) {
 			data: tutorInfo,
 			tutorSubject,
 			message: 'select teacher, image and subject ok !'
+		})
+	} catch (error) {
+		logger.error(error)
+		res.status(500).json({
+			message: '[USR001] - Server error'
+		})
+	}
+}
+
+async function getUserlist(req: express.Request, res: express.Response) {
+	try {
+		let selectUserResult = await client.query(
+			`select users.username from users`
+		)
+
+		let foundMember = selectUserResult.rows
+
+		res.json({
+			data: foundMember
 		})
 	} catch (error) {
 		logger.error(error)
