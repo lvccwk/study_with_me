@@ -32,8 +32,7 @@ TemplateMo 575 Leadership Event
 https://templatemo.com/tm-575-leadership-event
 
 -->
-	</head>
-
+</head>
 	<body>
 		<nav class="navbar navbar-expand-lg">
 			<div class="container">
@@ -55,7 +54,7 @@ https://templatemo.com/tm-575-leadership-event
 						>study<br/>with me</span>
 				</a>
 
-				<a class="nav-link custom-btn btn d-lg-none" href="#"
+				<a class="nav-link custom-btn btn d-lg-none" href="/login.html"
 					>登入</a
 				>
 
@@ -86,8 +85,8 @@ https://templatemo.com/tm-575-leadership-event
 						</li>
 
 						<li class="nav-item">
-							<a class="nav-link click-scroll" href="#section_5"
-								>學習資源</a
+							<a class="nav-link click-scroll" href="/studentpage.html"
+								>學生資料</a
 							>
 						</li>
 
@@ -103,14 +102,12 @@ https://templatemo.com/tm-575-leadership-event
 							>
 						</li>
 
-                        
 						<li class="nav-item">
 							<a
 								class="nav-link custom-btn btn d-none d-lg-block"
 								href="/login.html"
 								>登入</a
 							>
-							
 						</li>
 					</ul>
 				</div>
@@ -148,14 +145,16 @@ https://templatemo.com/tm-575-leadership-event
 										<input type="email" id="email" name="email"><br>
 										<label for="type">用戶類別:</label><br>
 										<select class="reg-button" type="text" id="type" name="type">
+											<option value="">請選擇科目</option>
 											<option value="teacher">老師</option>
 											<option value="student">學生</option>
 										</select>
 										<br>
 										<label for="subjectId">科目:</label><br>
 										<select class="subject-button" type="text" id="subject" name="subjectId">
-
+											<option value="">請選擇科目</option>
 										</select>
+										<br>
 										<br>
 										<label for="image">個人頭像:</label><br>
 										<input class="btn btn-primary" type="file" id="image" name="image" />
@@ -360,7 +359,7 @@ https://templatemo.com/tm-575-leadership-event
 
 		<!-- JAVASCRIPT FILES -->
 		<script src="/js/jquery.min.js"></script>
-		<!-- <script src="/js/bootstrap.min.js"></script> -->
+		<script src="/js/bootstrap.min.js"></script>
 		<script src="/js/jquery.sticky.js"></script>
 		<!-- <script src="/js/click-scroll.js"></script>  -->
 		<script src="/js/custom.js"></script>
