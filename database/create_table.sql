@@ -1,3 +1,4 @@
+-- //1
 CREATE TABLE users(
     id SERIAL primary key,
     username VARCHAR(255) not null,
@@ -7,18 +8,50 @@ CREATE TABLE users(
     created_at TIMESTAMP,
     updated_at TIMESTAMP
 );
-CREATE TABLE subject(
+-- //2
+CREATE TABLE teacher(
     id SERIAL primary key,
-    name VARCHAR(255),
+    user_id INTEGER,
+    FOREIGN KEY (user_id) REFERENCES users(id),
     created_at TIMESTAMP,
     updated_at TIMESTAMP
 );
+-- //3
+CREATE TABLE subject(
+    id SERIAL primary key,
+    name VARCHAR(255),
+    chinese_name VARCHAR(255),
+    created_at TIMESTAMP,
+    updated_at TIMESTAMP
+);
+-- //4
+CREATE TABLE teacher_subject(
+    id SERIAL primary key,
+    subject_id INTEGER,
+    FOREIGN KEY (subject_id) REFERENCES subject(id),
+    teacher_id INTEGER,
+    FOREIGN KEY (teacher_id) REFERENCES teacher(id),
+    created_at TIMESTAMP,
+    updated_at TIMESTAMP
+);
+-- //5
+CREATE TABLE blog(
+    id SERIAL primary key,
+    teacher_id INTEGER,
+    FOREIGN KEY (teacher_id) REFERENCES teacher(id),
+    image VARCHAR(255),
+    content VARCHAR(255),
+    created_at TIMESTAMP,
+    updated_at TIMESTAMP
+);
+-- //6
 CREATE TABLE school(
     id SERIAL primary key,
     name VARCHAR(255),
     created_at TIMESTAMP,
     updated_at TIMESTAMP
 );
+-- //7
 CREATE TABLE student(
     id SERIAL primary key,
     user_id INTEGER,
@@ -31,31 +64,7 @@ CREATE TABLE student(
     created_at TIMESTAMP,
     updated_at TIMESTAMP
 );
-CREATE TABLE teacher(
-    id SERIAL primary key,
-    user_id INTEGER,
-    FOREIGN KEY (user_id) REFERENCES users(id),
-    created_at TIMESTAMP,
-    updated_at TIMESTAMP
-);
-CREATE TABLE teacher_subject(
-    id SERIAL primary key,
-    subject_id INTEGER,
-    FOREIGN KEY (subject_id) REFERENCES subject(id),
-    teacher_id INTEGER,
-    FOREIGN KEY (teacher_id) REFERENCES teacher(id),
-    created_at TIMESTAMP,
-    updated_at TIMESTAMP
-);
-CREATE TABLE blog(
-    id SERIAL primary key,
-    teacher_id INTEGER,
-    FOREIGN KEY (teacher_id) REFERENCES teacher(id),
-    image VARCHAR(255),
-    content VARCHAR(255),
-    created_at TIMESTAMP,
-    updated_at TIMESTAMP
-);
+-- //8
 CREATE TABLE chatroom(
     id SERIAL primary key,
     content VARCHAR(255),
@@ -66,12 +75,14 @@ CREATE TABLE chatroom(
     created_at TIMESTAMP,
     updated_at TIMESTAMP
 );
+-- //9
 CREATE TABLE forum(
     id SERIAL primary key,
     name VARCHAR(255),
     created_at TIMESTAMP,
     updated_at TIMESTAMP
 );
+-- //111
 CREATE TABLE forum_post(
     id SERIAL primary key,
     title VARCHAR(255),
@@ -83,6 +94,7 @@ CREATE TABLE forum_post(
     created_at TIMESTAMP,
     updated_at TIMESTAMP
 );
+-- //10
 CREATE TABLE forum_post_comment(
     id SERIAL primary key,
     content TEXT,
@@ -93,6 +105,7 @@ CREATE TABLE forum_post_comment(
     created_at TIMESTAMP,
     updated_at TIMESTAMP
 );
+-- //12
 CREATE TABLE image(
     id SERIAL primary key,
     user_id INTEGER,
@@ -100,14 +113,4 @@ CREATE TABLE image(
     image_icon VARCHAR(255),
     created_at TIMESTAMP,
     updated_at TIMESTAMP
-) -- SELECT * FROM users;
--- SELECT * FROM teacher;
--- SELECT * FROM subject;
--- SELECT * FROM teacher_subject;
--- SELECT * FROM blog;
--- SELECT * FROM student;
--- SELECT * FROM school;
--- SELECT * FROM chatroom;
--- SELECT * FROM forum_post;
--- SELECT * FROM forum_post_comment;
--- SELECT * FROM forum;
+)
