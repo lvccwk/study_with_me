@@ -1,5 +1,4 @@
 async function loadTutorInfo() {
-    console.log('hIHIHIHI')
 	let res = await fetch('/homepage-tutor')
 	if (res.ok) {
 		let data = await res.json()

@@ -95,11 +95,10 @@ async function loginGoogle(
 		//填多2個資料
 
 		if (!user) {
-			res.redirect('/register.html?google=1')
 			// registration
 
 			let hashedPassword = await hashPassword(crypto.randomUUID())
-			console.log(googleUserProfile.email)
+			console.log(`googleUserProfile = ${googleUserProfile.email}`)
 			// let emailPrefix = googleUserProfile.email.split('@')[0]
 
 			user = (
@@ -132,8 +131,16 @@ async function register(req: express.Request, res: express.Response) {
 	try {
 		let { fields, files } = await formParsePromise(req)
 		let { username, password, email, type, subjectId } = fields
-		console.log({ username, password, email, type, subjectId })
-		console.log(files)
+		console.log(
+			`new user register information : ${{
+				username,
+				password,
+				email,
+				type,
+				subjectId
+			}}`
+		)
+		console.log(`new user register information: ${files}`)
 		if (!username || !password || !email || !type || !subjectId) {
 			res.status(402).json({
 				message: 'Invalid input'
@@ -196,9 +203,9 @@ async function getSubject(req: express.Request, res: express.Response) {
 
 async function logout(req: express.Request, res: express.Response) {
 	try {
-		console.log('login:', req.session.user)
+		// console.log('login:', req.session.user)
 		delete req.session.user
-		console.log(req.session.user)
+		// console.log(req.session.user)
 
 		res.redirect('/')
 		// res.json({
@@ -396,16 +403,17 @@ async function getTutorHome(req: express.Request, res: express.Response) {
 			join users u on u.id = t.id;
 			`
 		)
-		let tutorSubject = await client.query(
-			`SELECT chinese_name from subject JOIN teacher_subject ON subject.id = teacher_subject.subject_id`
-		)
-		// let tutorImage = await client.query(
-		// 	`SELECT image_icon from image JOIN users ON image.user_id = user.id returning *`
+		// let tutorSubject = await client.query(
+		// 	`SELECT chinese_name from subject JOIN teacher_subject ON subject.id = teacher_subject.subject_id`
 		// )
+		let tutorImage = await client.query(
+			`SELECT image_icon from image 
+			JOIN users ON image.user_id = users.id`
+		)
 
 		res.json({
 			data: tutorInfo,
-			tutorSubject,
+			tutorImage,
 			message: 'select teacher, image and subject ok !'
 		})
 	} catch (error) {

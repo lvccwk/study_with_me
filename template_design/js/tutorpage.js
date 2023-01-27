@@ -9,7 +9,7 @@ async function loadTutorInfo() {
 		// console.table(tutorInfos)
   let tutorContainerElem = document.querySelector('.grid')
   for(let tutorInfo of tutorInfos.rows){
-    let imagePath = tutorInfo.image_icon ? `uploads/${tutorInfo.image_icon}` : "images/avatar/portrait-good-looking-brunette-young-asian-woman.jpg"
+    let imagePath = tutorInfo.image_icon ? `${await getImage(tutorInfo.image_icon)}` : "images/avatar/portrait-good-looking-brunette-young-asian-woman.jpg"
     console.log(tutorInfo.username,tutorInfo.image_icon,tutorInfo.chinese_name) 
     tutorContainerElem.innerHTML += 
       `  <div class="element-item transition metal" data-category="transition">
@@ -81,9 +81,18 @@ async function js(){
   }
   // js()
 
+  async function getImage(imageName){
+
+    let res = await fetch('imageName')
+   
+    if ( res.url.includes('404')){
+        return 'images/avatar/portrait-good-looking-brunette-young-asian-woman.jpg'
+    }else{
+        return `uploads/${imageName}`
+    }
+}
 
   async function init(){
-
     // js()
     await loadTutorInfo()
     js()

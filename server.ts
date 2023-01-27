@@ -26,7 +26,6 @@ export interface chatroom {
 }
 
 client.connect()
-app.use(userRoutes)
 
 export const sessionMiddleware = expressSession({
 	secret: 'study with me chatroom',
@@ -88,7 +87,7 @@ io.on('connection', (socket) => {
 		console.log(`已安排 ${users.name} 進入 chatroom`)
 		// console.log(req.body)
 		socket.join('even_' + date)
-		console.log('even_' + date)
+		// console.log('even_' + date)
 		socket.request['session'].save()
 	}
 
