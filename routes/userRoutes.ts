@@ -26,10 +26,52 @@ userRoutes.get('/logout', logout)
 userRoutes.post('/register', register)
 userRoutes.get('/subject', getSubject)
 userRoutes.get('/login/google', loginGoogle)
-// userRoutes.post('/admin', createMemos)
-// userRoutes.post('/admin/', uploadInfo)
+userRoutes.get('/tutorpage', getTutorInfo)
+userRoutes.get('/studentpage', getStudentInfo)
+userRoutes.get('/', getTutorHome)
+// userRoutes.get('/getgoogle', getGoogleInfo)
 
-async function loginGoogle(req: express.Request, res: express.Response) {
+// userRoutes.get('/chatroom', getUsername)
+// userRoutes.get('/login/google', getUserInfo)
+
+// async function getGoogleInfo(req: express.Request, res: express.Response) {
+// 	try {
+// 		const accessToken = req.session?.['grant'].response.access_token
+
+// 		// const fetchRes = await fetch(
+// 		// 	'https://www.googleapis.com/oauth2/v2/userinfo',
+// 		// 	{
+// 		// 		method: 'get',
+// 		// 		headers: {
+// 		// 			Authorization: `Bearer ${accessToken}`
+// 		// 		}
+// 		// 	}
+// 		// )
+
+// 		// const googleUserProfile = await fetchRes.json()
+// 		// let user = (
+// 		// 	await client.query(`SELECT * FROM users WHERE users.email = $1`, [
+// 		// 		googleUserProfile.email
+// 		// 	])
+// 		// ).rows[0]
+// 		// console.log(user)
+// 		console.log(accessToken)
+// 		res.json({
+// 			// data: user ? user.email : ''
+// 			data: accessToken
+// 		})
+// 	} catch (error) {
+// 		console.log(error)
+// 	}
+// }
+
+async function loginGoogle(
+	req: express.Request,
+	res: express.Response,
+	next: express.NextFunction
+) {
+	res.redirect('/register.html')
+	next()
 	try {
 		const accessToken = req.session?.['grant'].response.access_token
 		const fetchRes = await fetch(
@@ -51,11 +93,13 @@ async function loginGoogle(req: express.Request, res: express.Response) {
 		//填多2個資料
 
 		if (!user) {
+			res.redirect('/register.html?google=1')
 			// registration
 
 			let hashedPassword = await hashPassword(crypto.randomUUID())
 			console.log(googleUserProfile.email)
 			// let emailPrefix = googleUserProfile.email.split('@')[0]
+
 			user = (
 				await client.query(
 					`INSERT INTO users
@@ -74,7 +118,7 @@ async function loginGoogle(req: express.Request, res: express.Response) {
 		req.session['user'] = user
 
 		console.log('loading google login')
-		return res.redirect('/account.html')
+		// return res.redirect('/account.html')
 	} catch (error) {
 		logger.error(error)
 		res.status(500).json({
@@ -130,11 +174,15 @@ async function loginGoogle(req: express.Request, res: express.Response) {
 // 	}
 // }
 
-async function register(req: express.Request, res: express.Response) {
+async function register(
+	req: express.Request,
+	res: express.Response,
+	next: express.NextFunction
+) {
 	try {
 		let { fields, files } = await formParsePromise(req)
-		let { username, password, email, type, subjectId, image } = fields
-		console.log({ username, password, email, type, subjectId, image })
+		let { username, password, email, type, subjectId } = fields
+		console.log({ username, password, email, type, subjectId })
 		console.log(files)
 		if (!username || !password || !email || !type || !subjectId) {
 			res.status(402).json({
@@ -160,18 +208,17 @@ async function register(req: express.Request, res: express.Response) {
 
 		let imageUser = await client.query(
 			`INSERT INTO image (user_id,image_icon, created_at, updated_at) values ($1,$2,now(),now()) returning id`,
-			[newUser.rows[0].id, image]
+			[newUser.rows[0].id, files?.image?.newFilename || '']
 		)
+		// res.redirect('/')
 
-		// let selectUserResult2 = await client.query(
-		// 	`INSERT INTO users (username, password, email, type, subject, image, created_at, updated_at) values ($1,$2,$3,$4,$5,$6,now(),now())`,
-		// 	[subject, image]
-		// )
 		res.json({
 			data: newSubject,
 			imageUser,
 			message: 'register ok'
 		})
+		// next()
+		// res.redirect('/')
 	} catch (error) {
 		logger.error(error)
 		res.status(500).json({
@@ -199,7 +246,10 @@ async function getSubject(req: express.Request, res: express.Response) {
 
 async function logout(req: express.Request, res: express.Response) {
 	try {
+		console.log('login:', req.session.user)
 		delete req.session.user
+		console.log(req.session.user)
+
 		res.redirect('/')
 		// res.json({
 		// 	message: 'Logout success'
@@ -258,6 +308,139 @@ async function login(req: express.Request, res: express.Response) {
 		console.log('foundUser = ', foundUser)
 
 		res.redirect('/account.html')
+	} catch (error) {
+		logger.error(error)
+		res.status(500).json({
+			message: '[USR001] - Server error'
+		})
+	}
+}
+
+// async function getUsername(req: express.Request, res: express.Response) {
+// 	try {
+// 		let selectUserResult = await client.query(`select * from subject`)
+
+// 		let foundSubject = selectUserResult.rows
+
+// 		res.json({
+// 			data: foundSubject
+// 		})
+// 	} catch (error) {
+// 		logger.error(error)
+// 		res.status(500).json({
+// 			message: '[USR001] - Server error'
+// 		})
+// 	}
+// }
+
+async function getTutorInfo(req: express.Request, res: express.Response) {
+	try {
+		let tutorInfo = await client.query(
+			// `SELECT users.username, image.image_icon ,subject.id, subject.chinese_name  from users
+			// join teacher on teacher.user_id = users.id
+			// join teacher_subject on teacher_subject.teacher_id = teacher.id
+			// join subject on subject.id = teacher_subject.subject_id
+			// join image on image.user_id = users.id
+
+			`SELECT users.username, image.image_icon,subject.id,subject.chinese_name, users.type
+			from users
+			join teacher on teacher.user_id = users.id
+			join teacher_subject on teacher_subject.teacher_id = teacher.id
+			join subject on subject.id = teacher_subject.subject_id
+			join image on image.user_id = users.id
+			
+			WHERE users.type = 'teacher'
+			`
+		)
+		let tutorSubject = await client.query(
+			`SELECT chinese_name from subject JOIN teacher_subject ON subject.id = teacher_subject.subject_id`
+		)
+		// let tutorImage = await client.query(
+		// 	`SELECT image_icon from image JOIN users ON image.user_id = user.id returning *`
+		// )
+
+		res.json({
+			data: tutorInfo,
+			tutorSubject,
+			message: 'select teacher, image and subject ok !'
+		})
+	} catch (error) {
+		logger.error(error)
+		res.status(500).json({
+			message: '[USR001] - Server error'
+		})
+	}
+}
+
+async function getStudentInfo(req: express.Request, res: express.Response) {
+	try {
+		let studentInfo = await client.query(
+			// `SELECT users.username, image.image_icon ,subject.id, subject.chinese_name  from users
+			// join teacher on teacher.user_id = users.id
+			// join teacher_subject on teacher_subject.teacher_id = teacher.id
+			// join subject on subject.id = teacher_subject.subject_id
+			// join image on image.user_id = users.id
+
+			`SELECT users.username, image.image_icon,subject.id,subject.chinese_name, users.type
+			from users
+			join teacher on teacher.user_id = users.id
+			join teacher_subject on teacher_subject.teacher_id = teacher.id
+			join subject on subject.id = teacher_subject.subject_id
+			join image on image.user_id = users.id
+			
+			WHERE users.type = 'student'
+			`
+		)
+		// let tutorSubject = await client.query(
+		// 	`SELECT chinese_name from subject JOIN teacher_subject ON subject.id = teacher_subject.subject_id`
+		// )
+		// let tutorImage = await client.query(
+		// 	`SELECT image_icon from image JOIN users ON image.user_id = user.id returning *`
+		// )
+
+		res.json({
+			data: studentInfo,
+			message: 'select student ok !'
+		})
+	} catch (error) {
+		logger.error(error)
+		res.status(500).json({
+			message: '[USR001] - Server error'
+		})
+	}
+}
+
+async function getTutorHome(req: express.Request, res: express.Response) {
+	try {
+		let tutorInfo = await client.query(
+			// `SELECT users.username, image.image_icon ,subject.id, subject.chinese_name  from users
+			// join teacher on teacher.user_id = users.id
+			// join teacher_subject on teacher_subject.teacher_id = teacher.id
+			// join subject on subject.id = teacher_subject.subject_id
+			// join image on image.user_id = users.id
+
+			`SELECT users.username, image.image_icon,subject.id,subject.chinese_name, users.type
+			from users
+			join teacher on teacher.user_id = users.id
+			join teacher_subject on teacher_subject.teacher_id = teacher.id
+			join subject on subject.id = teacher_subject.subject_id
+			join image on image.user_id = users.id
+			
+			WHERE users.type = 'teacher'
+			`
+		)
+		let tutorSubject = await client.query(
+			`SELECT chinese_name from subject JOIN teacher_subject ON subject.id = teacher_subject.subject_id`
+		)
+		// let tutorImage = await client.query(
+		// 	`SELECT image_icon from image JOIN users ON image.user_id = user.id returning *`
+		// )
+
+		res.json({
+			data: tutorInfo,
+			tutorSubject,
+			message: 'select teacher, image and subject ok !'
+		})
 	} catch (error) {
 		logger.error(error)
 		res.status(500).json({
