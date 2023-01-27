@@ -10,6 +10,7 @@
 
     <title>account</title>
 
+
     <!-- CSS FILES -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
 
@@ -19,30 +20,28 @@
 
     <link href="/css/account.css" rel="stylesheet" />
 
-    <link href="/css/bootstrap.min.css" rel="stylesheet" />
-
+    <!-- <link href="/css/bootstrap.min.css" rel="stylesheet" /> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.1/css/bootstrap.min.css"
+        integrity="sha512-Ez0cGzNzHR1tYAv56860NLspgUGuQw16GiOOp/I2LuTmpSK9xDXlgJz3XN4cnpXWDmkNBKXR/VDMTCnAaEooxA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="/css/bootstrap-icons.css" rel="stylesheet" />
 
     <link href="/css/calendar.css" rel="stylesheet" />
 
     <link href="/css/templatemo-leadership-event.css" rel="stylesheet" />
 
-    <link href="/css/schedule.css" rel="stylesheet" />
+    <link href="https://unpkg.com/flickity@2/dist/flickity.min.css" rel="stylesheet">
 
+    <link href="/css/carousel.css" rel="stylesheet" />
+
+    <link href="/css/schedule.css" rel="stylesheet" />
 
     <link
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
         rel="stylesheet" />
 
+    <!-- TemplateMo 575 Leadership Event https://templatemo.com/tm-575-leadership-event -->
 
-
-    <!--
-
-TemplateMo 575 Leadership Event
-
-https://templatemo.com/tm-575-leadership-event
-
--->
 </head>
 
 <body>
@@ -181,6 +180,20 @@ https://templatemo.com/tm-575-leadership-event
             </div>
         </section>
 
+        <section class="blog section-padding" id="section_1">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <h3 class="mb-3">
+                            Profile details
+                        </h3>
+                        <span>Education level: </span>
+                        <span>Graduate </span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <section class="about section-padding" id="section_2">
             <div class="container">
                 <div class="row">
@@ -207,254 +220,63 @@ https://templatemo.com/tm-575-leadership-event
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-10 col-12 schedule">
-                        <h3>Date: </h3>
-                        <div class="col-12 schedule-table">
-                            <div class="schedule-row">
-                                <div class="col-2 schedule-box">
-                                    <span>12:00 AM</span>
-                                </div>
-                                <div class="col-8 schedule-box booking">
-                                </div>
-                                <div class="col-2 schedule-box">
-                                    <span>edit</span>
-                                </div>
-                            </div>
-                            <div class="schedule-row">
-                                <div class="col-2 schedule-box">
-                                    <span>1:00 AM</span>
-                                </div>
-                                <div class="col-8 schedule-box booking">
-                                </div>
-                                <div class="col-2 schedule-box">
-                                    <span>edit</span>
-                                </div>
-                            </div>
-                            <div class="schedule-row">
-                                <div class="col-2 schedule-box">
-                                    <span>1:00 AM</span>
-                                </div>
-                                <div class="col-8 schedule-box booking">
-                                </div>
-                                <div class="col-2 schedule-box">
-                                    <span>edit</span>
-                                </div>
-                            </div>
+                    <div class="col-lg-10 col-12 schedule" id="schedule">
+                        <h3 class="col-3">Date: </h3>
+                        <h3 class="col-9" id="calendar-chose-date"></h3>
+                        <div class="col-12 schedule-table" id="teacher-id">
                         </div>
                     </div>
-
-                    <div class="col-lg-6 col-12">
-                        <h3 class="mb-3">
-                            The importance of Leadership Conference in 2022
-                        </h3>
-
-                        <p>
-                            Leadership Event is one-page Bootstrap v5.1.3
-                            CSS layout for your website. Thank you for
-                            choosing TemplateMo website where you can
-                            instantly download free CSS templates at no
-                            cost.
-                        </p>
-
-                        <a class="custom-btn custom-border-btn btn custom-link mt-3 me-3" href="#section_3">Meet
-                            Speakers</a>
-
-                        <a class="custom-btn btn custom-link mt-3" href="#section_4">Check out Schedule</a>
-                    </div>
-
-                    <div class="col-lg-6 col-12 mt-5 mt-lg-0">
-                        <h4>
-                            Lorem ipsum dolor sit amet, consectetur
-                            adipiscing elit, sed do eiusmod tempor
-                            incididunt ut dolore
-                        </h4>
-
-                        <div class="avatar-group border-top py-5 mt-5">
-                            <img src="/images/avatar/portrait-good-looking-brunette-young-asian-woman.jpg"
-                                class="img-fluid avatar-image" alt="" />
-
-                            <img src="/images/avatar/happy-asian-man-standing-with-arms-crossed-grey-wall.jpg"
-                                class="img-fluid avatar-image avatar-image-left" alt="" />
-
-                            <img src="/images/avatar/senior-man-white-sweater-eyeglasses.jpg"
-                                class="img-fluid avatar-image avatar-image-left" alt="" />
-
-                            <img src="/images/avatar/pretty-smiling-joyfully-female-with-fair-hair-dressed-casually-looking-with-satisfaction.jpg"
-                                class="img-fluid avatar-image avatar-image-left" alt="" />
-
-                            <p class="d-inline">
-                                120+ People are attending with us
-                            </p>
+                    <form>
+                        <div class="col-12 schedule-input">
                         </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+                    </form>
+                    <div>
+                        <form>
+                            <h4>Pending Request</h4>
 
-        <section class="speakers section-padding" id="section_3">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-6 col-12 d-flex flex-column justify-content-center align-items-center">
-                        <div class="speakers-text-info">
-                            <h2 class="mb-4">
-                                Our <u class="text-info">Speakers</u>
-                            </h2>
-
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur
-                                adipiscing elit, sed do eiusmod tempor
-                                incididunt ut dolore
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-6 col-12">
-                        <div class="speakers-thumb">
-                            <img src="/images/avatar/happy-asian-man-standing-with-arms-crossed-grey-wall.jpg"
-                                class="img-fluid speakers-image" alt="" />
-
-                            <small class="speakers-featured-text">Featured</small>
-
-                            <div class="speakers-info">
-                                <h5 class="speakers-title mb-0">
-                                    Logan Wilson
-                                </h5>
-
-                                <p class="speakers-text mb-0">
-                                    CEO / Founder
-                                </p>
-
-                                <ul class="social-icon">
-                                    <li>
-                                        <a href="#" class="social-icon-link bi-facebook"></a>
-                                    </li>
-
-                                    <li>
-                                        <a href="#" class="social-icon-link bi-instagram"></a>
-                                    </li>
-
-                                    <li>
-                                        <a href="#" class="social-icon-link bi-google"></a>
-                                    </li>
-                                </ul>
+                            <div id="sorts" class="button-group">
+                                <div class="button is-checked" data-sort-value="original-order">Request time</div>
+                                <div class="button" data-sort-value="studentName">student name</div>
+                                <div class="button" data-sort-value="bookingDate">booking date</div>
+                                <div class="button" data-sort-value="bookingTime">booking Time</div>
+                                <div class="button" data-sort-value="status">status</div>
                             </div>
-                        </div>
-                    </div>
 
-                    <div class="col-lg-12 col-12">
-                        <div class="row">
-                            <div class="col-lg-3 col-md-6 col-12">
-                                <div class="speakers-thumb speakers-thumb-small">
-                                    <img src="/images/avatar/portrait-good-looking-brunette-young-asian-woman.jpg"
-                                        class="img-fluid speakers-image" alt="" />
 
-                                    <div class="speakers-info">
-                                        <h5 class="speakers-title mb-0">
-                                            Natalie
-                                        </h5>
+                            <ul class="table-like">
 
-                                        <p class="speakers-text mb-0">
-                                            Event Planner
-                                        </p>
-
-                                        <ul class="social-icon">
-                                            <li>
-                                                <a href="#" class="social-icon-link bi-facebook"></a>
-                                            </li>
-
-                                            <li>
-                                                <a href="#" class="social-icon-link bi-instagram"></a>
-                                            </li>
-                                        </ul>
+                                <li class="table-like-item">
+                                    <div class="student-name">James</div>
+                                    <div class="booking-date">23 January 2022</div>
+                                    <div class="booking-time">11:00</div>
+                                    <div class="status">add</div>
+                                    <div class="action">
+                                        <button type="button" class="btn btn-success">Accept</button>
+                                        <button type="button" class="btn btn-danger">Decline</button>
                                     </div>
-                                </div>
-                            </div>
-
-                            <div class="col-lg-3 col-md-6 col-12">
-                                <div class="speakers-thumb speakers-thumb-small">
-                                    <img src="/images/avatar/senior-man-white-sweater-eyeglasses.jpg"
-                                        class="img-fluid speakers-image" alt="" />
-
-                                    <div class="speakers-info">
-                                        <h5 class="speakers-title mb-0">
-                                            Thomas
-                                        </h5>
-
-                                        <p class="speakers-text mb-0">
-                                            Startup Coach
-                                        </p>
-
-                                        <ul class="social-icon">
-                                            <li>
-                                                <a href="#" class="social-icon-link bi-instagram"></a>
-                                            </li>
-
-                                            <li>
-                                                <a href="#" class="social-icon-link bi-whatsapp"></a>
-                                            </li>
-                                        </ul>
+                                </li>
+                                <li class="table-like-item">
+                                    <div class="student-name">Lawrence</div>
+                                    <div class="booking-date">24 January 2022</div>
+                                    <div class="booking-time">10:00</div>
+                                    <div class="status">cancel</div>
+                                    <div class="action">
+                                        <button type="button" class="btn btn-success">Accept</button>
+                                        <button type="button" class="btn btn-danger">Decline</button>
                                     </div>
-                                </div>
-                            </div>
-
-                            <div class="col-lg-3 col-md-6 col-12">
-                                <div class="speakers-thumb speakers-thumb-small">
-                                    <img src="/images/avatar/pretty-smiling-joyfully-female-with-fair-hair-dressed-casually-looking-with-satisfaction.jpg"
-                                        class="img-fluid speakers-image" alt="" />
-
-                                    <div class="speakers-info">
-                                        <h5 class="speakers-title mb-0">
-                                            Isabella
-                                        </h5>
-
-                                        <p class="speakers-text mb-0">
-                                            Event Manager
-                                        </p>
-
-                                        <ul class="social-icon">
-                                            <li>
-                                                <a href="#" class="social-icon-link bi-facebook"></a>
-                                            </li>
-
-                                            <li>
-                                                <a href="#" class="social-icon-link bi-instagram"></a>
-                                            </li>
-
-                                            <li>
-                                                <a href="#" class="social-icon-link bi-whatsapp"></a>
-                                            </li>
-                                        </ul>
+                                </li>
+                                <li class="table-like-item">
+                                    <div class="student-name">Newton</div>
+                                    <div class="booking-date">25 January 2022</div>
+                                    <div class="booking-time">7:00</div>
+                                    <div class="status">cancel</div>
+                                    <div class="action">
+                                        <button type="button" class="btn btn-success">Accept</button>
+                                        <button type="button" class="btn btn-danger">Decline</button>
                                     </div>
-                                </div>
-                            </div>
-
-                            <div class="col-lg-3 col-md-6 col-12">
-                                <div class="speakers-thumb speakers-thumb-small">
-                                    <img src="/images/avatar/indoor-shot-beautiful-happy-african-american-woman-smiling-cheerfully-keeping-her-arms-folded-relaxing-indoors-after-morning-lectures-university.jpg"
-                                        class="img-fluid speakers-image" alt="" />
-
-                                    <div class="speakers-info">
-                                        <h5 class="speakers-title mb-0">
-                                            Samantha
-                                        </h5>
-
-                                        <p class="speakers-text mb-0">
-                                            Top Level Speaker
-                                        </p>
-
-                                        <ul class="social-icon">
-                                            <li>
-                                                <a href="#" class="social-icon-link bi-instagram"></a>
-                                            </li>
-
-                                            <li>
-                                                <a href="#" class="social-icon-link bi-whatsapp"></a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                                </li>
+                            </ul>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -890,240 +712,53 @@ https://templatemo.com/tm-575-leadership-event
             </div>
         </section>
 
-        <section class="call-to-action section-padding">
-            <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-lg-7 col-12">
-                        <h2 class="text-white mb-4">
-                            Become an
-                            <u class="text-info">event speaker?</u>
-                        </h2>
-
-                        <p class="text-white">
-                            Lorem ipsum dolor sit amet, consectetur
-                            adipiscing elit, sed do eiusmod tempor
-                            incididunt ut dolore
-                        </p>
-                    </div>
-
-                    <div class="col-lg-3 col-12 ms-lg-auto mt-4 mt-lg-0">
-                        <a href="#section_5" class="custom-btn btn">Register Today</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="pricing section-padding" id="section_5">
+        <section class="blog section-padding" id="section_4">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-10 col-12 text-center mx-auto mb-5">
-                        <h2>Get Your <u class="text-info">Tickets</u></h2>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6 col-12 mb-5 mb-lg-0">
-                        <div class="pricing-thumb bg-white shadow-lg">
-                            <div class="pricing-title-wrap d-flex align-items-center">
-                                <h4 class="pricing-title text-white mb-0">
-                                    Early Bird
-                                </h4>
-
-                                <h5 class="pricing-small-title text-white mb-0 ms-auto">
-                                    $640
-                                </h5>
-                            </div>
-
-                            <div class="pricing-body">
-                                <p>
-                                    <i class="bi-cup me-2"></i> All-Day
-                                    Coffee + Snacks
-                                </p>
-
-                                <p>
-                                    <i class="bi-controller me-2"></i> After
-                                    Party
-                                </p>
-
-                                <p>
-                                    <i class="bi-chat-square me-2"></i> 24/7
-                                    Support
-                                </p>
-
-                                <div class="border-bottom pb-3 mb-4"></div>
-
-                                <p>
-                                    Quick group meetings for multiple teams
-                                </p>
-
-                                <a class="custom-btn btn mt-3" href="#">Buy Tickets</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6 col-12 mb-5 mb-lg-0">
-                        <div class="pricing-thumb bg-white shadow-lg">
-                            <div class="pricing-title-wrap d-flex align-items-center">
-                                <h4 class="pricing-title text-white mb-0">
-                                    Gold
-                                </h4>
-
-                                <h5 class="pricing-small-title text-white mb-0 ms-auto">
-                                    $840
-                                </h5>
-                            </div>
-
-                            <div class="pricing-body">
-                                <p>
-                                    <i class="bi-cup me-2"></i> All-Day
-                                    Coffee + Snacks
-                                </p>
-
-                                <p>
-                                    <i class="bi-boombox me-2"></i> Group
-                                    Meetings + After Party
-                                </p>
-
-                                <p>
-                                    <i class="bi-chat-square me-2"></i> 24/7
-                                    Support + Instant Chats
-                                </p>
-
-                                <div class="border-bottom pb-3 mb-4"></div>
-
-                                <p>
-                                    Quick group meetings for multiple teams
-                                </p>
-
-                                <a class="custom-btn btn mt-3" href="#">Buy Tickets</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6 col-12">
-                        <div class="pricing-thumb bg-white shadow-lg">
-                            <div class="pricing-title-wrap d-flex align-items-center">
-                                <h4 class="pricing-title text-white mb-0">
-                                    Platinum
-                                </h4>
-
-                                <h5 class="pricing-small-title text-white mb-0 ms-auto">
-                                    $1,240
-                                </h5>
-                            </div>
-
-                            <div class="pricing-body">
-                                <p>
-                                    <i class="bi-cash me-2"></i> Cashback
-                                    $200
-                                </p>
-
-                                <p>
-                                    <i class="bi-boombox me-2"></i> Private
-                                    Meetings + After Party
-                                </p>
-
-                                <p>
-                                    <i class="bi-chat-square me-2"></i> 24/7
-                                    Support + Instant Chats
-                                </p>
-
-                                <div class="border-bottom pb-3 mb-4"></div>
-
-                                <p>
-                                    group talks and private chats for
-                                    multiple teams
-                                </p>
-
-                                <a class="custom-btn btn mt-3" href="#">Buy Tickets</a>
-                            </div>
-                        </div>
+                    <div class="col-12">
+                        <h3 class="mb-3">
+                            Chatroom
+                        </h3>
+                        <button type="submit">
+                            add Chatroom
+                        </button>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="venue section-padding" id="section_6">
+        <section class="student-list section-padding" id="section_5">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12 col-12">
-                        <h2 class="mb-5">
-                            Here you go <u class="text-info">Venue</u>
-                        </h2>
-                    </div>
-
-                    <div class="col-lg-6 col-12">
-                        <iframe class="google-map"
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1511.091461689997!2d-73.9866630916883!3d40.758001294831736!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25855a96da09d%3A0x860bf5a5e1a00a68!2sTimes%20Square%2C%20New%20York%2C%20NY%2010036%2C%20USA!5e0!3m2!1sen!2ssg!4v1643035529098!5m2!1sen!2ssg"
-                            width="100%" height="371.59" allowfullscreen="" loading="lazy"></iframe>
-                    </div>
-
-                    <div class="col-lg-6 col-12 mt-5 mt-lg-0">
-                        <div class="venue-thumb bg-white shadow-lg">
-                            <div class="venue-info-title">
-                                <h2 class="text-white mb-0">
-                                    Times Square
-                                </h2>
+                        <h3 class="mb-3">
+                            student-list
+                        </h3>
+                        <div class="carousel"
+                            data-flickity='{ "groupCells": true, "wrapAround": true, "lazyLoad": true }'>
+                            <!-- <div class="carousel-cell">
+                                <img class="carousel-cell-image"
+                                    data-flickity-lazyload="/images/avatar/happy-asian-man-standing-with-arms-crossed-grey-wall.jpg"
+                                    alt="tulip" />
                             </div>
-
-                            <div class="venue-info-body">
-                                <h4 class="d-flex">
-                                    <i class="bi-geo-alt me-2"></i>
-                                    <span>102 South. 7th Street, New York, NY
-                                        10036, USA</span>
-                                </h4>
-
-                                <h5 class="mt-4 mb-3">
-                                    <a href="mailto:hello@yourgmail.com">
-                                        <i class="bi-envelope me-2"></i>
-                                        hi@company.com
-                                    </a>
-                                </h5>
-
-                                <h5 class="mb-0">
-                                    <a href="tel: 305-240-9671">
-                                        <i class="bi-telephone me-2"></i>
-                                        010-020-0340
-                                    </a>
-                                </h5>
+                            <div class="carousel-cell">
+                                <img class="carousel-cell-image"
+                                    data-flickity-lazyload="images\avatar\indoor-shot-beautiful-happy-african-american-woman-smiling-cheerfully-keeping-her-arms-folded-relaxing-indoors-after-morning-lectures-university.jpg"
+                                    alt="tulip" />
                             </div>
+                            <div class="carousel-cell"></div>
+                            <div class="carousel-cell"></div>
+                            <div class="carousel-cell"></div>
+                            <div class="carousel-cell"></div>
+                            <div class="carousel-cell"></div>
+                            <div class="carousel-cell"></div>
+                            <div class="carousel-cell"></div>
+                            <div class="carousel-cell"></div>
+                            <div class="carousel-cell"></div> -->
                         </div>
                     </div>
-                </div>
-            </div>
-        </section>
+                    <div class="col-lg-12 col-12 student-detail">
 
-        <section class="contact section-padding" id="section_7">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-8 col-12 mx-auto">
-                        <form class="custom-form contact-form bg-white shadow-lg" action="#" method="post" role="form">
-                            <h2>Please Say Hi</h2>
-
-                            <div class="row">
-                                <div class="col-lg-4 col-md-4 col-12">
-                                    <input type="text" name="name" id="name" class="form-control" placeholder="Name"
-                                        required="" />
-                                </div>
-
-                                <div class="col-lg-4 col-md-4 col-12">
-                                    <input type="email" name="email" id="email" pattern="[^ @]*@[^ @]*"
-                                        class="form-control" placeholder="Email" required="" />
-                                </div>
-
-                                <div class="col-lg-4 col-md-4 col-12">
-                                    <input type="text" name="subject" id="subject" class="form-control"
-                                        placeholder="Subject" />
-                                </div>
-
-                                <div class="col-12">
-                                    <textarea class="form-control" rows="5" id="message" name="message"
-                                        placeholder="Message"></textarea>
-
-                                    <button type="submit" class="form-control">
-                                        Submit
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
                     </div>
                 </div>
             </div>
@@ -1202,13 +837,25 @@ https://templatemo.com/tm-575-leadership-event
 
     <!-- JAVASCRIPT FILES -->
     <script src="/js/jquery.min.js"></script>
-    <script src="/js/bootstrap.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.1/js/bootstrap.min.js"
+        integrity="sha512-EKWWs1ZcA2ZY9lbLISPz8aGR2+L7JVYqBAYTq5AXgBkSjRSuQEGqWx8R1zAX16KdXPaCjOCaKE8MCpU0wcHlHA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.1/js/bootstrap.bundle.min.js"
+        integrity="sha512-sH8JPhKJUeA9PWk3eOcOl8U+lfZTgtBXD41q6cO/slwxGHCxKcW45K4oPCUhHG7NMB4mbKEddVmPuTXtpbCbFA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- <script src="/js/bootstrap.min.js"></script> -->
     <script src="/js/jquery.sticky.js"></script>
     <!-- <script src="/js/click-scroll.js"></script> -->
     <script src="/js/custom.js"></script>
     <script src="/js/account.js"></script>
     <script src="/js/calendar.js" defer></script>
-    <script src="/js/schedule.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.js"
+        integrity="sha512-E/yP5UiPXb6VelX+dFLuUD+1IZw/Kz7tMncFTYbtoNSCdRZPFoGN3jZ2p27VUxHEkhbPiLuZhZpVEXxk9wAHCQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+    <script type="module" src="/js/schedule.js"></script>
+    <script type="module" src="/js/carousel.js"></script>
 
 </body>
 

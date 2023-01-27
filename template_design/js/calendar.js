@@ -1,7 +1,7 @@
 const daysTag = document.querySelector(".days"),
     currentDate = document.querySelector(".current-date"),
     prevNextIcon = document.querySelectorAll(".icons span"),
-    schedule = document.querySelector(".schedule");
+    schedule = document.querySelector("#calendar-chose-date");
 
 // getting new date, current year and month
 let date = new Date(),
@@ -39,17 +39,13 @@ const renderCalendar = () => {
     const thisMonthCalendarDates = document.querySelectorAll(".days>li.thisMonth")
     for (let date of thisMonthCalendarDates) {
         date.addEventListener("click", function () {
-            schedule.innerHTML += `<form action="/booking">
-            <h3>Date: </h3>
-            <label for="fname">First name:</label>
-            <input type="text" id="fname" name="fname"><br><br>
-            <label for="lname">Last name:</label>
-            <input type="text" id="lname" name="lname"><br><br>
-            <input type="submit" value="Submit">
-          </form>`;
+            console.log(date.innerHTML)
+            schedule.innerHTML = `${date.innerHTML} ${currentDate.innerHTML}`;
         })
     }
 
+    const today = document.querySelector(".active")
+    schedule.innerHTML = `${today.innerHTML} ${currentDate.innerHTML}`
 }
 renderCalendar();
 

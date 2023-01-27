@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+
+    <title>account</title>
+
+    <!-- CSS FILES -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet" />
+
+    <link href="/css/account.css" rel="stylesheet" />
+
+    <!-- <link href="/css/bootstrap.min.css" rel="stylesheet" /> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.1/css/bootstrap.min.css"
+        integrity="sha512-Ez0cGzNzHR1tYAv56860NLspgUGuQw16GiOOp/I2LuTmpSK9xDXlgJz3XN4cnpXWDmkNBKXR/VDMTCnAaEooxA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="/css/bootstrap-icons.css" rel="stylesheet" />
+
+    <link href="/css/calendar.css" rel="stylesheet" />
+
+    <link href="/css/templatemo-leadership-event.css" rel="stylesheet" />
+
+    <link href="https://unpkg.com/flickity@2/dist/flickity.min.css" rel="stylesheet">
+
+    <link href="/css/carousel.css" rel="stylesheet" />
+
+    <link href="/css/schedule.css" rel="stylesheet" />
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+        rel="stylesheet" />
+
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <a href="index.html" class="navbar-brand mx-auto mx-lg-0">
+                <i class="bi-bullseye brand-logo"></i>
+                <span class="brand-text">study with <br />
+                    ME</span>
+            </a>
+
+            <a class="nav-link custom-btn btn d-lg-none" href="#">Buy Tickets</a>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link click-scroll" href="#section_1">主頁</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link click-scroll" href="#section_2">關於我們</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link click-scroll" href="#section_3">導師資料</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link click-scroll" href="#section_4">Schedules</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link click-scroll" href="#section_5">Pricing</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link click-scroll" href="#section_6">Venue</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link click-scroll" href="#section_7">Contact</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link custom-btn btn d-none d-lg-block" href="#">Login</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <section class="highlight">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4 col-md-6 col-12">
+                        <div class="profile">
+                            <img src="/images/avatar/pretty-smiling-joyfully-female-with-fair-hair-dressed-casually-looking-with-satisfaction.jpg"
+                                class="profile-image img-fluid" alt="" />
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6 col-12 welcome-div">
+                        <h1 class="welcome-msg">Student Name</h1>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6 col-12">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="blog section-padding" id="section_1">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <h3 class="mb-3">
+                            Profile details
+                        </h3>
+                        <div>
+                            <span>Education level: </span>
+                            <span>Graduate </span>
+                        </div>
+                        <div>
+                            <span>School Name: </span>
+                            <span>Queen's College</span>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="about section-padding" id="section_2">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-10 col-12 calendar">
+                        <div class="wrapper">
+                            <header>
+                                <p class="current-date"></p>
+                                <div class="icons">
+                                    <span id="prev" class="material-symbols-rounded">chevron_left</span>
+                                    <span id="next" class="material-symbols-rounded">chevron_right</span>
+                                </div>
+                            </header>
+                            <div class="calendar">
+                                <ul class="weeks">
+                                    <li>Sun</li>
+                                    <li>Mon</li>
+                                    <li>Tue</li>
+                                    <li>Wed</li>
+                                    <li>Thu</li>
+                                    <li>Fri</li>
+                                    <li>Sat</li>
+                                </ul>
+                                <ul class="days"></ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-10 col-12 schedule" id="schedule">
+                        <h3 class="col-3">Date: </h3>
+                        <h3 class="col-9" id="calendar-chose-date"></h3>
+                        <div class="col-12 schedule-table" id="teacher-id">
+                        </div>
+                    </div>
+                    <form>
+                        <div class="col-12 schedule-input">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-12 col-12 border-bottom pb-5 mb-5">
+                    <div class="d-flex">
+                        <a href="index.html" class="navbar-brand">
+                            <i class="bi-bullseye brand-logo"></i>
+                            <span class="brand-text">study with <br />
+                                me</span>
+                        </a>
+
+                        <ul class="social-icon ms-auto">
+                            <li>
+                                <a href="#" class="social-icon-link bi-facebook"></a>
+                            </li>
+
+                            <li>
+                                <a href="#" class="social-icon-link bi-instagram"></a>
+                            </li>
+
+                            <li>
+                                <a href="#" class="social-icon-link bi-whatsapp"></a>
+                            </li>
+
+                            <li>
+                                <a href="#" class="social-icon-link bi-youtube"></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-lg-7 col-12">
+                    <ul class="footer-menu d-flex flex-wrap">
+                        <li class="footer-menu-item">
+                            <a href="#" class="footer-menu-link">Our Story</a>
+                        </li>
+
+                        <li class="footer-menu-item">
+                            <a href="#" class="footer-menu-link">Code of Conduct</a>
+                        </li>
+
+                        <li class="footer-menu-item">
+                            <a href="#" class="footer-menu-link">Privacy and Terms</a>
+                        </li>
+
+                        <li class="footer-menu-item">
+                            <a href="#" class="footer-menu-link">Contact</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-5 col-12 ms-lg-auto">
+                    <div class="copyright-text-wrap d-flex align-items-center">
+                        <p class="copyright-text ms-lg-auto me-4 mb-0">
+                            Copyright © 2022 Study With Me Edu, Ltd.
+
+                            <br />All Rights Reserved.
+
+                            <br /><br />Design:
+                            <a title="CSS Templates" rel="sponsored" href="https://templatemo.com"
+                                target="_blank">TemplateMo</a>
+                        </p>
+
+                        <a href="#section_1" class="bi-arrow-up arrow-icon custom-link"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT FILES -->
+    <script src="/js/jquery.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.1/js/bootstrap.min.js"
+        integrity="sha512-EKWWs1ZcA2ZY9lbLISPz8aGR2+L7JVYqBAYTq5AXgBkSjRSuQEGqWx8R1zAX16KdXPaCjOCaKE8MCpU0wcHlHA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.1/js/bootstrap.bundle.min.js"
+        integrity="sha512-sH8JPhKJUeA9PWk3eOcOl8U+lfZTgtBXD41q6cO/slwxGHCxKcW45K4oPCUhHG7NMB4mbKEddVmPuTXtpbCbFA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- <script src="/js/bootstrap.min.js"></script> -->
+    <script src="/js/jquery.sticky.js"></script>
+    <!-- <script src="/js/click-scroll.js"></script> -->
+    <script src="/js/custom.js"></script>
+    <script src="/js/account.js"></script>
+    <script src="/js/calendar.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.js"
+        integrity="sha512-E/yP5UiPXb6VelX+dFLuUD+1IZw/Kz7tMncFTYbtoNSCdRZPFoGN3jZ2p27VUxHEkhbPiLuZhZpVEXxk9wAHCQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+    <script type="module" src="/js/schedule.js"></script>
+    <script type="module" src="/js/carousel.js"></script>
+
+</body>
+
+</html>
