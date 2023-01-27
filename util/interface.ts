@@ -3,3 +3,8 @@ export interface User {
 	password: string
 	email: string
 }
+
+export interface uploadInfo {
+	subject: string
+	image?: string
+}
