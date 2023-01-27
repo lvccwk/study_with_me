@@ -2,6 +2,7 @@
 CREATE TABLE users(
     id SERIAL primary key,
     username VARCHAR(255) not null,
+    display_name VARCHAR(255),
     email VARCHAR(255) not null,
     password VARCHAR(255) not null,
     type VARCHAR,
