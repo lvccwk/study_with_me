@@ -29,6 +29,7 @@ userRoutes.get('/login/google', loginGoogle)
 userRoutes.get('/tutorpage', getTutorInfo)
 userRoutes.get('/studentpage', getStudentInfo)
 userRoutes.get('/homepage-tutor', getTutorHome)
+
 // userRoutes.get('/getgoogle', getGoogleInfo)
 
 // userRoutes.get('/chatroom', getUsername)
@@ -174,11 +175,7 @@ async function loginGoogle(
 // 	}
 // }
 
-async function register(
-	req: express.Request,
-	res: express.Response,
-	next: express.NextFunction
-) {
+async function register(req: express.Request, res: express.Response) {
 	try {
 		let { fields, files } = await formParsePromise(req)
 		let { username, password, email, type, subjectId } = fields
@@ -348,7 +345,7 @@ async function getTutorInfo(req: express.Request, res: express.Response) {
 			join teacher_subject on teacher_subject.teacher_id = teacher.id
 			join subject on subject.id = teacher_subject.subject_id
 			join image on image.user_id = users.id
-			
+
 			WHERE users.type = 'teacher'
 			`
 		)
@@ -413,20 +410,37 @@ async function getStudentInfo(req: express.Request, res: express.Response) {
 async function getTutorHome(req: express.Request, res: express.Response) {
 	try {
 		let tutorInfo = await client.query(
-			// `SELECT users.username, image.image_icon ,subject.id, subject.chinese_name  from users
+			// `SELECT users.username, image.image_icon,subject.id,subject.chinese_name, users.type
+			// from users
 			// join teacher on teacher.user_id = users.id
 			// join teacher_subject on teacher_subject.teacher_id = teacher.id
 			// join subject on subject.id = teacher_subject.subject_id
 			// join image on image.user_id = users.id
 
-			`SELECT users.username, image.image_icon,subject.id,subject.chinese_name, users.type
-			from users
-			join teacher on teacher.user_id = users.id
-			join teacher_subject on teacher_subject.teacher_id = teacher.id
-			join subject on subject.id = teacher_subject.subject_id
-			join image on image.user_id = users.id
+			// WHERE users.type = 'teacher'
+			// `
 
-			WHERE users.type = 'teacher'
+			`with 
+			distinct_subject as (
+				select distinct subject_id as selected_subject_id from teacher_subject ts  
+			),
+			random_four as (
+				select * from distinct_subject order by random() limit 4 
+			),
+			random_four_teacher as (
+				select * from random_four 
+				join teacher_subject ts on ts.subject_id  = random_four.selected_subject_id order by random() limit 4 
+			
+			)
+			
+			
+			select 
+			s.chinese_name,
+			u.username 
+			from random_four_teacher
+			join subject s on s.id  = random_four_teacher.subject_id
+			join teacher t on t.id = random_four_teacher.teacher_id
+			join users u on u.id = t.id;
 			`
 		)
 		let tutorSubject = await client.query(
