@@ -6,16 +6,11 @@
 
 .schedule-box {
     /* padding: 1vh 0vw; */
-    border-width: 0px 2px;
-    border-style: solid;
-    border-color: black;
 }
 
 .schedule-row {
     display: flex;
     border-color: black;
-    border-bottom: 2px;
-    border-style: solid;
     /* flex-wrap: wrap; */
 }
 
@@ -23,6 +18,7 @@
     border: 2px;
     box-sizing: border-box;
     border-style: solid;
+<<<<<<< HEAD
 }
 
 .schedule-row-top {
@@ -155,4 +151,6 @@ body {
 
 .table-like-item .category {
     width: 20%;
+=======
+>>>>>>> 31c1195d24f104bef85eb1252b3f5bd62e71d5d5
 }

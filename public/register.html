@@ -32,8 +32,7 @@ TemplateMo 575 Leadership Event
 https://templatemo.com/tm-575-leadership-event
 
 -->
-	</head>
-
+</head>
 	<body>
 		<nav class="navbar navbar-expand-lg">
 			<div class="container">
@@ -55,7 +54,7 @@ https://templatemo.com/tm-575-leadership-event
 						>study<br/>with me</span>
 				</a>
 
-				<a class="nav-link custom-btn btn d-lg-none" href="#"
+				<a class="nav-link custom-btn btn d-lg-none" href="/login.html"
 					>登入</a
 				>
 
@@ -86,8 +85,8 @@ https://templatemo.com/tm-575-leadership-event
 						</li>
 
 						<li class="nav-item">
-							<a class="nav-link click-scroll" href="#section_5"
-								>學習資源</a
+							<a class="nav-link click-scroll" href="/studentpage.html"
+								>學生資料</a
 							>
 						</li>
 
@@ -103,15 +102,13 @@ https://templatemo.com/tm-575-leadership-event
 							>
 						</li>
 
-                        
+						<li class="nav-item">
 							<a
 								class="nav-link custom-btn btn d-none d-lg-block"
-								href="#"
+								href="/login.html"
 								>登入</a
 							>
-						
-
-		
+						</li>
 					</ul>
 				</div>
 			</div>
@@ -136,29 +133,35 @@ https://templatemo.com/tm-575-leadership-event
 
 									<span class="location-text"
 										>一站式中小學補習問功課平台<br>提供全科24小時功課問
-										答、實時操題訓練。</span
-									>
+										答、實時操題訓練。</span>
 								</div> 
 								<li class="nav-item">
-									<form>
+									<form id="signup-form">
                                         <label for="username">用戶名稱:</label><br>
 										<input type="text" id="username" name="username"><br>
 										<label for="password">密碼:</label><br>
 										<input type="password" id="pwd" name="password"><br>
-                                        <label for="username">電郵地址:</label><br>
+                                        <label for="email">電郵地址:</label><br>
 										<input type="email" id="email" name="email"><br>
-										<label for="occupation">職業:</label><br>
-										<select type="text" id="occupation" name="occupation">
+										<label for="type">用戶類別:</label><br>
+										<select class="reg-button" type="text" id="type" name="type">
+											<option value="">請選擇科目</option>
 											<option value="teacher">老師</option>
 											<option value="student">學生</option>
-											</select>
-                                        
-										
-										
-                                        
+										</select>
+										<br>
+										<label for="subjectId">科目:</label><br>
+										<select class="subject-button" type="text" id="subject" name="subjectId">
+											<option value="">請選擇科目</option>
+										</select>
+										<br>
+										<br>
+										<label for="image">個人頭像:</label><br>
+										<input class="btn btn-primary" type="file" id="image" name="image" />
+										<br>
+										<br>
+										<button type="submit" class="btn btn-primary">註冊</button>
 									</form>
-									
-                                      <button type="button" class="btn btn-primary">註冊</button>
 									
 									
 								</li>
@@ -355,10 +358,11 @@ https://templatemo.com/tm-575-leadership-event
 		</footer>
 
 		<!-- JAVASCRIPT FILES -->
-		<!-- <script src="/js/jquery.min.js"></script>
+		<script src="/js/jquery.min.js"></script>
 		<script src="/js/bootstrap.min.js"></script>
 		<script src="/js/jquery.sticky.js"></script>
-		<script src="/js/click-scroll.js"></script> 
-		<script src="/js/custom.js"></script> -->
+		<!-- <script src="/js/click-scroll.js"></script>  -->
+		<script src="/js/custom.js"></script>
+		<script src="/js/register.js"></script>
 	</body>
 </html>

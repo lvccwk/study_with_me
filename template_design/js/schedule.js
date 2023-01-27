@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // const store = window.localStorage;
 
 export function createScheduleTable(part) {
@@ -10,6 +11,13 @@ export function createScheduleTable(part) {
          <div class="col-2 col-lg-1 schedule-box"><span>status</span></div>
          <div class="col-2 schedule-box">action</div>
      </div>`)
+=======
+// import { moment } from './moment.js';
+
+const store = window.localStorage;
+
+const container = $(".container");
+>>>>>>> 31c1195d24f104bef85eb1252b3f5bd62e71d5d5
 
     const now = moment();
 
@@ -119,6 +127,7 @@ export function createScheduleTable(part) {
     });
 }
 
+<<<<<<< HEAD
 createScheduleTable("teacher-id")
 
 // pending request
@@ -153,4 +162,46 @@ $('.button-group').each(function (i, buttonGroup) {
         $buttonGroup.find('.is-checked').removeClass('is-checked');
         $(this).addClass('is-checked');
     });
+=======
+hoursOfTheDay.forEach((hr) => {
+    const grid = $(
+        `<form data-name="${hr.text}" class="grid grid-cols-12  border-gray-500 "></form>.`
+    );
+
+    const time = $(
+        `<div class="flex items-center justify-center col-span-2 h-16">${hr.text}</div>`
+    );
+
+    const textArea = $(
+        `<textarea name="${hr.text
+        }" maxLength="50" style="resize: none; overflow: hidden;" class="col-span-8 h-16 p-6 ${color(
+            hr
+        )}">${store.getItem(hr.text) || ""}</textarea>`
+    );
+
+    textArea.keydown((e) => {
+        if (e.keyCode == 13 && !e.shiftKey) {
+            e.preventDefault();
+            return false;
+        }
+    });
+
+    const saveButton = $(
+        `<button type="submit" class="col-span-2 h-16 bg-indigo-500 text-white font-bold hover:bg-indigo-400 transition duration-500 ease-in-out"><i class="fas fa-save text-xl"></i></button>`
+    );
+
+    grid.submit((e) => {
+        e.preventDefault();
+
+        const value = $(`textarea[name="${hr.text}"]`).val();
+
+        store.setItem(hr.text, value);
+    });
+
+    grid.append(time);
+    grid.append(textArea);
+    grid.append(saveButton);
+
+    container.append(grid);
+>>>>>>> 31c1195d24f104bef85eb1252b3f5bd62e71d5d5
 });
