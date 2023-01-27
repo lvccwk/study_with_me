@@ -2,8 +2,8 @@
 CREATE TABLE users(
     id SERIAL primary key,
     username VARCHAR(255) not null,
+    display_name VARCHAR(255),
     email VARCHAR(255) not null,
-    display_nama VARCHAR(255),
     password VARCHAR(255) not null,
     type VARCHAR,
     created_at TIMESTAMP,
