@@ -28,7 +28,7 @@ userRoutes.get('/subject', getSubject)
 userRoutes.get('/login/google', loginGoogle)
 userRoutes.get('/tutorpage', getTutorInfo)
 userRoutes.get('/studentpage', getStudentInfo)
-userRoutes.get('/', getTutorHome)
+userRoutes.get('/homepage-tutor', getTutorHome)
 // userRoutes.get('/getgoogle', getGoogleInfo)
 
 // userRoutes.get('/chatroom', getUsername)
@@ -425,7 +425,7 @@ async function getTutorHome(req: express.Request, res: express.Response) {
 			join teacher_subject on teacher_subject.teacher_id = teacher.id
 			join subject on subject.id = teacher_subject.subject_id
 			join image on image.user_id = users.id
-			
+
 			WHERE users.type = 'teacher'
 			`
 		)

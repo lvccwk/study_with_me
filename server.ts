@@ -67,8 +67,8 @@ type Message = {
 
 let users: any = {}
 let messages: Message[] = []
-
 app.use(userRoutes)
+// app.use('/user', userRoutes)
 io.on('connection', (socket) => {
 	let req = socket.request as express.Request
 	let date = Date.now()
@@ -110,6 +110,7 @@ app.get('/me', (req, res) => {
 app.use(express.static(path.join(__dirname, 'template_design')))
 app.use(express.static(path.join(__dirname, 'public')))
 app.use(express.static(path.join(__dirname, 'private')))
+app.use(express.static('uploads'))
 
 app.use((req, res) => {
 	res.redirect('404.html')

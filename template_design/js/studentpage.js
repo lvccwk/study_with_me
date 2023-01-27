@@ -1,21 +1,21 @@
-async function loadTutorInfo() {
-	let res = await fetch('/tutorpage')
+async function loadStudentInfo() {
+	let res = await fetch('/studentpage')
 	if (res.ok) {
 		let data = await res.json()
-		let tutorInfos = data.data
+		let studentInfos = data.data
 
     // console.log(tutorInfos)
 		// getTutorInfo(tutorInfos)
 		// console.table(tutorInfos)
   let tutorContainerElem = document.querySelector('.grid')
-  for(let tutorInfo of tutorInfos.rows){
-    let imagePath = tutorInfo.image_icon ? `uploads/${tutorInfo.image_icon}` : "images/avatar/portrait-good-looking-brunette-young-asian-woman.jpg"
-    console.log(tutorInfo.username,tutorInfo.image_icon,tutorInfo.chinese_name) 
+  for(let studentInfo of studentInfos.rows){
+    let imagePath = studentInfo.image_icon ? `uploads/${studentInfo.image_icon}` : "images/avatar/portrait-good-looking-brunette-young-asian-woman.jpg"
+    console.log(studentInfo.username,studentInfo.image_icon,studentInfo.chinese_name) 
     tutorContainerElem.innerHTML += 
       `  <div class="element-item transition metal" data-category="transition">
-      <h3 class="name">${tutorInfo.username}</h3>
+      <h3 class="name">${studentInfo.username}</h3>
       <img src="${imagePath}"class="img-fluid speakers-image"alt=""/>
-      <p class="subject">${tutorInfo.chinese_name}</p>
+      <p class="subject">${studentInfo.chinese_name}</p>
       </div>`
     }
 
@@ -85,7 +85,7 @@ async function js(){
   async function init(){
 
     // js()
-    await loadTutorInfo()
+    await loadStudentInfo()
     js()
   }
   init()

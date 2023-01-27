@@ -1,6 +1,6 @@
 import express from 'express'
 import formidable from 'formidable'
-export const uploadDir = 'template_design/uploads'
+export const uploadDir = 'uploads'
 
 export const form = formidable({
 	uploadDir,
