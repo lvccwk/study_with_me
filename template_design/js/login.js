@@ -33,7 +33,7 @@ signinformElm.addEventListener('submit', async (e) => {
     }
     isloggedin === true
     let logoutformElm = document.querySelector('#login-btn')
-    logoutformElm.innerHTML = `							<a
+    logoutformElm.innerHTML = `<a
     class="nav-link custom-btn btn d-none d-lg-block"
     href="/logout"
     >登出</a

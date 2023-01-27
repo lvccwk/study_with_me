@@ -56,7 +56,9 @@ https://templatemo.com/tm-575-leadership-event
 					<span class="brand-text">study<br />with me</span>
 				</a>
 
-				<a class="nav-link custom-btn btn d-lg-none" href="#">登入</a>
+				<a class="nav-link custom-btn btn d-lg-none" href="/login.html"
+					>登入</a
+				>
 
 				<div class="collapse navbar-collapse" id="navbarNav">
 					<ul class="navbar-nav ms-auto">
@@ -101,8 +103,10 @@ https://templatemo.com/tm-575-leadership-event
 						</li>
 
 						<li class="nav-item">
-							<a class="nav-link click-scroll" href="#section_7"
-								>聯絡我們</a
+							<a
+								class="nav-link click-scroll"
+								href="/chatroom.html"
+								>Chatroom</a
 							>
 						</li>
 
@@ -118,40 +122,259 @@ https://templatemo.com/tm-575-leadership-event
 			</div>
 		</nav>
 
-		<div id="chatuserlist"></div>
+		<!-- -----------------------TEMPLATE ---------------------------- -->
 
-		<div class="col-md-6 col-lg-7 col-xl-7">
-			<div class="card-body">
-				<div id="messages">
-					<div class="message">
-						<div class="sender"></div>
-						<div class="createdAt"></div>
-						<div class="content"></div>
+		<section style="background-color: #cdc4f9">
+			<div class="container py-5">
+				<div class="row">
+					<div class="col-md-12">
+						<div
+							class="card"
+							id="chat3"
+							style="border-radius: 15px"
+						>
+							<div class="card-body">
+								<div class="row">
+									<div
+										class="col-md-5 col-lg-5 col-xl-4 mb-4 mb-md-0"
+									>
+										<div
+											class="p-3"
+											style="
+												overflow-y: scroll;
+												height: 100%;
+											"
+											id="scroll-bar"
+										>
+											<div
+												class="input-group rounded mb-3"
+											>
+												<input
+													type="search"
+													class="form-control rounded"
+													placeholder="Search"
+													aria-label="Search"
+													aria-describedby="search-addon"
+												/>
+												<span
+													class="input-group-text border-0"
+													id="search-addon"
+												>
+													<i
+														class="fas fa-search"
+													></i>
+												</span>
+											</div>
+
+											<div
+												data-mdb-perfect-scrollbar="true"
+												style="
+													position: relative;
+													height: 400px;
+												"
+											>
+												<ul class="list-unstyled mb-0">
+													<li
+														class="p-2 border-bottom"
+													>
+														<a
+															href="#!"
+															class="d-flex justify-content-between"
+														>
+															<div
+																class="d-flex flex-row"
+															>
+																<div>
+																	<img
+																		src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava1-bg.webp"
+																		alt="avatar"
+																		class="d-flex align-self-center me-3"
+																		width="60"
+																	/>
+																	<span
+																		class="badge bg-success badge-dot"
+																	></span>
+																</div>
+																<div
+																	class="pt-1"
+																>
+																	<p
+																		class="fw-bold mb-0"
+																	>
+																		Marie
+																		Horwitz
+																	</p>
+																	<p
+																		class="small text-muted"
+																	>
+																		Hello,
+																		Are you
+																		there?
+																	</p>
+																</div>
+															</div>
+															<div class="pt-1">
+																<p
+																	class="small text-muted mb-1"
+																>
+																	Just now
+																</p>
+																<span
+																	class="badge bg-danger rounded-pill float-end"
+																	>3</span
+																>
+															</div>
+														</a>
+													</li>
+												user list
+													<div class="chatuserlist"></div>
+
+												</ul>
+											</div>
+										</div>
+									</div>
+
+									<div
+										class="col-md-7 col-lg-5 col-xl-8"
+										style="overflow-y: scroll; height: 100%"
+									>
+										<div
+											class="pt-3 pe-3"
+											data-mdb-perfect-scrollbar="true"
+											style="
+												position: relative;
+												height: 400px;
+											"
+										>
+											<div
+												class="d-flex flex-row justify-content-start"
+											>
+												<img
+													src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava6-bg.webp"
+													alt="avatar 1"
+													style="
+														width: 45px;
+														height: 100%;
+													"
+												/>
+												<div>
+													<p
+														class="small p-2 ms-3 mb-1 rounded-3"
+														style="
+															background-color: #f5f6f7;
+														"
+													>
+														Lorem ipsum dolor sit
+														amet, consectetur
+														adipiscing elit, sed do
+														eiusmod tempor
+														incididunt ut labore et
+														dolore magna aliqua.
+													</p>
+													<p
+														class="small ms-3 mb-3 rounded-3 text-muted float-end"
+													>
+														12:00 PM | Aug 13
+													</p>
+												</div>
+											</div>
+											<div
+												class="d-flex flex-row justify-content-end"
+											>
+												<div>
+													<p
+														class="small p-2 me-3 mb-1 text-white rounded-3 bg-primary"
+													>
+														Ut enim ad minim veniam,
+														quis nostrud
+														exercitation ullamco
+														laboris nisi ut aliquip
+														ex ea commodo consequat.
+													</p>
+													<p
+														class="small me-3 mb-3 rounded-3 text-muted"
+													>
+														12:00 PM | Aug 13
+													</p>
+												</div>
+												<img
+													src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava1-bg.webp"
+													alt="avatar 1"
+													style="
+														width: 45px;
+														height: 100%;
+													"
+												/>
+											</div>
+
+
+
+
+
+											
+											<!-- -------------CHAT TEMPLATE----------- -->
+													<div id="messages">
+														<div class="message">
+															<div class="sender"></div>
+															<div
+																class="createdAt"
+															></div>
+															<div class="content"></div>
+														</div>
+													</div>
+													<!-- ------------------------ -->
+
+
+
+										
+					
+
+										<!-- -------------CHAT TEMPLATE----------- -->
+										</div>
+											<!-- ------------------------ -->
+
+										</div>
+									</div class="inputcontainer">
+									<form id="form" action="">
+										<div
+											class="form-outline form-white"
+											style="
+											display: flex;
+											flex-direction: column;
+											align-items: flex-end;"
+										>
+											<textarea
+												id="input"
+												type="text"
+												id="input textAreaExample3"
+												type="text"
+												rows="3"
+											></textarea>
+											<label
+												class="form-label"
+												for="textAreaExample3"
+												>Message</label
+											>
+											<button
+												type="submit"
+												class="btn btn-light btn-lg btn-rounded float-end"
+											>
+												send
+											</button>
+								</form>
+										</div>
+									</div>
+								</div>
+						
+						
+							</div>
+						</div>
 					</div>
 				</div>
-
-				<form id="form" action="">
-					<div class="form-outline form-white">
-						<textarea
-							id="input"
-							type="text"
-							id="input textAreaExample3"
-							type="text"
-							rows="4"
-						></textarea>
-						<label class="form-label" for="textAreaExample3"
-							>Message</label
-						>
-						<button
-							type="submit"
-							class="btn btn-light btn-lg btn-rounded float-end"
-						>
-							send
-						</button>
-					</div>
-				</form>
 			</div>
-		</div>
+		</section>
+		
+		<!-- -----------------------TEMPLATE ---------------------------- -->
 		<!-- ---------chatroom------------ -->
 
 		<!-- <div class="card-body-chat">
@@ -185,6 +408,8 @@ https://templatemo.com/tm-575-leadership-event
 
 		<!-- ---------chatroom------------ -->
 	</body>
+	
+
 	<!-- JAVASCRIPT FILES -->
 	<script src="/js/jquery.min.js"></script>
 	<script src="/js/bootstrap.min.js"></script>

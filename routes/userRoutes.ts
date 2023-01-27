@@ -114,12 +114,12 @@ async function loginGoogle(
 				)
 			).rows[0]
 		}
-		console.log(user)
+		// console.log(user)
 
 		req.session['user'] = user
 
-		console.log('loading google login')
-		// return res.redirect('/account.html')
+		// console.log('loading google login')
+		return res.redirect('/account.html')
 	} catch (error) {
 		logger.error(error)
 		res.status(500).json({
@@ -131,16 +131,16 @@ async function register(req: express.Request, res: express.Response) {
 	try {
 		let { fields, files } = await formParsePromise(req)
 		let { username, password, email, type, subjectId } = fields
-		console.log(
-			`new user register information : ${{
-				username,
-				password,
-				email,
-				type,
-				subjectId
-			}}`
-		)
-		console.log(`new user register information: ${files}`)
+		// console.log(
+		// 	`new user register information : ${{
+		// 		username,
+		// 		password,
+		// 		email,
+		// 		type,
+		// 		subjectId
+		// 	}}`
+		// )
+		// console.log(`new user register information: ${files}`)
 		if (!username || !password || !email || !type || !subjectId) {
 			res.status(402).json({
 				message: 'Invalid input'
@@ -167,15 +167,12 @@ async function register(req: express.Request, res: express.Response) {
 			`INSERT INTO image (user_id,image_icon, created_at, updated_at) values ($1,$2,now(),now()) returning id`,
 			[newUser.rows[0].id, files?.image?.newFilename || '']
 		)
-		// res.redirect('/')
 
 		res.json({
 			data: newSubject,
 			imageUser,
 			message: 'register ok'
 		})
-		// next()
-		// res.redirect('/')
 	} catch (error) {
 		logger.error(error)
 		res.status(500).json({
@@ -254,15 +251,15 @@ async function login(req: express.Request, res: express.Response) {
 
 		delete foundUser.password
 
-		console.log(foundUser.username)
+		// console.log(foundUser.username)
 		req.session.user = {
 			username: foundUser.username,
 			password: '',
 			email: foundUser.email
 		}
 
-		console.log(`check req session ${req.session}`)
-		console.log('foundUser = ', foundUser)
+		// console.log(`check req session ${req.session}`)
+		// console.log('foundUser = ', foundUser)
 
 		res.redirect('/account.html')
 	} catch (error) {
@@ -332,12 +329,6 @@ async function getTutorInfo(req: express.Request, res: express.Response) {
 async function getStudentInfo(req: express.Request, res: express.Response) {
 	try {
 		let studentInfo = await client.query(
-			// `SELECT users.username, image.image_icon ,subject.id, subject.chinese_name  from users
-			// join teacher on teacher.user_id = users.id
-			// join teacher_subject on teacher_subject.teacher_id = teacher.id
-			// join subject on subject.id = teacher_subject.subject_id
-			// join image on image.user_id = users.id
-
 			`SELECT users.username, image.image_icon,subject.id,subject.chinese_name, users.type
 			from users
 			join teacher on teacher.user_id = users.id
@@ -348,12 +339,6 @@ async function getStudentInfo(req: express.Request, res: express.Response) {
 			WHERE users.type = 'student'
 			`
 		)
-		// let tutorSubject = await client.query(
-		// 	`SELECT chinese_name from subject JOIN teacher_subject ON subject.id = teacher_subject.subject_id`
-		// )
-		// let tutorImage = await client.query(
-		// 	`SELECT image_icon from image JOIN users ON image.user_id = user.id returning *`
-		// )
 
 		res.json({
 			data: studentInfo,
@@ -370,16 +355,6 @@ async function getStudentInfo(req: express.Request, res: express.Response) {
 async function getTutorHome(req: express.Request, res: express.Response) {
 	try {
 		let tutorInfo = await client.query(
-			// `SELECT users.username, image.image_icon,subject.id,subject.chinese_name, users.type
-			// from users
-			// join teacher on teacher.user_id = users.id
-			// join teacher_subject on teacher_subject.teacher_id = teacher.id
-			// join subject on subject.id = teacher_subject.subject_id
-			// join image on image.user_id = users.id
-
-			// WHERE users.type = 'teacher'
-			// `
-
 			`with 
 			distinct_subject as (
 				select distinct subject_id as selected_subject_id from teacher_subject ts  
@@ -403,9 +378,7 @@ async function getTutorHome(req: express.Request, res: express.Response) {
 			join users u on u.id = t.id;
 			`
 		)
-		// let tutorSubject = await client.query(
-		// 	`SELECT chinese_name from subject JOIN teacher_subject ON subject.id = teacher_subject.subject_id`
-		// )
+
 		let tutorImage = await client.query(
 			`SELECT image_icon from image 
 			JOIN users ON image.user_id = users.id`
