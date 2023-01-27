@@ -27,23 +27,49 @@ const socket = io()
 		})
 
 
-		async function getSubject(msg){
-			let res = await fetch('/user/userinfo')
-			let data = await res.json()
-			let userinfo = users.name
-			console.log(`check check user name ${msg}`)
-			// let subjectSelect = document.querySelector('.subject-button')
+		// async function getSubject(msg){
+		// 	let res = await fetch('/userinfo')
+		// 	let data = await res.json()
+		// 	let userinfo = users.name
+		// 	console.log(`check check user name ${msg}`)
+		// 	// let subjectSelect = document.querySelector('.subject-button')
 		
-			// for(let subject of subjects){
-			// 	myOption = document.createElement("option");
-			// 	myOption.text = subject.chinese_name;
-			// 	myOption.value = subject.id;
-			// 	subjectSelect.appendChild(myOption);
-			// }
+		// 	// for(let subject of subjects){
+		// 	// 	myOption = document.createElement("option");
+		// 	// 	myOption.text = subject.chinese_name;
+		// 	// 	myOption.value = subject.id;
+		// 	// 	subjectSelect.appendChild(myOption);
+		// 	// }
+		// }
+		
+		async function getUserlist() {
+			console.log('hIHIHIHI')
+			let res = await fetch('/chatroom')
+			if (res.ok) {
+				let data = await res.json()
+				let userInfos = data.data
+		
+			// console.log(tutorInfos)
+				// getTutorInfo(tutorInfos)
+				// console.table(tutorInfos)
+		  let userContainerElem = document.querySelector('#chatuserlist')
+		  for(let userInfo of userInfos.rows){
+			// let imagePath = tutorInfo.image_icon ? `${await getImage(tutorInfo.image_icon)}` : "images/avatar/portrait-good-looking-brunette-young-asian-woman.jpg"
+			console.log(`chat room 112321321232121321312${userInfo.username}`) 
+			userContainerElem.innerHTML += 
+		  
+		`
+		<div>${userInfo.username}</div>
+		`
+			}
+		
+			} else {
+				alert('cannot fetch info')
+			}
 		}
-		
+
 		function init(){
-		
-			getSubject()
+			// getSubject()
+			getUserlist()
 		}
 		init()
