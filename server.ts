@@ -7,6 +7,7 @@ import { Server as SocketIO } from 'socket.io'
 import expressSession from 'express-session'
 import { userRoutes } from './routes/userRoutes'
 import { grantExpress, expressSessionConfig } from './plugin-config'
+
 dotenv.config()
 let app = express()
 let server = new HTTP.Server(app)
@@ -25,6 +26,7 @@ export interface chatroom {
 }
 
 client.connect()
+app.use(userRoutes)
 
 export const sessionMiddleware = expressSession({
 	secret: 'study with me chatroom',
@@ -56,6 +58,10 @@ io.use((socket, next) => {
 // 	// 	`server-greeting`,
 // 	// 	`新connection啊? 你好啊 from server ${date}`
 // 	// )
+// 	io.to(socket.id).emit(
+// 		`server-greeting`,
+// 		`新connection啊? 你好啊 from server ${date}`
+// 	)
 // 	// socket.emit(`server-greeting`, `新connection啊？ 你好啊 from server ${date}`);
 // })
 
