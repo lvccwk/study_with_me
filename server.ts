@@ -26,7 +26,6 @@ export interface chatroom {
 }
 
 client.connect()
-app.use(userRoutes)
 
 export const sessionMiddleware = expressSession({
 	secret: 'study with me chatroom',
