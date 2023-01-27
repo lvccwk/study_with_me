@@ -9,8 +9,8 @@ async function loadTutorInfo() {
 		// console.table(tutorInfos)
   let tutorContainerElem = document.querySelector('#homepage-tutor')
   for(let tutorInfo of tutorInfos.rows){
-    let imagePath = tutorInfo.image_icon ? `${await getImage(tutorInfo.image_icon)}` : "images/avatar/portrait-good-looking-brunette-young-asian-woman.jpg"
-    console.log(tutorInfo.username,tutorInfo.image_icon,tutorInfo.chinese_name) 
+    let imagePath = tutorInfo.image_icon ? `${await getImage(imageName)}` : "images/avatar/portrait-good-looking-brunette-young-asian-woman.jpg"
+    console.log(tutorInfo.username,imagePath,tutorInfo.chinese_name) 
     tutorContainerElem.innerHTML += 
   
 `

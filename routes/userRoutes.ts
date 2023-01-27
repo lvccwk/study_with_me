@@ -309,16 +309,16 @@ async function getTutorInfo(req: express.Request, res: express.Response) {
 			WHERE users.type = 'teacher'
 			`
 		)
-		let tutorSubject = await client.query(
-			`SELECT chinese_name from subject JOIN teacher_subject ON subject.id = teacher_subject.subject_id`
-		)
-		// let tutorImage = await client.query(
-		// 	`SELECT image_icon from image JOIN users ON image.user_id = user.id returning *`
+		// let tutorSubject = await client.query(
+		// 	`SELECT chinese_name from subject JOIN teacher_subject ON subject.id = teacher_subject.subject_id`
 		// )
+		let tutorImage = await client.query(
+			`SELECT image_icon from image JOIN users ON image.user_id = user.id`
+		)
 
 		res.json({
 			data: tutorInfo,
-			tutorSubject,
+			tutorImage,
 			message: 'select teacher, image and subject ok !'
 		})
 	} catch (error) {
