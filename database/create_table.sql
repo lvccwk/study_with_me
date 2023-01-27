@@ -35,7 +35,7 @@ CREATE TABLE teacher_subject(
     created_at TIMESTAMP,
     updated_at TIMESTAMP
 );
--- //5 
+-- //5
 CREATE TABLE blog(
     id SERIAL primary key,
     teacher_id INTEGER,
