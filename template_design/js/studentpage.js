@@ -9,7 +9,7 @@ async function loadStudentInfo() {
 		// console.table(tutorInfos)
   let tutorContainerElem = document.querySelector('.grid')
   for(let studentInfo of studentInfos.rows){
-    let imagePath = studentInfo.image_icon ? `uploads/${studentInfo.image_icon}` : "images/avatar/portrait-good-looking-brunette-young-asian-woman.jpg"
+    let imagePath = studentInfo.image_icon ? `${await getImage(studentInfo.image_icon)}` : "template_design/images/avatar/pretty-smiling-joyfully-female-with-fair-hair-dressed-casually-looking-with-satisfaction.jpg"
     console.log(studentInfo.username,studentInfo.image_icon,studentInfo.chinese_name) 
     tutorContainerElem.innerHTML += 
       `  <div class="element-item transition metal" data-category="transition">
@@ -80,7 +80,17 @@ async function js(){
       
   }
   // js()
+  async function getImage(imageName){
 
+    let res = await fetch('imageName')
+   
+    if ( res.url.includes('404')){
+        // return 'images/avatar/portrait-good-looking-brunette-young-asian-woman.jpg'
+        return '/images/avatar/pretty-smiling-joyfully-female-with-fair-hair-dressed-casually-looking-with-satisfaction.jpg'
+    }else{
+        return `uploads/${imageName}`
+    }
+}
 
   async function init(){
 

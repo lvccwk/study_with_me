@@ -29,7 +29,7 @@ userRoutes.get('/login/google', loginGoogle)
 userRoutes.get('/tutorpage', getTutorInfo)
 userRoutes.get('/studentpage', getStudentInfo)
 userRoutes.get('/homepage-tutor', getTutorHome)
-userRoutes.get('/chatroom', getUserlist)
+userRoutes.get('/chatroom', getUserList)
 
 // userRoutes.get('/getgoogle', getGoogleInfo)
 
@@ -127,6 +127,7 @@ async function loginGoogle(
 		})
 	}
 }
+
 async function register(req: express.Request, res: express.Response) {
 	try {
 		let { fields, files } = await formParsePromise(req)
@@ -396,7 +397,7 @@ async function getTutorHome(req: express.Request, res: express.Response) {
 	}
 }
 
-async function getUserlist(req: express.Request, res: express.Response) {
+async function getUserList(req: express.Request, res: express.Response) {
 	try {
 		let selectUserResult = await client.query(
 			`select users.username from users`

@@ -25,3 +25,8 @@ https://codepen.io/rothnic/pen/KEoeaz
 
 https://codepen.io/rothnic/pen/KEoeaz
 
+# add moments.js
+
+https://momentjs.com/
+
+npm install moment

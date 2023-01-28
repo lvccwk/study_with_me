@@ -7,6 +7,7 @@ import { Server as SocketIO } from 'socket.io'
 import expressSession from 'express-session'
 import { userRoutes } from './routes/userRoutes'
 import { grantExpress, expressSessionConfig } from './plugin-config'
+import moment = require('moment')
 
 dotenv.config()
 let app = express()
@@ -44,26 +45,6 @@ io.use((socket, next) => {
 	sessionMiddleware(req, res, next as express.NextFunction)
 })
 
-// io.on('connection', function (socket) {
-// 	const req = socket.request as express.Request
-// 	let date = Date.now()
-// 	if (req.session.id) {
-// 		console.log(`已安排 ${socket.id} 進入 chatroom`)
-// 		socket.join('even_' + date)
-// 		socket.request['session'].save()
-// 	}
-
-// 	// io.to(socket.id).emit(
-// 	// 	`server-greeting`,
-// 	// 	`新connection啊? 你好啊 from server ${date}`
-// 	// )
-// 	io.to(socket.id).emit(
-// 		`server-greeting`,
-// 		`新connection啊? 你好啊 from server ${date}`
-// 	)
-// 	// socket.emit(`server-greeting`, `新connection啊？ 你好啊 from server ${date}`);
-// })
-
 type Message = {
 	sender: string
 	content: string
@@ -77,18 +58,15 @@ app.use(userRoutes)
 io.on('connection', (socket) => {
 	let req = socket.request as express.Request
 	let date = Date.now()
-	console.log(date)
-	// users[socket.id] = { name: chance.name() }
+
 	users = { name: req.session.user?.username }
 	users[socket.id] = { name: req.session.user?.username }
-	// console.log(`find socket !!!!!!!! ${users.name}`)
+
 	console.log(`${users.name} connected`)
 
 	if (req.session.id) {
 		console.log(`已安排 ${users.name} 進入 chatroom`)
-		// console.log(req.body)
 		socket.join('even_' + date)
-		// console.log('even_' + date)
 		socket.request['session'].save()
 	}
 
@@ -99,13 +77,14 @@ io.on('connection', (socket) => {
 		messages.push({
 			sender: users[socket.id].name,
 			content: msg,
-			createdAt: new Date(Date.now()).toString()
+			createdAt: moment(date).format('MMMM Do YYYY, h:mm:ss a')
+			// new Date(Date.now()).toString()
 		})
 		io.emit('chat message', messages[messages.length - 1])
 	})
 
 	socket.on('disconnect', () => {
-		console.log(`${users.name} disconnected`)
+		console.log(`${users.name} 已離開`)
 	})
 })
 
