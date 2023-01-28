@@ -310,7 +310,7 @@ async function getTutorInfo(req: express.Request, res: express.Response) {
 		// 	`SELECT chinese_name from subject JOIN teacher_subject ON subject.id = teacher_subject.subject_id`
 		// )
 		let tutorImage = await client.query(
-			`SELECT image_icon from image JOIN users ON image.user_id = user.id`
+			`SELECT image_icon from image JOIN users ON image.user_id = users.id`
 		)
 
 		res.json({
@@ -367,7 +367,6 @@ async function getTutorHome(req: express.Request, res: express.Response) {
 				join teacher_subject ts on ts.subject_id  = random_four.selected_subject_id order by random() limit 4 
 			
 			)
-			
 			
 			select 
 			s.chinese_name,

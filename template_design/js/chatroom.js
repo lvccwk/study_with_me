@@ -30,7 +30,7 @@ socket.on('chat message', (msg) => {
 
 
 async function getUserlist() {
-	console.log('hihihi')
+
 	let res = await fetch('/chatroom')
 	if (res.ok) {
 		let data = await res.json()
@@ -42,12 +42,11 @@ async function getUserlist() {
 	let userContainerElem = document.querySelector('.chatuserlist')
 	for(let userInfo of userInfos){
 	// let imagePath = tutorInfo.image_icon ? `${await getImage(tutorInfo.image_icon)}` : "images/avatar/portrait-good-looking-brunette-young-asian-woman.jpg"
-	console.log(`chat room 112321321232121321312${userInfo.username}`) 
+	// console.log(`chat room 112321321232121321312${userInfo.username}`) 
 	userContainerElem.innerHTML += 
-	
-`
-<div>${userInfo.username}</div>
-`
+	`
+	<div>${userInfo.username}</div>
+	`
 	}
 
 	} else {

@@ -77,6 +77,7 @@ app.use(userRoutes)
 io.on('connection', (socket) => {
 	let req = socket.request as express.Request
 	let date = Date.now()
+	console.log(date)
 	// users[socket.id] = { name: chance.name() }
 	users = { name: req.session.user?.username }
 	users[socket.id] = { name: req.session.user?.username }
