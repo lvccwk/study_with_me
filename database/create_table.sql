@@ -100,7 +100,7 @@ CREATE TABLE forum_post(
     title VARCHAR(255),
     status VARCHAR(255),
     forum_id INTEGER,
-    FOREIGN KEY (forum_id) REFERENCES forum(id),
+    FOREIGN KEY (forum_id) REFERECREATE TABLENCES forum(id),
     author_id INTEGER,
     FOREIGN KEY (author_id) REFERENCES users(id),
     created_at TIMESTAMP,
@@ -125,7 +125,18 @@ CREATE TABLE schedule(
     launch_time TIME,
     created_at TIMESTAMP,
     updated_at TIMESTAMP
-) -- //1
+) CREATE TABLE chatroom_message(
+    id SERIAL primary key,
+    chatroom_id INTEGER,
+    FOREIGN KEY (chatroom_id) REFERENCES chatroom(id),
+    message text,
+    message_time TIMESTAMP,
+    created_at TIMESTAMP,
+    updated_at TIMESTAMP
+)
+ALTER TABLE chatroom
+ADD column_name datatype;
+-- //1
 -- SELECT * FROM users;
 -- SELECT * FROM teacher;
 -- SELECT * FROM subject;
@@ -163,3 +174,6 @@ from users
     join subject on subject.id = teacher_subject.subject_id
     join image on image.user_id = users.id
 WHERE users.type = 'student'
+SELECT chatroom.id
+from chatroom
+    JOIN users on users.id = chatroom.from_user

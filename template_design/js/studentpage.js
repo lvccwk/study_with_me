@@ -9,12 +9,12 @@ async function loadStudentInfo() {
 		// console.table(tutorInfos)
   let tutorContainerElem = document.querySelector('.grid')
   for(let studentInfo of studentInfos.rows){
-    let imagePath = studentInfo.image_icon ? `${await getImage(studentInfo.image_icon)}` : "template_design/images/avatar/pretty-smiling-joyfully-female-with-fair-hair-dressed-casually-looking-with-satisfaction.jpg"
-    console.log(studentInfo.username,studentInfo.image_icon,studentInfo.chinese_name) 
+    let imagePath = studentInfo.image_icon ? `${await getImage(studentInfo.image_icon)}` : "images/avatar/pretty-smiling-joyfully-female-with-fair-hair-dressed-casually-looking-with-satisfaction.jpg"
+    console.log(studentInfo.username,imagePath,studentInfo.chinese_name) 
     tutorContainerElem.innerHTML += 
-      `  <div class="element-item transition metal" data-category="transition">
+      `  <div class="element-item metalloid " data-category="transition">
       <h3 class="name">${studentInfo.username}</h3>
-      <img src="${imagePath}"class="img-fluid speakers-image"alt=""/>
+      <img src="${studentInfo.image_icon}"class="img-fluid speakers-image"alt=""/>
       <p class="subject">${studentInfo.chinese_name}</p>
       </div>`
     }
@@ -86,7 +86,7 @@ async function js(){
    
     if ( res.url.includes('404')){
         // return 'images/avatar/portrait-good-looking-brunette-young-asian-woman.jpg'
-        return '/images/avatar/pretty-smiling-joyfully-female-with-fair-hair-dressed-casually-looking-with-satisfaction.jpg'
+        return 'images/avatar/pretty-smiling-joyfully-female-with-fair-hair-dressed-casually-looking-with-satisfaction.jpg'
     }else{
         return `uploads/${imageName}`
     }

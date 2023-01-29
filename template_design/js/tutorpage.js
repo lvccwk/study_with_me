@@ -4,15 +4,18 @@ async function loadTutorInfo() {
 		let data = await res.json()
 		let tutorInfos = data.data
 
-    // console.log(tutorInfos)
-		// getTutorInfo(tutorInfos)
-		// console.table(tutorInfos)
   let tutorContainerElem = document.querySelector('.grid')
   for(let tutorInfo of tutorInfos.rows){
-    let imagePath = tutorInfo.image_icon ? `${await getImage(tutorInfo.image_icon)}` : "/images/avatar/pretty-smiling-joyfully-female-with-fair-hair-dressed-casually-looking-with-satisfaction.jpg"
-    console.log(tutorInfo.username,tutorInfo.image_icon,tutorInfo.chinese_name) 
+    let imagePath = tutorInfo.image_icon ? (tutorInfo.image_icon) : "/uploads/pretty-smiling-joyfully-female-with-fair-hair-dressed-casually-looking-with-satisfaction.jpg"
+    // if(tutorInfo.image_icon){
+    //   imagePath = await getImage(tutorInfo.image_icon);
+    //   console.log('imagepath = ', imagePath);
+    // } else {
+    //   imagePath = "images/avatar/pretty-smiling-joyfully-female-with-fair-hair-dressed-casually-looking-with-satisfaction.jpg";
+    // }
+    console.log(tutorInfo.username,imagePath,tutorInfo.chinese_name) 
     tutorContainerElem.innerHTML += 
-      `  <div class="element-item transition metal" data-category="transition">
+      `  <div class="element-item metalloid " data-category="transition">
       <h3 class="name">${tutorInfo.username}</h3>
       <img src="${imagePath}"class="img-fluid speakers-image"alt=""/>
       <p class="subject">${tutorInfo.chinese_name}</p>
@@ -81,16 +84,16 @@ async function js(){
   }
   // js()
 
-  async function getImage(imageName){
+//   async function getImage(imageName){
 
-    let res = await fetch('imageName')
+//     let res = await fetch('imageName')
    
-    if ( res.url.includes('404')){
-        return '/images/avatar/pretty-smiling-joyfully-female-with-fair-hair-dressed-casually-looking-with-satisfaction.jpg'
-    }else{
-        return `uploads/${imageName}`
-    }
-}
+//     if ( res.url.includes('404')){
+//         return 'images/avatar/pretty-smiling-joyfully-female-with-fair-hair-dressed-casually-looking-with-satisfaction.jpg'
+//     }else{
+//         return `/uploads/${imageName}`
+//     }
+// }
 
   async function init(){
     // js()

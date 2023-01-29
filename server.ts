@@ -53,6 +53,7 @@ type Message = {
 
 let users: any = {}
 let messages: Message[] = []
+
 app.use(userRoutes)
 // app.use('/user', userRoutes)
 io.on('connection', (socket) => {
@@ -64,7 +65,7 @@ io.on('connection', (socket) => {
 
 	console.log(`${users.name} connected`)
 
-	if (req.session.id) {
+	if (req.session.user) {
 		console.log(`已安排 ${users.name} 進入 chatroom`)
 		socket.join('even_' + date)
 		socket.request['session'].save()
@@ -72,15 +73,29 @@ io.on('connection', (socket) => {
 
 	//html > script
 	socket.on('chat message', (msg) => {
-		console.log(msg)
-
+		console.log(`server msg: ${msg}`)
+		// let msgToDatabase = await client.query(`
+		// INSERT INTO chatroom (content, from_user , created_at, updated_at)`)
 		messages.push({
 			sender: users[socket.id].name,
 			content: msg,
 			createdAt: moment(date).format('MMMM Do YYYY, h:mm:ss a')
 			// new Date(Date.now()).toString()
 		})
+
 		io.emit('chat message', messages[messages.length - 1])
+	})
+
+	socket.on('join_room', (socket) => {
+		console.log('hihi join_room')
+		console.log(socket)
+		socket.request['session'].save()
+		if (socket.request.session['user']) {
+			socket.join(`user-${socket.request.session['user'].id}`)
+
+			console.log(`${req.session.user}已加入`)
+			// One common way is to join the socket to a room named by the `user.id` or other group information.
+		}
 	})
 
 	socket.on('disconnect', () => {
