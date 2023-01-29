@@ -39,10 +39,36 @@ async function getChatRecord(){
 		console.log(userInfo.chat_record)
 	// let imagePath = tutorInfo.image_icon ? `${await getImage(tutorInfo.image_icon)}` : "images/avatar/portrait-good-looking-brunette-young-asian-woman.jpg"
 	// console.log(`chat room 112321321232121321312${userInfo.username}`) 
-	userContainerElem.innerHTML += 
+	userContainerElem.innerHTML +=
+	// <div class="chathistory" >${userInfo.username},${userInfo.username}</div>
 	`
-	<div class="chathistory" >${userInfo.username},${userInfo.chat_record}</div>
+	<div
+	class="d-flex flex-row justify-content-end"
+	
+>
+	<div>
+		<p
+		class="small p-2 me-3 mb-1 text-white rounded-3 bg-primary"
+		>
+		${userInfo.chat_record}
+	</p>
+	<p
+		class="small me-3 mb-3 rounded-3 text-muted"
+	>
+	12:00 PM | Aug 13  BY ${userInfo.username}
+	</p>
+</div>
 
+<img
+		src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava1-bg.webp"
+		alt="avatar 1"
+		style="
+			width: 45px;
+			height: 100%;
+		"
+	/>
+
+</div>
 	`
 	}
 	 

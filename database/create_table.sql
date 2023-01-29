@@ -133,7 +133,16 @@ CREATE TABLE schedule(
     message_time TIMESTAMP,
     created_at TIMESTAMP,
     updated_at TIMESTAMP
-)
+) CREATE TABLE public_chat(
+    id SERIAL primary key,
+    user_id INTEGER,
+    FOREIGN KEY (user_id) REFERENCES users(id),
+    sender VARCHAR(255),
+    chat_record text,
+    chat_message_time TIME,
+    created_at TIMESTAMP,
+    updated_at TIMESTAMP
+);
 ALTER TABLE chatroom
 ADD column_name datatype;
 ALTER TABLE chatroom
@@ -185,3 +194,13 @@ where from_user = 7
 Select username
 from users
 where users.email =
+select users.id,
+    users.username,
+    image.image_icon
+from users
+    JOIN image ON users.id = image.user_id
+Select users.username,
+    public_chat.chat_record
+FROM public_chat
+    JOIN users ON users.id = public_chat.user_id
+ORDER BY public_chat.id ASC
