@@ -58,6 +58,7 @@ app.use(userRoutes)
 // app.use('/user', userRoutes)
 io.on('connection', (socket) => {
 	let req = socket.request as express.Request
+
 	let date = Date.now()
 
 	users = { name: req.session.user?.username }
@@ -75,6 +76,7 @@ io.on('connection', (socket) => {
 	//html > script
 	socket.on('chat message', async (msg) => {
 		let req = socket.request as express.Request
+
 		let date = Date.now()
 
 		let user = req.session.user?.username
@@ -96,18 +98,11 @@ io.on('connection', (socket) => {
 		console.log(`睇下user id : ${foundUserId}`)
 
 		let sendMsgToDatabase = await client.query(
-			`INSERT INTO chatroom (from_user,content,created_at,updated_at) values ($1,$2,now(),now())`,
+			`INSERT INTO public_chat (user_id,chat_record,chat_message_time,created_at,updated_at) values ($1,$2,now(),now(),now())`,
 			[foundUserId, msg]
 		)
+
 		sendMsgToDatabase
-
-		// await client.query(
-		// 	`INSERT INTO chatroom (from_user,to_user,content,created_at, updated_at) values ($1,$2,$3,now(),now())`,
-		// 	[chatroom_id, , message]
-		// )
-
-		// let msgToDatabase = await client.query(`
-		// INSERT INTO chatroom (content, from_user , created_at, updated_at)`)
 
 		messages.push({
 			sender: users[socket.id].name,
@@ -118,6 +113,14 @@ io.on('connection', (socket) => {
 		})
 
 		io.emit('chat message', messages[messages.length - 1])
+
+		// await client.query(
+		// 	`INSERT INTO chatroom (from_user,to_user,content,created_at, updated_at) values ($1,$2,$3,now(),now())`,
+		// 	[chatroom_id, , message]
+		// )
+
+		// let msgToDatabase = await client.query(`
+		// INSERT INTO chatroom (content, from_user , created_at, updated_at)`)
 	})
 
 	socket.on('disconnect', () => {
