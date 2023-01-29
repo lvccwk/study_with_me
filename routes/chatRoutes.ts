@@ -26,7 +26,49 @@ io.on('chatroom/:id', function (socket) {
 
 chatRoutes.get('pm/:username', messageHistory)
 chatRoutes.get('pm', sendMessage)
+chatRoutes.get('/welcome', getWelcomeMsg)
+chatRoutes.get('/chathistory', getMsgHistory)
 // chatRoutes.post('createMessage', createMessage)
+
+async function getMsgHistory(req: express.Request, res: express.Response) {
+	try {
+		let selectUserResult = await client.query(
+			`select content from chatroom`
+		)
+
+		let foundMember = selectUserResult.rows
+
+		res.json({
+			data: foundMember
+		})
+	} catch (error) {
+		logger.error(error)
+		res.status(500).json({
+			message: '[USR001] - Server error'
+		})
+	}
+}
+
+async function getWelcomeMsg(req: express.Request, res: express.Response) {
+	try {
+		let selectUserResult = await client.query(
+			`select content from chatroom where from_user = 7 `
+		)
+
+		let foundMember = selectUserResult.rows
+		console.log(foundMember)
+		res.json({
+			data: foundMember
+		})
+	} catch (error) {
+		logger.error(error)
+		res.status(500).json({
+			message: '[USR001] - Server error'
+		})
+	}
+}
+
+// create new chatroom function do not finish yet - with insert database function
 async function sendMessage(req: express.Request, res: express.Response) {
 	try {
 		let { chatroom_id, message } = req.body
@@ -50,7 +92,7 @@ async function sendMessage(req: express.Request, res: express.Response) {
 		})
 	}
 }
-
+// send message history do not finish yet - call chat history to chatroom.js
 async function messageHistory(req: express.Request, res: express.Response) {
 	try {
 		let connectUser = await client.query(

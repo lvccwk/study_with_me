@@ -136,6 +136,8 @@ CREATE TABLE schedule(
 )
 ALTER TABLE chatroom
 ADD column_name datatype;
+ALTER TABLE chatroom
+ADD content_time TIMESTAMP;
 -- //1
 -- SELECT * FROM users;
 -- SELECT * FROM teacher;
@@ -177,3 +179,9 @@ WHERE users.type = 'student'
 SELECT chatroom.id
 from chatroom
     JOIN users on users.id = chatroom.from_user
+select content
+from chatroom
+where from_user = 7
+Select username
+from users
+where users.email =

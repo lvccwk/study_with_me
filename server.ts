@@ -63,39 +63,61 @@ io.on('connection', (socket) => {
 	users = { name: req.session.user?.username }
 	users[socket.id] = { name: req.session.user?.username }
 
-	console.log(`${users.name} connected`)
+	// console.log(`${users.name} connected`)
 
 	if (req.session.user) {
 		console.log(`已安排 ${users.name} 進入 chatroom`)
 		socket.join('even_' + date)
+
 		socket.request['session'].save()
 	}
 
 	//html > script
-	socket.on('chat message', (msg) => {
-		console.log(`server msg: ${msg}`)
+	socket.on('chat message', async (msg) => {
+		let req = socket.request as express.Request
+		let date = Date.now()
+
+		let user = req.session.user?.username
+		let userEmail = req.session.user?.email
+
+		users[socket.id] = { name: req.session.user?.username }
+		// let userInfos = users[socket.id]
+
+		console.log(`睇下user 名 : ${user}`)
+		console.log(`睇下${user} 電郵  : ${userEmail}`)
+		console.log(`睇下${user} 訊息: ${msg}`)
+
+		let checkUserId = await client.query(
+			`Select id from users where users.email = ($1) and users.username = ($2)`,
+			[userEmail, user]
+		)
+		//user id here
+		let foundUserId = checkUserId.rows[0].id
+		console.log(`睇下user id : ${foundUserId}`)
+
+		let sendMsgToDatabase = await client.query(
+			`INSERT INTO chatroom (from_user,content,created_at,updated_at) values ($1,$2,now(),now())`,
+			[foundUserId, msg]
+		)
+		sendMsgToDatabase
+
+		// await client.query(
+		// 	`INSERT INTO chatroom (from_user,to_user,content,created_at, updated_at) values ($1,$2,$3,now(),now())`,
+		// 	[chatroom_id, , message]
+		// )
+
 		// let msgToDatabase = await client.query(`
 		// INSERT INTO chatroom (content, from_user , created_at, updated_at)`)
+
 		messages.push({
 			sender: users[socket.id].name,
 			content: msg,
 			createdAt: moment(date).format('MMMM Do YYYY, h:mm:ss a')
+
 			// new Date(Date.now()).toString()
 		})
 
 		io.emit('chat message', messages[messages.length - 1])
-	})
-
-	socket.on('join_room', (socket) => {
-		console.log('hihi join_room')
-		console.log(socket)
-		socket.request['session'].save()
-		if (socket.request.session['user']) {
-			socket.join(`user-${socket.request.session['user'].id}`)
-
-			console.log(`${req.session.user}已加入`)
-			// One common way is to join the socket to a room named by the `user.id` or other group information.
-		}
 	})
 
 	socket.on('disconnect', () => {
