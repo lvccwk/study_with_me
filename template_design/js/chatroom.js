@@ -5,12 +5,22 @@ let form = document.getElementById('form')
 let input = document.getElementById('input')
 
 //Ajax
-form.addEventListener('submit', function (e) {
+form.addEventListener('submit', async function (e) {
 	e.preventDefault()
 	if (input.value) {
 		// step 1 送input.value 去server
 		socket.emit('chat message', input.value)
 		input.value = ''
+
+		let res = await fetch(`/speak-to-room/${roomName}`, {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({
+				message: input.value
+			})
+		})
 	}
 })
 
@@ -32,6 +42,14 @@ socket.on('chat message', ({ senderId, senderUsername, msg, receiverId }) => {
 		senderUsername,
 		msg
 	})
+})
+
+socket.on('private msg', (data) => {
+	console.log('privaate msg success')
+})
+
+socket.on('greeting-in-room', (data) => {
+	console.log(data)
 })
 
 async function instantChat({ senderId, senderUsername, msg }) {
@@ -212,6 +230,7 @@ async function getChatRecord() {
 	}
 }
 
+//step1
 async function getUserlist() {
 	let res = await fetch('/chatroom')
 	if (res.ok) {
@@ -230,7 +249,9 @@ async function getUserlist() {
 
 			// console.log(`chat room 112321321232121321312${userInfo.username}`)
 			userContainerElem.innerHTML += `
-	<ul class="list-unstyled mb-0" onclick="messageHistory(${userInfo})" onmouseover="" style="cursor: pointer;"="">
+	<ul class="list-unstyled mb-0" onclick="loadPmRoom(${
+		userInfo.id
+	})" onmouseover="" style="cursor: pointer;"="">
 	<li
 		class="p-2 border-bottom"
 	>
@@ -263,9 +284,7 @@ async function getUserlist() {
 					<p
 						class="small text-muted"
 					>
-						Hello,
-						Are you
-						there?
+			${''}
 					</p>
 				</div>
 			</div>
@@ -277,7 +296,7 @@ async function getUserlist() {
 				</p>
 				<span
 					class="badge bg-danger rounded-pill float-end"
-					>3</span
+					>2</span
 				>
 			</div>
 		</a>
@@ -290,6 +309,23 @@ async function getUserlist() {
 	} else {
 		alert('cannot fetch info')
 	}
+}
+
+//step2
+async function loadPmRoom(userId) {
+	console.log('userId: ', userId)
+
+	let roomName = 'room_' + userId
+
+	//fetch -> get roomID
+	// socket.emit('join_room', roomName)
+
+	// from - to msg
+	// getChatHistory()
+
+	let res = await fetch(`/speak-to-room/${roomName}`)
+	let result = await res.json()
+	console.log(result)
 }
 
 function scrollBottom() {

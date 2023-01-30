@@ -9,6 +9,8 @@ import { userRoutes } from './routes/userRoutes'
 import { grantExpress, expressSessionConfig } from './plugin-config'
 // import moment = require('moment')
 
+// let count = 1
+
 dotenv.config()
 let app = express()
 let server = new HTTP.Server(app)
@@ -64,6 +66,16 @@ io.on('connection', (socket) => {
 	users = { name: req.session.user?.username }
 	users[socket.id] = { name: req.session.user?.username }
 
+	// console.log([socket.id])
+
+	// let callUserId = await client.query(`SELECT users.id from users`)
+	// let assignedIds = callUserId.rows
+
+	// for (let assignedId of assignedIds) {
+	// 	socket.join(String(assignedId.id))
+	// 	console.log(assignedId.id)
+	// }
+	// count++
 	// console.log(`${users.name} connected`)
 
 	if (req.session.user) {
@@ -95,9 +107,39 @@ io.on('connection', (socket) => {
 		})
 	})
 
+	socket.on('join_room', async (data) => {
+		console.log('data: 睇data!!!')
+		console.log('data: 睇data!!!', data)
+
+		socket.join(data)
+		console.log('joined successful')
+
+		io.to(data).emit('private msg', data)
+	})
+
 	socket.on('disconnect', () => {
 		console.log(`${users.name} 已離開`)
 	})
+})
+//step 3
+app.get('/speak-to-room/:roomName', (req, res) => {
+	let roomName = req.params.roomName
+	// Target: 63
+	// let roomName = '123'
+	let socketRoomName =
+		'Room_' + String(roomName) + '-' + String(req.session.user?.id)
+	// socket.join(roomName)
+	console.log('roomName: ', socketRoomName)
+
+	socket.join(socketRoomName)
+	// io.emit('join_room', socketRoomName)
+
+	io.to(socketRoomName).emit(
+		'greeting-in-room',
+		`${roomName}既人， halo 我係MC`
+	)
+	res.json({ message: 'ok' })
+	return
 })
 
 app.get('/me', (req, res) => {
