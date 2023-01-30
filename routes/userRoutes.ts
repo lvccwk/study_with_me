@@ -32,7 +32,7 @@ userRoutes.get('/studentpage', getStudentInfo)
 userRoutes.get('/homepage-tutor', getTutorHome)
 userRoutes.get('/chatroom', getUserList)
 userRoutes.get('/chatrecord', getChatRecord)
-
+userRoutes.get('/instantchat', instantChat)
 // userRoutes.get('/getgoogle', getGoogleInfo)
 
 // userRoutes.get('/chatroom', getUsername)
@@ -254,11 +254,7 @@ async function login(req: express.Request, res: express.Response) {
 		delete foundUser.password
 
 		// console.log(foundUser.username)
-		req.session.user = {
-			username: foundUser.username,
-			password: '',
-			email: foundUser.email
-		}
+		req.session.user = foundUser
 
 		// console.log(`check req session ${req.session}`)
 		// console.log('foundUser = ', foundUser)
@@ -424,17 +420,49 @@ async function getUserList(req: express.Request, res: express.Response) {
 async function getChatRecord(req: express.Request, res: express.Response) {
 	try {
 		let databaseToPublicChats = await client.query(
-			`	Select users.username, public_chat.chat_record
+			`Select 
+			($1=users.id) as is_myself,
+			users.id, users.username, public_chat.chat_record
 			FROM public_chat
 			JOIN users ON users.id = public_chat.user_id
-			ORDER BY public_chat.id ASC;`
+			ORDER BY public_chat.id ASC`,
+			[req.session['user']!['id']]
 		)
 
 		// let userImage = await client.query(
 		// 	`SELECT image_icon from image JOIN users ON image.user_id = users.id`
 		// )
 		let foundMember = databaseToPublicChats.rows
-		// console.log(databaseToPublicChats.rows)
+		console.log(databaseToPublicChats.rows)
+
+		res.json({
+			data: foundMember
+		})
+	} catch (error) {
+		logger.error(error)
+		res.status(500).json({
+			message: '[USR001] - Server error'
+		})
+	}
+}
+
+async function instantChat(req: express.Request, res: express.Response) {
+	try {
+		let databaseToPublicChats = await client.query(
+			`Select 
+			($1=users.id) as is_myself,
+			users.id, users.username, public_chat.chat_record
+			FROM public_chat
+			JOIN users ON users.id = public_chat.user_id
+			ORDER BY public_chat.id ASC`,
+			[req.session['user']!['id']]
+		)
+		// let userImage = await client.query(
+		// 	`SELECT image_icon from image JOIN users ON image.user_id = users.id`
+		// )
+		let foundMember = databaseToPublicChats.rows
+		console.log(databaseToPublicChats.rows)
+
 		res.json({
 			data: foundMember
 		})

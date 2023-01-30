@@ -7,7 +7,7 @@ import { Server as SocketIO } from 'socket.io'
 import expressSession from 'express-session'
 import { userRoutes } from './routes/userRoutes'
 import { grantExpress, expressSessionConfig } from './plugin-config'
-import moment = require('moment')
+// import moment = require('moment')
 
 dotenv.config()
 let app = express()
@@ -45,14 +45,14 @@ io.use((socket, next) => {
 	sessionMiddleware(req, res, next as express.NextFunction)
 })
 
-type Message = {
-	sender: string
-	content: string
-	createdAt: string
-}
+// type Message = {
+// 	sender: string
+// 	content: string
+// 	createdAt: string
+// }
 
 let users: any = {}
-let messages: Message[] = []
+// let messages: Message[] = []
 
 app.use(userRoutes)
 // app.use('/user', userRoutes)
@@ -77,10 +77,11 @@ io.on('connection', (socket) => {
 	socket.on('chat message', async (msg) => {
 		let req = socket.request as express.Request
 
-		let date = Date.now()
+		// let date = Date.now()
 
 		let user = req.session.user?.username
 		let userEmail = req.session.user?.email
+		let userId = req.session.user?.id
 
 		users[socket.id] = { name: req.session.user?.username }
 		// let userInfos = users[socket.id]
@@ -89,30 +90,31 @@ io.on('connection', (socket) => {
 		// console.log(`睇下${user} 電郵  : ${userEmail}`)
 		// console.log(`睇下${user} 訊息: ${msg}`)
 
-		let checkUserId = await client.query(
-			`Select id from users where users.email = ($1) and users.username = ($2)`,
-			[userEmail, user]
-		)
+		// let checkUserId = await client.query(
+		// 	`Select id from users where users.email = ($1) and users.username = ($2)`,
+		// 	[userEmail, user]
+		// )
 		//user id here
-		let foundUserId = checkUserId.rows[0].id
-		console.log(`睇下user id : ${foundUserId}`)
+		user
+		userEmail
+		console.log(`睇下user id : ${userId}`)
 
-		let sendMsgToDatabase = await client.query(
+		await client.query(
 			`INSERT INTO public_chat (user_id,chat_record,chat_message_time,created_at,updated_at) values ($1,$2,now(),now(),now())`,
-			[foundUserId, msg]
+			[userId, msg]
 		)
 
-		sendMsgToDatabase
+		// sendMsgToDatabase
 
-		messages.push({
-			sender: users[socket.id].name,
-			content: msg,
-			createdAt: moment(date).format('MMMM Do YYYY, h:mm:ss a')
+		// messages.push({
+		// 	sender: users[socket.id].name,
+		// 	content: msg,
+		// 	createdAt: moment(date).format('MMMM Do YYYY, h:mm:ss a')
 
-			// new Date(Date.now()).toString()
-		})
+		// 	// new Date(Date.now()).toString()
+		// })
 
-		io.emit('chat message', messages[messages.length - 1])
+		io.emit('chat message', [userId, msg])
 
 		// await client.query(
 		// 	`INSERT INTO chatroom (from_user,to_user,content,created_at, updated_at) values ($1,$2,$3,now(),now())`,

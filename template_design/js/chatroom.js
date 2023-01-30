@@ -4,6 +4,7 @@ let messages = document.getElementById('messages')
 let form = document.getElementById('form')
 let input = document.getElementById('input')
 
+
 //Ajax
 form.addEventListener('submit', function (e) {
 	e.preventDefault()
@@ -15,18 +16,111 @@ form.addEventListener('submit', function (e) {
 	
 })
 
-socket.on('chat message', (msg) => {
-	console.log(('JS msg:',msg))
-	let msgTemplate = document.querySelector('.message')
-	let msgDiv = msgTemplate.cloneNode((deep = true))
-	msgDiv.querySelector('.sender').textContent = msg.sender
-	msgDiv.querySelector('.createdAt').textContent = msg.createdAt
-	msgDiv.querySelector('.content').textContent = msg.content
+socket.on('chat message', ([userId,msg]) => {
+	// console.log(('JS msg:',msg))
+	console.log(msg, userId)
+	// let msgTemplate = document.querySelector('.message')
+	// let msgDiv = msgTemplate.cloneNode((deep = true))
+	// msgDiv.querySelector('.sender').textContent = msg.sender
+	// msgDiv.querySelector('.createdAt').textContent = msg.createdAt
+	// msgDiv.querySelector('.content').textContent = msg.content
 
-	//   let item = document.createElement('li')
-	//   item.textContent = msg
-	messages.appendChild(msgDiv)
+	// //   let item = document.createElement('li')
+	// //   item.textContent = msg
+	// messages.appendChild(msgDiv)
+
+
+	instantChat(msg, userId)
 })
+
+
+async function instantChat(msg, userId){
+console.log(msg, userId)
+		let userContainerElem = document.querySelector('#instantchat')
+
+		if(id == userId){
+	// let imagePath = tutorInfo.image_icon ? `${await getImage(tutorInfo.image_icon)}` : "images/avatar/portrait-good-looking-brunette-young-asian-woman.jpg"
+	// console.log(`chat room 112321321232121321312${userInfo.username}`) 
+
+	
+	userContainerElem.innerHTML +=
+		`
+
+		<div
+			class="d-flex flex-row justify-content-end">
+			
+			<div>${userInfo.username}
+			
+			<div>
+			<p
+			class="small p-2 me-3 mb-1 text-white rounded-3 bg-primary"
+			"
+		>
+			${userInfo.chat_record}
+			</p>
+			<p
+			class="small ms-3 mb-3 rounded-3 text-muted float-end"
+			>
+			12:00 PM | Aug 13
+			</p>
+			</div>
+
+			</div>
+			<img
+				src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava6-bg.webp"
+				alt="avatar 1"
+				style="
+					width: 65px;
+					height: 100%;
+				"/>
+			
+		</div>
+		`
+	}else{
+		userContainerElem.innerHTML +=
+		`
+
+		<div
+			class="d-flex flex-row justify-content-start"
+		>
+			<img
+				src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava6-bg.webp"
+				alt="avatar 1"
+				style="
+					width: 65px;
+					height: 100%;
+				"
+			/>
+		
+			<div>${userInfo.username}
+			
+			<div>
+			<p
+				class="small p-2 ms-3 mb-1 rounded-3"
+				style="
+					background-color: #f5f6f7;
+				"
+			>
+			${userInfo.chat_record}
+			</p>
+			<p
+				class="small ms-3 mb-3 rounded-3 text-muted float-end"
+			>
+				12:00 PM | Aug 13
+			</p>
+		</div>
+			
+			
+			
+			</div>
+
+		</div>
+		`
+	}
+	}
+	
+
+
 
 async function getChatRecord(){
 	let res = await fetch('/chatrecord')
@@ -34,44 +128,92 @@ async function getChatRecord(){
 		let data = await res.json()
 		let userInfos = data.data
 
-	let userContainerElem = document.querySelector('#record')
-	for(let userInfo of userInfos){
-		// console.log(userInfo.chat_record)
-	let imagePath = tutorInfo.image_icon ? `${await getImage(tutorInfo.image_icon)}` : "images/avatar/portrait-good-looking-brunette-young-asian-woman.jpg"
-	// console.log(`chat room 112321321232121321312${userInfo.username}`) 
-	userContainerElem.innerHTML +=
-	// <div class="chathistory" >${userInfo.username},${userInfo.username}</div>
-	`
-	<div
-	class="d-flex flex-row justify-content-end"
+		let userContainerElem = document.querySelector('#record')
+		console.log("getChatRecord", userInfos)
+		userContainerElem.innerHTML =''
+		for(let userInfo of userInfos){
+			
 	
->
-	<div>
-		<p
-		class="small p-2 me-3 mb-1 text-white rounded-3 bg-primary"
+		if(userInfo.is_myself === true){
+	// let imagePath = tutorInfo.image_icon ? `${await getImage(tutorInfo.image_icon)}` : "images/avatar/portrait-good-looking-brunette-young-asian-woman.jpg"
+	// console.log(`chat room 112321321232121321312${userInfo.username}`) 
+
+	
+	userContainerElem.innerHTML +=
+		`
+
+		<div
+			class="d-flex flex-row justify-content-end">
+			
+			<div>${userInfo.username}
+			
+			<div>
+			<p
+			class="small p-2 me-3 mb-1 text-white rounded-3 bg-primary"
+			"
 		>
-		${userInfo.chat_record}
-	</p>
-	<p
-		class="small me-3 mb-3 rounded-3 text-muted"
-	>
-	12:00 PM | Aug 13  BY ${userInfo.username}
-	</p>
-</div>
+			${userInfo.chat_record}
+			</p>
+			<p
+			class="small ms-3 mb-3 rounded-3 text-muted float-end"
+			>
+			12:00 PM | Aug 13
+			</p>
+			</div>
 
-<img
-		src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava1-bg.webp"
-		alt="avatar 1"
-		style="
-			width: 45px;
-			height: 100%;
-		"
-	/>
+			</div>
+			<img
+				src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava6-bg.webp"
+				alt="avatar 1"
+				style="
+					width: 65px;
+					height: 100%;
+				"/>
+			
+		</div>
+		`
+	}else{
+		userContainerElem.innerHTML +=
+		`
 
-</div>
-	`
+		<div
+			class="d-flex flex-row justify-content-start"
+		>
+			<img
+				src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava6-bg.webp"
+				alt="avatar 1"
+				style="
+					width: 65px;
+					height: 100%;
+				"
+			/>
+		
+			<div>${userInfo.username}
+			
+			<div>
+			<p
+				class="small p-2 ms-3 mb-1 rounded-3"
+				style="
+					background-color: #f5f6f7;
+				"
+			>
+			${userInfo.chat_record}
+			</p>
+			<p
+				class="small ms-3 mb-3 rounded-3 text-muted float-end"
+			>
+				12:00 PM | Aug 13
+			</p>
+		</div>
+			
+			
+			
+			</div>
+
+		</div>
+		`
 	}
-	 
+	}
 	} else {
 		alert('cannot fetch info')
 	}
@@ -157,6 +299,11 @@ async function getUserlist() {
 	}
 }
 
+function scrollBottom(){
+	// document.querySelector('#recordchat').scrollTop = document.querySelector('#recordchat').scrollHeight
+	document.querySelector('#recordchat').scrollTop = document.querySelector('#recordchat').scrollHeight
+} 
+
 // // message content  - this code not work
 // async function messageHistory(username){
 //     let res = await fetch('pm/:username')
@@ -173,12 +320,10 @@ async function getUserlist() {
 //     }
 // }
 
-
-
-
-function init(){
+async function init(){
 	// getSubject()
-	getUserlist()
-	getChatRecord()
+	await getChatRecord()
+	await getUserlist()
+	scrollBottom()
 }
 init()

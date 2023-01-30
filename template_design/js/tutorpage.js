@@ -13,9 +13,9 @@ async function loadTutorInfo() {
     // } else {
     //   imagePath = "images/avatar/pretty-smiling-joyfully-female-with-fair-hair-dressed-casually-looking-with-satisfaction.jpg";
     // }
-    console.log(tutorInfo.username,imagePath,tutorInfo.chinese_name) 
+    // console.log(tutorInfo.username,imagePath,tutorInfo.chinese_name) 
     tutorContainerElem.innerHTML += 
-      `  <div class="element-item metalloid " data-category="transition">
+      `  <div class="element-item metalloid " data-category="transition" onClick="window.location='${""}'" style="cursor:pointer;" title="" >
       <h3 class="name">${tutorInfo.username}</h3>
       <img src="${imagePath}"class="img-fluid speakers-image"alt=""/>
       <p class="subject">${tutorInfo.chinese_name}</p>

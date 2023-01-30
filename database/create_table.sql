@@ -1,4 +1,4 @@
--- //1
+-- //1 == 1
 CREATE TABLE users(
     id SERIAL primary key,
     username VARCHAR(255) not null,
@@ -9,7 +9,7 @@ CREATE TABLE users(
     created_at TIMESTAMP,
     updated_at TIMESTAMP
 );
--- //2
+-- //2 == 2
 CREATE TABLE teacher(
     id SERIAL primary key,
     user_id INTEGER,
@@ -17,7 +17,7 @@ CREATE TABLE teacher(
     created_at TIMESTAMP,
     updated_at TIMESTAMP
 );
--- //3
+-- //3 == 3
 CREATE TABLE subject(
     id SERIAL primary key,
     name VARCHAR(255),
@@ -25,7 +25,7 @@ CREATE TABLE subject(
     created_at TIMESTAMP,
     updated_at TIMESTAMP
 );
--- //4
+-- //4 == 4
 CREATE TABLE teacher_subject(
     id SERIAL primary key,
     subject_id INTEGER,
@@ -41,11 +41,12 @@ CREATE TABLE blog(
     teacher_id INTEGER,
     FOREIGN KEY (teacher_id) REFERENCES teacher(id),
     image VARCHAR(255),
+    title text,
     content VARCHAR(255),
     created_at TIMESTAMP,
     updated_at TIMESTAMP
 );
--- //6
+-- //6 == 6
 CREATE TABLE school(
     id SERIAL primary key,
     name VARCHAR(255),
@@ -73,6 +74,7 @@ CREATE TABLE chatroom(
     FOREIGN KEY (from_user) REFERENCES users(id),
     to_user INTEGER,
     FOREIGN KEY (to_user) REFERENCES users(id),
+    conetent_time TIMESTAMP,
     created_at TIMESTAMP,
     updated_at TIMESTAMP
 );
@@ -143,10 +145,6 @@ CREATE TABLE schedule(
     created_at TIMESTAMP,
     updated_at TIMESTAMP
 );
-ALTER TABLE chatroom
-ADD column_name datatype;
-ALTER TABLE chatroom
-ADD content_time TIMESTAMP;
 -- //1
 -- SELECT * FROM users;
 -- SELECT * FROM teacher;

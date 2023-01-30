@@ -69,13 +69,13 @@ INSERT INTO public.users (
         display_name
     )
 VALUES(
-        4,
-        'Billy Wong',
-        'billy@gmail.com',
+        40,
+        '陳大佐',
+        'ad1111min@gmail.com',
         'admin',
-        'teacher',
-        '2023-01-18 12:18:49.676',
-        '2023-01-18 12:18:49.676',
+        'student',
+        '2023-01-26 16:28:03.452',
+        '2023-01-26 16:28:03.452',
         NULL
     );
 INSERT INTO public.users (
@@ -89,13 +89,293 @@ INSERT INTO public.users (
         display_name
     )
 VALUES(
-        7,
-        'admin',
-        'admin@gmail.com',
+        67,
+        '牙遠',
+        'Peter@123.com',
+        'Peter',
+        'student',
+        '2023-01-27 10:35:59.098',
+        '2023-01-27 10:35:59.098',
+        NULL
+    );
+INSERT INTO public.users (
+        id,
+        username,
+        email,
+        "password",
+        "type",
+        created_at,
+        updated_at,
+        display_name
+    )
+VALUES(
+        41,
+        '牙丸',
+        'ad1111min@gmail.com',
         'admin',
         'teacher',
-        '2023-01-18 12:18:49.676',
-        '2023-01-18 12:18:49.676',
+        '2023-01-26 16:28:50.575',
+        '2023-01-26 16:28:50.575',
+        NULL
+    );
+INSERT INTO public.users (
+        id,
+        username,
+        email,
+        "password",
+        "type",
+        created_at,
+        updated_at,
+        display_name
+    )
+VALUES(
+        68,
+        '元寶',
+        'Peter123@123.com',
+        'Peter',
+        'student',
+        '2023-01-27 10:37:21.768',
+        '2023-01-27 10:37:21.768',
+        NULL
+    );
+INSERT INTO public.users (
+        id,
+        username,
+        email,
+        "password",
+        "type",
+        created_at,
+        updated_at,
+        display_name
+    )
+VALUES(
+        24,
+        'Dane Hunt',
+        'aebc12@gmail.com',
+        '$2a$04$LVqqjr/pgigGqU.rDXTCLeC5B7ktBLpl/MSgFwDWhueDMJbBg2T.m',
+        'teacher',
+        '2023-01-25 12:29:59.326',
+        '2023-01-25 12:29:59.326',
+        NULL
+    );
+INSERT INTO public.users (
+        id,
+        username,
+        email,
+        "password",
+        "type",
+        created_at,
+        updated_at,
+        display_name
+    )
+VALUES(
+        21,
+        'Casey Bennett',
+        'ddabc12@gmail.com',
+        '$2a$04$zk2Slql/DPDUTcNTS9tLd.oVOpL6kUvlVtOYg8cXO/1NiG2nRoAu2',
+        'teacher',
+        '2023-01-25 02:50:39.354',
+        '2023-01-25 02:50:39.354',
+        NULL
+    );
+INSERT INTO public.users (
+        id,
+        username,
+        email,
+        "password",
+        "type",
+        created_at,
+        updated_at,
+        display_name
+    )
+VALUES(
+        39,
+        '遠寶',
+        'ad1111min@gmail.com',
+        'admin',
+        'student',
+        '2023-01-26 16:12:56.120',
+        '2023-01-26 16:12:56.120',
+        NULL
+    );
+INSERT INTO public.users (
+        id,
+        username,
+        email,
+        "password",
+        "type",
+        created_at,
+        updated_at,
+        display_name
+    )
+VALUES(
+        38,
+        'Eve May',
+        'tom11@gmail.com',
+        'admin',
+        'student',
+        '2023-01-26 16:05:40.222',
+        '2023-01-26 16:05:40.222',
+        NULL
+    );
+INSERT INTO public.users (
+        id,
+        username,
+        email,
+        "password",
+        "type",
+        created_at,
+        updated_at,
+        display_name
+    )
+VALUES(
+        26,
+        'Hendrix Booth',
+        'abc@gmail.com',
+        '$2a$04$KgucdaIF4sux716wkO/C8.gIKo06LV2KHqHLLJDuUkZO2W9bqRtnW',
+        'teacher',
+        '2023-01-25 12:30:22.521',
+        '2023-01-25 12:30:22.521',
+        NULL
+    );
+INSERT INTO public.users (
+        id,
+        username,
+        email,
+        "password",
+        "type",
+        created_at,
+        updated_at,
+        display_name
+    )
+VALUES(
+        28,
+        'Alfie Knight',
+        'abc@gmail.com',
+        '$2a$04$c.vxKTFN99REwU.ajFuPSu1wtO/IFbg7bDdQXnL22eeExY8oThBl.',
+        'teacher',
+        '2023-01-25 12:49:57.205',
+        '2023-01-25 12:49:57.205',
+        NULL
+    );
+INSERT INTO public.users (
+        id,
+        username,
+        email,
+        "password",
+        "type",
+        created_at,
+        updated_at,
+        display_name
+    )
+VALUES(
+        30,
+        'Archibald Price',
+        'abc@gmail.com',
+        '$2a$04$Pk/t1u7Wjb1mR.xoK3mfh.xrpLa9mPZjC2XbXYP9PMoj3mKEDCO8e',
+        'teacher',
+        '2023-01-25 12:52:14.352',
+        '2023-01-25 12:52:14.352',
+        NULL
+    );
+INSERT INTO public.users (
+        id,
+        username,
+        email,
+        "password",
+        "type",
+        created_at,
+        updated_at,
+        display_name
+    )
+VALUES(
+        31,
+        'Leo Miller',
+        'abc@gmail.com',
+        '$2a$04$6itmwqD17aVSvQVvgKOgI.Ytg45cMQS5SlE5o160JFmptzcJ1ihYe',
+        'teacher',
+        '2023-01-25 13:06:02.904',
+        '2023-01-25 13:06:02.904',
+        NULL
+    );
+INSERT INTO public.users (
+        id,
+        username,
+        email,
+        "password",
+        "type",
+        created_at,
+        updated_at,
+        display_name
+    )
+VALUES(
+        32,
+        'Tyler Lee',
+        'abc@gmail.com',
+        '$2a$04$6SNrhdtHnAmdKVt0Z4ZVnOFyMTle7l6rN28Lt9a.EEfwWPhh.OYQa',
+        'teacher',
+        '2023-01-25 15:55:08.902',
+        '2023-01-25 15:55:08.902',
+        NULL
+    );
+INSERT INTO public.users (
+        id,
+        username,
+        email,
+        "password",
+        "type",
+        created_at,
+        updated_at,
+        display_name
+    )
+VALUES(
+        33,
+        'Francesca Austin',
+        'abc@gmail.com',
+        '$2a$04$vfAeYCBJYK9rNN6GiawLouxKs4hvWsnCWGlQjN56qWWHNiFoxV8F6',
+        'teacher',
+        '2023-01-25 16:03:56.095',
+        '2023-01-25 16:03:56.095',
+        NULL
+    );
+INSERT INTO public.users (
+        id,
+        username,
+        email,
+        "password",
+        "type",
+        created_at,
+        updated_at,
+        display_name
+    )
+VALUES(
+        34,
+        'Zofia Powell',
+        'abc@gmail.com',
+        '$2a$04$18yU3fUZhne/gE3nmJIi/usSysEZKXPYSk3Q..sckjApMhAAhiNYS',
+        'teacher',
+        '2023-01-25 17:56:43.025',
+        '2023-01-25 17:56:43.025',
+        NULL
+    );
+INSERT INTO public.users (
+        id,
+        username,
+        email,
+        "password",
+        "type",
+        created_at,
+        updated_at,
+        display_name
+    )
+VALUES(
+        37,
+        'Clara Miller',
+        'tom11@gmail.com',
+        'admin',
+        'teacher',
+        '2023-01-26 16:05:05.913',
+        '2023-01-26 16:05:05.913',
         NULL
     );
 INSERT INTO public.users (
@@ -110,7 +390,7 @@ INSERT INTO public.users (
     )
 VALUES(
         8,
-        'abc',
+        'Raylee Mason',
         'abc@gmail.com',
         'abc',
         'student',
@@ -129,13 +409,13 @@ INSERT INTO public.users (
         display_name
     )
 VALUES(
-        19,
-        '123',
+        23,
+        'Cameron Rees',
         'abc@gmail.com',
-        '$2a$04$qo7dDRw.m8UgS6txK8IemuELs8hyQRpxjNMnEdf98Hpv9fTexnGU2',
-        NULL,
-        '2023-01-25 02:47:22.162',
-        '2023-01-25 02:47:22.162',
+        '$2a$04$VSlPKsMcteOvH6Lu.AuD5OLEXgtdoUPYjIPXU4FLP0I10EM5tD4qa',
+        'teacher',
+        '2023-01-25 12:29:44.098',
+        '2023-01-25 12:29:44.098',
         NULL
     );
 INSERT INTO public.users (
@@ -150,352 +430,12 @@ INSERT INTO public.users (
     )
 VALUES(
         20,
-        '123',
+        'Danny Robinson',
         'abc@gmail.com',
         '$2a$04$XSJxHYcl8JTcL.Y1P1CS7.trYP1NRQVzxDKQuXc7Bgy5/oA1YHOMS',
-        NULL,
+        'teacher',
         '2023-01-25 02:47:37.558',
         '2023-01-25 02:47:37.558',
-        NULL
-    );
-INSERT INTO public.users (
-        id,
-        username,
-        email,
-        "password",
-        "type",
-        created_at,
-        updated_at,
-        display_name
-    )
-VALUES(
-        21,
-        '123',
-        'abc@gmail.com',
-        '$2a$04$zk2Slql/DPDUTcNTS9tLd.oVOpL6kUvlVtOYg8cXO/1NiG2nRoAu2',
-        NULL,
-        '2023-01-25 02:50:39.354',
-        '2023-01-25 02:50:39.354',
-        NULL
-    );
-INSERT INTO public.users (
-        id,
-        username,
-        email,
-        "password",
-        "type",
-        created_at,
-        updated_at,
-        display_name
-    )
-VALUES(
-        22,
-        '123',
-        'abc@gmail.com',
-        '$2a$04$3XdwapX9okjaEFx0F41Ks.3VVNXD.x9/qRM.zX6osGpCWgi2fztqa',
-        NULL,
-        '2023-01-25 12:29:42.220',
-        '2023-01-25 12:29:42.220',
-        NULL
-    );
-INSERT INTO public.users (
-        id,
-        username,
-        email,
-        "password",
-        "type",
-        created_at,
-        updated_at,
-        display_name
-    )
-VALUES(
-        23,
-        '123',
-        'abc@gmail.com',
-        '$2a$04$VSlPKsMcteOvH6Lu.AuD5OLEXgtdoUPYjIPXU4FLP0I10EM5tD4qa',
-        NULL,
-        '2023-01-25 12:29:44.098',
-        '2023-01-25 12:29:44.098',
-        NULL
-    );
-INSERT INTO public.users (
-        id,
-        username,
-        email,
-        "password",
-        "type",
-        created_at,
-        updated_at,
-        display_name
-    )
-VALUES(
-        24,
-        '123',
-        'abc@gmail.com',
-        '$2a$04$LVqqjr/pgigGqU.rDXTCLeC5B7ktBLpl/MSgFwDWhueDMJbBg2T.m',
-        NULL,
-        '2023-01-25 12:29:59.326',
-        '2023-01-25 12:29:59.326',
-        NULL
-    );
-INSERT INTO public.users (
-        id,
-        username,
-        email,
-        "password",
-        "type",
-        created_at,
-        updated_at,
-        display_name
-    )
-VALUES(
-        25,
-        '123',
-        'abc@gmail.com',
-        '$2a$04$QsyvWZ8AhxRsu3tfXmu6Oug1HReLM1/TSc2xM9NZDUk4iWs4ytFnO',
-        NULL,
-        '2023-01-25 12:30:14.577',
-        '2023-01-25 12:30:14.577',
-        NULL
-    );
-INSERT INTO public.users (
-        id,
-        username,
-        email,
-        "password",
-        "type",
-        created_at,
-        updated_at,
-        display_name
-    )
-VALUES(
-        26,
-        '123',
-        'abc@gmail.com',
-        '$2a$04$KgucdaIF4sux716wkO/C8.gIKo06LV2KHqHLLJDuUkZO2W9bqRtnW',
-        NULL,
-        '2023-01-25 12:30:22.521',
-        '2023-01-25 12:30:22.521',
-        NULL
-    );
-INSERT INTO public.users (
-        id,
-        username,
-        email,
-        "password",
-        "type",
-        created_at,
-        updated_at,
-        display_name
-    )
-VALUES(
-        27,
-        '123',
-        'abc@gmail.com',
-        '$2a$04$O59gCCf1fwRnAqh7W4uL9.S/Wa/YUEd7md/YQZn5eUXJQO/kro7Vm',
-        NULL,
-        '2023-01-25 12:49:28.937',
-        '2023-01-25 12:49:28.937',
-        NULL
-    );
-INSERT INTO public.users (
-        id,
-        username,
-        email,
-        "password",
-        "type",
-        created_at,
-        updated_at,
-        display_name
-    )
-VALUES(
-        28,
-        '123',
-        'abc@gmail.com',
-        '$2a$04$c.vxKTFN99REwU.ajFuPSu1wtO/IFbg7bDdQXnL22eeExY8oThBl.',
-        NULL,
-        '2023-01-25 12:49:57.205',
-        '2023-01-25 12:49:57.205',
-        NULL
-    );
-INSERT INTO public.users (
-        id,
-        username,
-        email,
-        "password",
-        "type",
-        created_at,
-        updated_at,
-        display_name
-    )
-VALUES(
-        29,
-        '123',
-        'abc@gmail.com',
-        '$2a$04$PPq9biNQZ.vGIacrwfihVux6eXXgsCANLrAV2b74Rxl1xPeAeANcy',
-        NULL,
-        '2023-01-25 12:51:00.893',
-        '2023-01-25 12:51:00.893',
-        NULL
-    );
-INSERT INTO public.users (
-        id,
-        username,
-        email,
-        "password",
-        "type",
-        created_at,
-        updated_at,
-        display_name
-    )
-VALUES(
-        30,
-        '123',
-        'abc@gmail.com',
-        '$2a$04$Pk/t1u7Wjb1mR.xoK3mfh.xrpLa9mPZjC2XbXYP9PMoj3mKEDCO8e',
-        NULL,
-        '2023-01-25 12:52:14.352',
-        '2023-01-25 12:52:14.352',
-        NULL
-    );
-INSERT INTO public.users (
-        id,
-        username,
-        email,
-        "password",
-        "type",
-        created_at,
-        updated_at,
-        display_name
-    )
-VALUES(
-        31,
-        '123',
-        'abc@gmail.com',
-        '$2a$04$6itmwqD17aVSvQVvgKOgI.Ytg45cMQS5SlE5o160JFmptzcJ1ihYe',
-        NULL,
-        '2023-01-25 13:06:02.904',
-        '2023-01-25 13:06:02.904',
-        NULL
-    );
-INSERT INTO public.users (
-        id,
-        username,
-        email,
-        "password",
-        "type",
-        created_at,
-        updated_at,
-        display_name
-    )
-VALUES(
-        32,
-        '123',
-        'abc@gmail.com',
-        '$2a$04$6SNrhdtHnAmdKVt0Z4ZVnOFyMTle7l6rN28Lt9a.EEfwWPhh.OYQa',
-        NULL,
-        '2023-01-25 15:55:08.902',
-        '2023-01-25 15:55:08.902',
-        NULL
-    );
-INSERT INTO public.users (
-        id,
-        username,
-        email,
-        "password",
-        "type",
-        created_at,
-        updated_at,
-        display_name
-    )
-VALUES(
-        33,
-        '123',
-        'abc@gmail.com',
-        '$2a$04$vfAeYCBJYK9rNN6GiawLouxKs4hvWsnCWGlQjN56qWWHNiFoxV8F6',
-        NULL,
-        '2023-01-25 16:03:56.095',
-        '2023-01-25 16:03:56.095',
-        NULL
-    );
-INSERT INTO public.users (
-        id,
-        username,
-        email,
-        "password",
-        "type",
-        created_at,
-        updated_at,
-        display_name
-    )
-VALUES(
-        34,
-        '123',
-        'abc@gmail.com',
-        '$2a$04$18yU3fUZhne/gE3nmJIi/usSysEZKXPYSk3Q..sckjApMhAAhiNYS',
-        NULL,
-        '2023-01-25 17:56:43.025',
-        '2023-01-25 17:56:43.025',
-        NULL
-    );
-INSERT INTO public.users (
-        id,
-        username,
-        email,
-        "password",
-        "type",
-        created_at,
-        updated_at,
-        display_name
-    )
-VALUES(
-        37,
-        '123333',
-        'tom11@gmail.com',
-        'admin',
-        'teacher',
-        '2023-01-26 16:05:05.913',
-        '2023-01-26 16:05:05.913',
-        NULL
-    );
-INSERT INTO public.users (
-        id,
-        username,
-        email,
-        "password",
-        "type",
-        created_at,
-        updated_at,
-        display_name
-    )
-VALUES(
-        38,
-        '123333ww',
-        'tom11@gmail.com',
-        'admin',
-        'teacher',
-        '2023-01-26 16:05:40.222',
-        '2023-01-26 16:05:40.222',
-        NULL
-    );
-INSERT INTO public.users (
-        id,
-        username,
-        email,
-        "password",
-        "type",
-        created_at,
-        updated_at,
-        display_name
-    )
-VALUES(
-        42,
-        'ad111111min@gmail.com',
-        'ad1111min@gmail.com',
-        'admin',
-        'teacher',
-        '2023-01-26 16:37:50.414',
-        '2023-01-26 16:37:50.414',
         NULL
     );
 INSERT INTO public.users (
@@ -510,12 +450,32 @@ INSERT INTO public.users (
     )
 VALUES(
         43,
-        'ad111111min@gmail.com',
+        'Aleeza Robinson',
+        'ad1111min@gmail.com',
+        'admin',
+        'student',
+        '2023-01-26 16:42:05.525',
+        '2023-01-26 16:42:05.525',
+        NULL
+    );
+INSERT INTO public.users (
+        id,
+        username,
+        email,
+        "password",
+        "type",
+        created_at,
+        updated_at,
+        display_name
+    )
+VALUES(
+        42,
+        'Hope Mccarthy',
         'ad1111min@gmail.com',
         'admin',
         'teacher',
-        '2023-01-26 16:42:05.525',
-        '2023-01-26 16:42:05.525',
+        '2023-01-26 16:37:50.414',
+        '2023-01-26 16:37:50.414',
         NULL
     );
 INSERT INTO public.users (
@@ -530,10 +490,10 @@ INSERT INTO public.users (
     )
 VALUES(
         44,
-        'ad111111min@gmail.com',
+        'Nia Bailey',
         'ad1111min@gmail.com',
         'admin',
-        'teacher',
+        'student',
         '2023-01-26 16:42:41.404',
         '2023-01-26 16:42:41.404',
         NULL
@@ -549,8 +509,28 @@ INSERT INTO public.users (
         display_name
     )
 VALUES(
+        35,
+        'Nicky Patel',
+        'Lawrence1_@live.hk',
+        '$2a$04$dcxXEtoSp1SRPNf3j8pz1OUMYln7tFBOv6PGGSSAPbJStAq7zY.yu',
+        'student',
+        '2023-01-26 14:01:04.827',
+        '2023-01-26 14:01:04.827',
+        NULL
+    );
+INSERT INTO public.users (
+        id,
+        username,
+        email,
+        "password",
+        "type",
+        created_at,
+        updated_at,
+        display_name
+    )
+VALUES(
         45,
-        'ad111111min@gmail.com',
+        'Priya Cunningham',
         'ad1111min@gmail.com',
         'admin',
         'teacher',
@@ -570,7 +550,7 @@ INSERT INTO public.users (
     )
 VALUES(
         46,
-        'ad111111min@gmail.com',
+        'Alexa Butler',
         'ad1111min@gmail.com',
         'admin',
         'teacher',
@@ -590,7 +570,7 @@ INSERT INTO public.users (
     )
 VALUES(
         47,
-        'ad111111min@gmail.com',
+        'Stephen Cook',
         'ad1111min@gmail.com',
         'admin',
         'teacher',
@@ -610,7 +590,7 @@ INSERT INTO public.users (
     )
 VALUES(
         48,
-        'ad111111min@gmail.com',
+        'Jack Chambers',
         'ad1111min@gmail.com',
         'admin',
         'teacher',
@@ -630,7 +610,7 @@ INSERT INTO public.users (
     )
 VALUES(
         49,
-        'ad111111min@gmail.com',
+        'Rory Stevens',
         'ad1111min@gmail.com',
         'admin',
         'teacher',
@@ -650,7 +630,7 @@ INSERT INTO public.users (
     )
 VALUES(
         50,
-        'ad111122211min@gmail.com',
+        'Stephen Cook',
         'ad1111min@gmail.com',
         'admin',
         'teacher',
@@ -670,7 +650,7 @@ INSERT INTO public.users (
     )
 VALUES(
         51,
-        'ad111122211min@gmail.com',
+        'Kian Shaw',
         'ad1111min@gmail.com',
         'admin',
         'teacher',
@@ -690,7 +670,7 @@ INSERT INTO public.users (
     )
 VALUES(
         52,
-        'ad111122211min@gmail.com',
+        'Buddy Young',
         'ad1111min@gmail.com',
         'admin',
         'teacher',
@@ -710,7 +690,7 @@ INSERT INTO public.users (
     )
 VALUES(
         53,
-        'ad111122211min@gmail.com',
+        'Gabriel Henderson',
         'ad1111min@gmail.com',
         'admin',
         'teacher',
@@ -730,7 +710,7 @@ INSERT INTO public.users (
     )
 VALUES(
         54,
-        'ad111122211min@gmail.com',
+        'Jude Thomas',
         'ad1111min@gmail.com',
         'admin',
         'teacher',
@@ -750,7 +730,7 @@ INSERT INTO public.users (
     )
 VALUES(
         55,
-        'ad111122211min@gmail.com',
+        'Lane Parry',
         'ad1111min@gmail.com',
         'admin',
         'teacher',
@@ -770,7 +750,7 @@ INSERT INTO public.users (
     )
 VALUES(
         56,
-        'admi12e3123n@gmail.com',
+        'Silver Price',
         'wdwqdqwd21@23.com',
         'admin',
         'teacher',
@@ -790,7 +770,7 @@ INSERT INTO public.users (
     )
 VALUES(
         57,
-        'admi12e3123n@gmail.com',
+        'Kiran Byrne',
         'wdwqdqwd21@23.com',
         'admin',
         'teacher',
@@ -810,7 +790,7 @@ INSERT INTO public.users (
     )
 VALUES(
         58,
-        'admi12e3123n@gmail.com',
+        'Jude Mccarthy',
         'wdwqdqwd21@23.com',
         'admin',
         'teacher',
@@ -830,7 +810,7 @@ INSERT INTO public.users (
     )
 VALUES(
         59,
-        'admin@gmail.22222com12123',
+        'Raylee Mitchell',
         'tom111222@gmail.com',
         'admin',
         'teacher',
@@ -850,7 +830,7 @@ INSERT INTO public.users (
     )
 VALUES(
         60,
-        'admin@sssgmail.22222com12123',
+        'Marley Hunt',
         'tom1112ss22@gmail.com',
         'admin',
         'teacher',
@@ -870,7 +850,7 @@ INSERT INTO public.users (
     )
 VALUES(
         61,
-        'adm111in@gmail.com',
+        'Skye Parry',
         'adm111in@gmail.com',
         'admin',
         'teacher',
@@ -890,7 +870,7 @@ INSERT INTO public.users (
     )
 VALUES(
         62,
-        'adm111i22n@gmail.com',
+        'Rory Baxter',
         'ad111m111in@gmail.com',
         'admin',
         'teacher',
@@ -910,7 +890,7 @@ INSERT INTO public.users (
     )
 VALUES(
         63,
-        'adm111i22n@gmail.com',
+        'Marley Hunt',
         'ad111m111in@gmail.com',
         'admin',
         'teacher',
@@ -930,7 +910,7 @@ INSERT INTO public.users (
     )
 VALUES(
         64,
-        'adm111i22nss@gmail.com',
+        'Charlie Cox',
         'ad111m111in@gmail.com',
         'admin',
         'teacher',
@@ -950,7 +930,7 @@ INSERT INTO public.users (
     )
 VALUES(
         65,
-        'adm111i22nss@gmail.com',
+        'Cory Wilson',
         'ad111m111in@gmail.com',
         'admin',
         'teacher',
@@ -970,7 +950,7 @@ INSERT INTO public.users (
     )
 VALUES(
         66,
-        'admi21422n@gmail.com',
+        'Skylar Thomas',
         'tom@gmail.com',
         'admin',
         'teacher',
@@ -989,133 +969,13 @@ INSERT INTO public.users (
         display_name
     )
 VALUES(
-        35,
-        'Lawrence_1',
-        'Lawrence1_@live.hk',
-        '$2a$04$dcxXEtoSp1SRPNf3j8pz1OUMYln7tFBOv6PGGSSAPbJStAq7zY.yu',
-        NULL,
-        '2023-01-26 14:01:04.827',
-        '2023-01-26 14:01:04.827',
-        NULL
-    );
-INSERT INTO public.users (
-        id,
-        username,
-        email,
-        "password",
-        "type",
-        created_at,
-        updated_at,
-        display_name
-    )
-VALUES(
         36,
-        'lawrence35361',
+        'Wyatt John',
         'l1awrence3536@outlook.com',
         '$2a$04$coqPAUO09N8MWIGG6k80ROxTz7DQexvUJHjD1TcBrACs9pyIGevXe',
-        NULL,
+        'student',
         '2023-01-26 14:02:32.992',
         '2023-01-26 14:02:32.992',
-        NULL
-    );
-INSERT INTO public.users (
-        id,
-        username,
-        email,
-        "password",
-        "type",
-        created_at,
-        updated_at,
-        display_name
-    )
-VALUES(
-        39,
-        'ad1111min',
-        'ad1111min@gmail.com',
-        'admin',
-        'teacher',
-        '2023-01-26 16:12:56.120',
-        '2023-01-26 16:12:56.120',
-        NULL
-    );
-INSERT INTO public.users (
-        id,
-        username,
-        email,
-        "password",
-        "type",
-        created_at,
-        updated_at,
-        display_name
-    )
-VALUES(
-        40,
-        'ad1111min3',
-        'ad1111min@gmail.com',
-        'admin',
-        'teacher',
-        '2023-01-26 16:28:03.452',
-        '2023-01-26 16:28:03.452',
-        NULL
-    );
-INSERT INTO public.users (
-        id,
-        username,
-        email,
-        "password",
-        "type",
-        created_at,
-        updated_at,
-        display_name
-    )
-VALUES(
-        41,
-        'ad1111min2',
-        'ad1111min@gmail.com',
-        'admin',
-        'teacher',
-        '2023-01-26 16:28:50.575',
-        '2023-01-26 16:28:50.575',
-        NULL
-    );
-INSERT INTO public.users (
-        id,
-        username,
-        email,
-        "password",
-        "type",
-        created_at,
-        updated_at,
-        display_name
-    )
-VALUES(
-        67,
-        'Peter',
-        'Peter@123.com',
-        'Peter',
-        'teacher',
-        '2023-01-27 10:35:59.098',
-        '2023-01-27 10:35:59.098',
-        NULL
-    );
-INSERT INTO public.users (
-        id,
-        username,
-        email,
-        "password",
-        "type",
-        created_at,
-        updated_at,
-        display_name
-    )
-VALUES(
-        68,
-        'PETER123',
-        'Peter123@123.com',
-        'Peter',
-        'teacher',
-        '2023-01-27 10:37:21.768',
-        '2023-01-27 10:37:21.768',
         NULL
     );
 INSERT INTO public.users (
@@ -1130,10 +990,10 @@ INSERT INTO public.users (
     )
 VALUES(
         69,
-        'PETER123',
+        'Cole Ross',
         'Peter123@123.com',
         'Peter',
-        'teacher',
+        'student',
         '2023-01-27 10:38:47.175',
         '2023-01-27 10:38:47.175',
         NULL
@@ -1150,10 +1010,10 @@ INSERT INTO public.users (
     )
 VALUES(
         70,
-        'PETER123',
+        'Kyra Turner',
         'Peter123@123.com',
         'Peter',
-        'teacher',
+        'student',
         '2023-01-27 10:39:20.504',
         '2023-01-27 10:39:20.504',
         NULL
@@ -1170,10 +1030,10 @@ INSERT INTO public.users (
     )
 VALUES(
         71,
-        'PETER123',
+        'Diana Owen',
         'Peter123@123.com',
         'Peter',
-        'teacher',
+        'student',
         '2023-01-27 10:39:26.637',
         '2023-01-27 10:39:26.637',
         NULL
@@ -1190,10 +1050,10 @@ INSERT INTO public.users (
     )
 VALUES(
         72,
-        'TOM',
+        'Emmie Baker',
         'Peter1123@123.com',
         'Peter',
-        'teacher',
+        'student',
         '2023-01-27 10:40:44.005',
         '2023-01-27 10:40:44.005',
         NULL
@@ -1210,10 +1070,10 @@ INSERT INTO public.users (
     )
 VALUES(
         73,
-        'TOM1',
+        'Arianna Campbell',
         'Peter1123@123.com',
         'Peter',
-        'teacher',
+        'student',
         '2023-01-27 10:41:17.196',
         '2023-01-27 10:41:17.196',
         NULL
@@ -1230,10 +1090,10 @@ INSERT INTO public.users (
     )
 VALUES(
         74,
-        'adminhihi',
+        'Betsy Newman',
         'demo@test.com',
         'admin',
-        'teacher',
+        'student',
         '2023-01-27 10:41:58.310',
         '2023-01-27 10:41:58.310',
         NULL
@@ -1250,32 +1110,12 @@ INSERT INTO public.users (
     )
 VALUES(
         75,
-        'adminhihi',
+        'Rachel Hunt',
         'demo@test.com',
         'admin',
-        'teacher',
+        'student',
         '2023-01-27 10:41:59.488',
         '2023-01-27 10:41:59.488',
-        NULL
-    );
-INSERT INTO public.users (
-        id,
-        username,
-        email,
-        "password",
-        "type",
-        created_at,
-        updated_at,
-        display_name
-    )
-VALUES(
-        76,
-        'adminhihi',
-        'demo1111@test.com',
-        'admin',
-        'teacher',
-        '2023-01-27 10:42:52.714',
-        '2023-01-27 10:42:52.714',
         NULL
     );
 INSERT INTO public.users (
@@ -1290,10 +1130,10 @@ INSERT INTO public.users (
     )
 VALUES(
         77,
-        'adminhihi',
+        'Winnie George',
         'demo1111@test.com',
         'admin',
-        'teacher',
+        'student',
         '2023-01-27 10:42:54.971',
         '2023-01-27 10:42:54.971',
         NULL
@@ -1309,13 +1149,13 @@ INSERT INTO public.users (
         display_name
     )
 VALUES(
-        78,
-        'adminhihi',
+        76,
+        'Nova Fox',
         'demo1111@test.com',
         'admin',
         'teacher',
-        '2023-01-27 10:44:48.553',
-        '2023-01-27 10:44:48.553',
+        '2023-01-27 10:42:52.714',
+        '2023-01-27 10:42:52.714',
         NULL
     );
 INSERT INTO public.users (
@@ -1330,10 +1170,10 @@ INSERT INTO public.users (
     )
 VALUES(
         79,
-        'adminhihi',
+        'Ashton Johnston',
         'demo1111@test.com',
         'admin',
-        'teacher',
+        'student',
         '2023-01-27 10:45:02.480',
         '2023-01-27 10:45:02.480',
         NULL
@@ -1349,11 +1189,31 @@ INSERT INTO public.users (
         display_name
     )
 VALUES(
-        80,
-        'adminhihi',
+        78,
+        'Mell Duncan',
         'demo1111@test.com',
         'admin',
         'teacher',
+        '2023-01-27 10:44:48.553',
+        '2023-01-27 10:44:48.553',
+        NULL
+    );
+INSERT INTO public.users (
+        id,
+        username,
+        email,
+        "password",
+        "type",
+        created_at,
+        updated_at,
+        display_name
+    )
+VALUES(
+        80,
+        'Rudy Sutton',
+        'demo1111@test.com',
+        'admin',
+        'student',
         '2023-01-27 10:45:03.555',
         '2023-01-27 10:45:03.555',
         NULL
@@ -1370,10 +1230,10 @@ INSERT INTO public.users (
     )
 VALUES(
         81,
-        'jojo',
+        'Alex Miller',
         'jojo@123.com',
         'admin',
-        'teacher',
+        'student',
         '2023-01-27 10:54:25.081',
         '2023-01-27 10:54:25.081',
         NULL
@@ -1389,8 +1249,28 @@ INSERT INTO public.users (
         display_name
     )
 VALUES(
+        83,
+        'Kiran Russell',
+        'demo12@test.com',
+        'admin',
+        'student',
+        '2023-01-27 11:10:19.752',
+        '2023-01-27 11:10:19.752',
+        NULL
+    );
+INSERT INTO public.users (
+        id,
+        username,
+        email,
+        "password",
+        "type",
+        created_at,
+        updated_at,
+        display_name
+    )
+VALUES(
         82,
-        'zddzadmin123',
+        'Jude Cole',
         'admin111@gmail.com',
         'admin',
         'teacher',
@@ -1409,13 +1289,13 @@ INSERT INTO public.users (
         display_name
     )
 VALUES(
-        83,
-        'SAM',
-        'demo12@test.com',
-        'admin',
+        22,
+        'Mell Adams',
+        'abc12@gmail.com',
+        '$2a$04$3XdwapX9okjaEFx0F41Ks.3VVNXD.x9/qRM.zX6osGpCWgi2fztqa',
         'teacher',
-        '2023-01-27 11:10:19.752',
-        '2023-01-27 11:10:19.752',
+        '2023-01-25 12:29:42.220',
+        '2023-01-25 12:29:42.220',
         NULL
     );
 INSERT INTO public.users (
@@ -1430,7 +1310,7 @@ INSERT INTO public.users (
     )
 VALUES(
         84,
-        'KEN',
+        'Bennie Cunningham',
         'KEN@123.com',
         'admin',
         'student',
@@ -1450,7 +1330,7 @@ INSERT INTO public.users (
     )
 VALUES(
         85,
-        'mary',
+        'Ali Elliott',
         'mary@gmail.com',
         'admin',
         'student',
@@ -1470,7 +1350,7 @@ INSERT INTO public.users (
     )
 VALUES(
         86,
-        'kenny',
+        'Silver Stone',
         'kenny@g123.com',
         'admin',
         'student',
@@ -1490,7 +1370,7 @@ INSERT INTO public.users (
     )
 VALUES(
         87,
-        'schoolteam',
+        'Erin Gill',
         'schoolteam@1.com',
         'admin',
         'student',
@@ -1510,12 +1390,252 @@ INSERT INTO public.users (
     )
 VALUES(
         88,
-        'chan123',
+        'Mell Richards',
         'chan123@gmail.com',
         'admin',
         'student',
         '2023-01-27 14:40:52.546',
         '2023-01-27 14:40:52.546',
+        NULL
+    );
+INSERT INTO public.users (
+        id,
+        username,
+        email,
+        "password",
+        "type",
+        created_at,
+        updated_at,
+        display_name
+    )
+VALUES(
+        4,
+        'Billy Wong',
+        'billy@gmail.com',
+        'admin',
+        'student',
+        '2023-01-18 12:18:49.676',
+        '2023-01-18 12:18:49.676',
+        NULL
+    );
+INSERT INTO public.users (
+        id,
+        username,
+        email,
+        "password",
+        "type",
+        created_at,
+        updated_at,
+        display_name
+    )
+VALUES(
+        7,
+        'admin',
+        'admin@gmail.com',
+        'admin',
+        'student',
+        '2023-01-18 12:18:49.676',
+        '2023-01-18 12:18:49.676',
+        NULL
+    );
+INSERT INTO public.users (
+        id,
+        username,
+        email,
+        "password",
+        "type",
+        created_at,
+        updated_at,
+        display_name
+    )
+VALUES(
+        90,
+        'PETER!@#',
+        'PETER@1.com',
+        'peter',
+        'teacher',
+        '2023-01-27 19:09:03.612',
+        '2023-01-27 19:09:03.612',
+        NULL
+    );
+INSERT INTO public.users (
+        id,
+        username,
+        email,
+        "password",
+        "type",
+        created_at,
+        updated_at,
+        display_name
+    )
+VALUES(
+        91,
+        's123',
+        'wdwq122121@23.com',
+        'admin',
+        'teacher',
+        '2023-01-27 23:20:53.073',
+        '2023-01-27 23:20:53.073',
+        NULL
+    );
+INSERT INTO public.users (
+        id,
+        username,
+        email,
+        "password",
+        "type",
+        created_at,
+        updated_at,
+        display_name
+    )
+VALUES(
+        19,
+        'Kiran Walsh',
+        'abc@gmail.com',
+        '$2a$04$qo7dDRw.m8UgS6txK8IemuELs8hyQRpxjNMnEdf98Hpv9fTexnGU2',
+        'teacher',
+        '2023-01-25 02:47:22.162',
+        '2023-01-25 02:47:22.162',
+        NULL
+    );
+INSERT INTO public.users (
+        id,
+        username,
+        email,
+        "password",
+        "type",
+        created_at,
+        updated_at,
+        display_name
+    )
+VALUES(
+        25,
+        'Rene Reynolds',
+        'abc@gmail.com',
+        '$2a$04$QsyvWZ8AhxRsu3tfXmu6Oug1HReLM1/TSc2xM9NZDUk4iWs4ytFnO',
+        'student',
+        '2023-01-25 12:30:14.577',
+        '2023-01-25 12:30:14.577',
+        NULL
+    );
+INSERT INTO public.users (
+        id,
+        username,
+        email,
+        "password",
+        "type",
+        created_at,
+        updated_at,
+        display_name
+    )
+VALUES(
+        27,
+        'Clark Wilkinson',
+        'abc@gmail.com',
+        '$2a$04$O59gCCf1fwRnAqh7W4uL9.S/Wa/YUEd7md/YQZn5eUXJQO/kro7Vm',
+        'student',
+        '2023-01-25 12:49:28.937',
+        '2023-01-25 12:49:28.937',
+        NULL
+    );
+INSERT INTO public.users (
+        id,
+        username,
+        email,
+        "password",
+        "type",
+        created_at,
+        updated_at,
+        display_name
+    )
+VALUES(
+        29,
+        'Jasper Parry',
+        'abc@gmail.com',
+        '$2a$04$PPq9biNQZ.vGIacrwfihVux6eXXgsCANLrAV2b74Rxl1xPeAeANcy',
+        'student',
+        '2023-01-25 12:51:00.893',
+        '2023-01-25 12:51:00.893',
+        NULL
+    );
+INSERT INTO public.users (
+        id,
+        username,
+        email,
+        "password",
+        "type",
+        created_at,
+        updated_at,
+        display_name
+    )
+VALUES(
+        89,
+        'hihi',
+        'Lawrence_@live.hk',
+        '$2a$04$uP7P2fhwinNF/sIzU9/NWe5MLBp0RdQpK0hmmVw0IyN/UTaaVk50W',
+        NULL,
+        '2023-01-27 19:01:15.903',
+        '2023-01-27 19:01:15.903',
+        NULL
+    );
+INSERT INTO public.users (
+        id,
+        username,
+        email,
+        "password",
+        "type",
+        created_at,
+        updated_at,
+        display_name
+    )
+VALUES(
+        92,
+        '用戶',
+        'abc@abc.com',
+        'admin',
+        'teacher',
+        '2023-01-28 16:45:56.597',
+        '2023-01-28 16:45:56.597',
+        NULL
+    );
+INSERT INTO public.users (
+        id,
+        username,
+        email,
+        "password",
+        "type",
+        created_at,
+        updated_at,
+        display_name
+    )
+VALUES(
+        93,
+        '用戶2',
+        '123@123.com',
+        'admin',
+        'teacher',
+        '2023-01-28 16:53:46.077',
+        '2023-01-28 16:53:46.077',
+        NULL
+    );
+INSERT INTO public.users (
+        id,
+        username,
+        email,
+        "password",
+        "type",
+        created_at,
+        updated_at,
+        display_name
+    )
+VALUES(
+        94,
+        'SIR',
+        'SIR@SIR.com',
+        'admin',
+        'teacher',
+        '2023-01-28 17:23:19.294',
+        '2023-01-28 17:23:19.294',
         NULL
     );
 INSERT INTO public.teacher (id, user_id, created_at, updated_at)
@@ -1840,6 +1960,41 @@ VALUES(
         '2023-01-27 14:40:52.549',
         '2023-01-27 14:40:52.549'
     );
+INSERT INTO public.teacher (id, user_id, created_at, updated_at)
+VALUES(
+        47,
+        90,
+        '2023-01-27 19:09:03.614',
+        '2023-01-27 19:09:03.614'
+    );
+INSERT INTO public.teacher (id, user_id, created_at, updated_at)
+VALUES(
+        48,
+        91,
+        '2023-01-27 23:20:53.082',
+        '2023-01-27 23:20:53.082'
+    );
+INSERT INTO public.teacher (id, user_id, created_at, updated_at)
+VALUES(
+        49,
+        92,
+        '2023-01-28 16:45:56.606',
+        '2023-01-28 16:45:56.606'
+    );
+INSERT INTO public.teacher (id, user_id, created_at, updated_at)
+VALUES(
+        50,
+        93,
+        '2023-01-28 16:53:46.079',
+        '2023-01-28 16:53:46.079'
+    );
+INSERT INTO public.teacher (id, user_id, created_at, updated_at)
+VALUES(
+        51,
+        94,
+        '2023-01-28 17:23:19.297',
+        '2023-01-28 17:23:19.297'
+    );
 INSERT INTO public.subject (id, "name", created_at, updated_at, chinese_name)
 VALUES(
         1,
@@ -1963,90 +2118,6 @@ VALUES(
         2,
         '2023-01-18 12:18:49.700',
         '2023-01-18 12:18:49.700'
-    );
-INSERT INTO public.teacher_subject (
-        id,
-        subject_id,
-        teacher_id,
-        created_at,
-        updated_at
-    )
-VALUES(
-        3,
-        2,
-        3,
-        '2023-01-26 16:43:24.067',
-        '2023-01-26 16:43:24.067'
-    );
-INSERT INTO public.teacher_subject (
-        id,
-        subject_id,
-        teacher_id,
-        created_at,
-        updated_at
-    )
-VALUES(
-        4,
-        2,
-        4,
-        '2023-01-26 16:44:00.899',
-        '2023-01-26 16:44:00.899'
-    );
-INSERT INTO public.teacher_subject (
-        id,
-        subject_id,
-        teacher_id,
-        created_at,
-        updated_at
-    )
-VALUES(
-        5,
-        2,
-        5,
-        '2023-01-26 16:49:34.885',
-        '2023-01-26 16:49:34.885'
-    );
-INSERT INTO public.teacher_subject (
-        id,
-        subject_id,
-        teacher_id,
-        created_at,
-        updated_at
-    )
-VALUES(
-        6,
-        2,
-        6,
-        '2023-01-26 16:51:30.144',
-        '2023-01-26 16:51:30.144'
-    );
-INSERT INTO public.teacher_subject (
-        id,
-        subject_id,
-        teacher_id,
-        created_at,
-        updated_at
-    )
-VALUES(
-        7,
-        2,
-        7,
-        '2023-01-26 16:51:50.901',
-        '2023-01-26 16:51:50.901'
-    );
-INSERT INTO public.teacher_subject (
-        id,
-        subject_id,
-        teacher_id,
-        created_at,
-        updated_at
-    )
-VALUES(
-        8,
-        2,
-        8,
-        '2023-01-26 16:55:16.330',
-        '2023-01-26 16:55:16.330'
     );
 INSERT INTO public.teacher_subject (
         id,
@@ -2482,6 +2553,174 @@ VALUES(
         '2023-01-27 11:38:15.912',
         '2023-01-27 11:38:15.912'
     );
+INSERT INTO public.teacher_subject (
+        id,
+        subject_id,
+        teacher_id,
+        created_at,
+        updated_at
+    )
+VALUES(
+        40,
+        7,
+        46,
+        '2023-01-27 14:40:52.550',
+        '2023-01-27 14:40:52.550'
+    );
+INSERT INTO public.teacher_subject (
+        id,
+        subject_id,
+        teacher_id,
+        created_at,
+        updated_at
+    )
+VALUES(
+        3,
+        2,
+        3,
+        '2023-01-26 16:43:24.067',
+        '2023-01-26 16:43:24.067'
+    );
+INSERT INTO public.teacher_subject (
+        id,
+        subject_id,
+        teacher_id,
+        created_at,
+        updated_at
+    )
+VALUES(
+        4,
+        2,
+        4,
+        '2023-01-26 16:44:00.899',
+        '2023-01-26 16:44:00.899'
+    );
+INSERT INTO public.teacher_subject (
+        id,
+        subject_id,
+        teacher_id,
+        created_at,
+        updated_at
+    )
+VALUES(
+        5,
+        2,
+        5,
+        '2023-01-26 16:49:34.885',
+        '2023-01-26 16:49:34.885'
+    );
+INSERT INTO public.teacher_subject (
+        id,
+        subject_id,
+        teacher_id,
+        created_at,
+        updated_at
+    )
+VALUES(
+        6,
+        2,
+        6,
+        '2023-01-26 16:51:30.144',
+        '2023-01-26 16:51:30.144'
+    );
+INSERT INTO public.teacher_subject (
+        id,
+        subject_id,
+        teacher_id,
+        created_at,
+        updated_at
+    )
+VALUES(
+        7,
+        2,
+        7,
+        '2023-01-26 16:51:50.901',
+        '2023-01-26 16:51:50.901'
+    );
+INSERT INTO public.teacher_subject (
+        id,
+        subject_id,
+        teacher_id,
+        created_at,
+        updated_at
+    )
+VALUES(
+        8,
+        2,
+        8,
+        '2023-01-26 16:55:16.330',
+        '2023-01-26 16:55:16.330'
+    );
+INSERT INTO public.teacher_subject (
+        id,
+        subject_id,
+        teacher_id,
+        created_at,
+        updated_at
+    )
+VALUES(
+        41,
+        4,
+        47,
+        '2023-01-27 19:09:03.616',
+        '2023-01-27 19:09:03.616'
+    );
+INSERT INTO public.teacher_subject (
+        id,
+        subject_id,
+        teacher_id,
+        created_at,
+        updated_at
+    )
+VALUES(
+        42,
+        4,
+        48,
+        '2023-01-27 23:20:53.084',
+        '2023-01-27 23:20:53.084'
+    );
+INSERT INTO public.teacher_subject (
+        id,
+        subject_id,
+        teacher_id,
+        created_at,
+        updated_at
+    )
+VALUES(
+        43,
+        5,
+        49,
+        '2023-01-28 16:45:56.609',
+        '2023-01-28 16:45:56.609'
+    );
+INSERT INTO public.teacher_subject (
+        id,
+        subject_id,
+        teacher_id,
+        created_at,
+        updated_at
+    )
+VALUES(
+        44,
+        12,
+        50,
+        '2023-01-28 16:53:46.080',
+        '2023-01-28 16:53:46.080'
+    );
+INSERT INTO public.teacher_subject (
+        id,
+        subject_id,
+        teacher_id,
+        created_at,
+        updated_at
+    )
+VALUES(
+        45,
+        8,
+        51,
+        '2023-01-28 17:23:19.298',
+        '2023-01-28 17:23:19.298'
+    );
 INSERT INTO public.blog (
         id,
         teacher_id,
@@ -2556,57 +2795,101 @@ VALUES(
         '2023-01-18 12:18:49.700',
         '2023-01-18 12:18:49.700'
     );
-INSERT INTO public.student (
-        id,
-        user_id,
-        subject_id,
-        school_id,
-        academic_level,
-        created_at,
-        updated_at
-    )
+INSERT INTO public.subject (id, "name", created_at, updated_at, chinese_name)
 VALUES(
         1,
-        1,
-        2,
-        4,
-        'F.6',
+        'chi',
         '2023-01-18 12:18:49.700',
-        '2023-01-18 12:18:49.700'
+        '2023-01-18 12:18:49.700',
+        '中文'
     );
-INSERT INTO public.student (
-        id,
-        user_id,
-        subject_id,
-        school_id,
-        academic_level,
-        created_at,
-        updated_at
-    )
+INSERT INTO public.subject (id, "name", created_at, updated_at, chinese_name)
 VALUES(
         2,
-        2,
+        'eng',
+        '2023-01-18 12:18:49.700',
+        '2023-01-18 12:18:49.700',
+        '英文'
+    );
+INSERT INTO public.subject (id, "name", created_at, updated_at, chinese_name)
+VALUES(
+        3,
+        'maths',
+        '2023-01-18 12:18:49.700',
+        '2023-01-18 12:18:49.700',
+        '數學'
+    );
+INSERT INTO public.subject (id, "name", created_at, updated_at, chinese_name)
+VALUES(
         4,
+        'econ',
+        '2023-01-18 12:18:49.700',
+        '2023-01-18 12:18:49.700',
+        '經濟'
+    );
+INSERT INTO public.subject (id, "name", created_at, updated_at, chinese_name)
+VALUES(
+        5,
+        'ls',
+        '2023-01-18 12:18:49.700',
+        '2023-01-18 12:18:49.700',
+        '通識'
+    );
+INSERT INTO public.subject (id, "name", created_at, updated_at, chinese_name)
+VALUES(
         6,
-        'F.4',
+        'bio',
         '2023-01-18 12:18:49.700',
-        '2023-01-18 12:18:49.700'
+        '2023-01-18 12:18:49.700',
+        '生物'
     );
-INSERT INTO public.chatroom (
-        id,
-        "content",
-        from_user,
-        to_user,
-        created_at,
-        updated_at
-    )
+INSERT INTO public.subject (id, "name", created_at, updated_at, chinese_name)
 VALUES(
-        1,
-        '有功課想問',
-        2,
-        4,
+        7,
+        'chem',
         '2023-01-18 12:18:49.700',
-        '2023-01-18 12:18:49.700'
+        '2023-01-18 12:18:49.700',
+        '化學'
+    );
+INSERT INTO public.subject (id, "name", created_at, updated_at, chinese_name)
+VALUES(
+        8,
+        'phy',
+        '2023-01-18 12:18:49.700',
+        '2023-01-18 12:18:49.700',
+        '物理'
+    );
+INSERT INTO public.subject (id, "name", created_at, updated_at, chinese_name)
+VALUES(
+        9,
+        'geog',
+        '2023-01-18 12:18:49.700',
+        '2023-01-18 12:18:49.700',
+        '地理'
+    );
+INSERT INTO public.subject (id, "name", created_at, updated_at, chinese_name)
+VALUES(
+        10,
+        'chi-history',
+        '2023-01-18 12:18:49.700',
+        '2023-01-18 12:18:49.700',
+        '中史'
+    );
+INSERT INTO public.subject (id, "name", created_at, updated_at, chinese_name)
+VALUES(
+        11,
+        'history',
+        '2023-01-18 12:18:49.700',
+        '2023-01-18 12:18:49.700',
+        '世史'
+    );
+INSERT INTO public.subject (id, "name", created_at, updated_at, chinese_name)
+VALUES(
+        12,
+        'va',
+        '2023-01-26 16:51:50.902',
+        '2023-01-26 16:51:50.902',
+        '視覺藝術'
     );
 INSERT INTO public.chatroom (
         id,
@@ -2614,7 +2897,8 @@ INSERT INTO public.chatroom (
         from_user,
         to_user,
         created_at,
-        updated_at
+        updated_at,
+        content_time
     )
 VALUES(
         2,
@@ -2622,7 +2906,225 @@ VALUES(
         3,
         2,
         '2023-01-18 12:18:49.700',
-        '2023-01-18 12:18:49.700'
+        '2023-01-18 12:18:49.700',
+        NULL
+    );
+INSERT INTO public.chatroom (
+        id,
+        "content",
+        from_user,
+        to_user,
+        created_at,
+        updated_at,
+        content_time
+    )
+VALUES(
+        1,
+        '有功課想問',
+        7,
+        4,
+        '2023-01-18 12:18:49.700',
+        '2023-01-18 12:18:49.700',
+        NULL
+    );
+INSERT INTO public.chatroom (
+        id,
+        "content",
+        from_user,
+        to_user,
+        created_at,
+        updated_at,
+        content_time
+    )
+VALUES(
+        3,
+        '123',
+        4,
+        7,
+        '2023-01-28 19:50:28.713',
+        '2023-01-28 19:50:28.713',
+        NULL
+    );
+INSERT INTO public.chatroom (
+        id,
+        "content",
+        from_user,
+        to_user,
+        created_at,
+        updated_at,
+        content_time
+    )
+VALUES(
+        4,
+        '321',
+        7,
+        4,
+        '2023-01-28 19:50:28.720',
+        '2023-01-28 19:50:28.720',
+        NULL
+    );
+INSERT INTO public.chatroom (
+        id,
+        "content",
+        from_user,
+        to_user,
+        created_at,
+        updated_at,
+        content_time
+    )
+VALUES(
+        5,
+        'hihi',
+        7,
+        NULL,
+        '2023-01-29 18:17:34.397',
+        '2023-01-29 18:17:34.397',
+        NULL
+    );
+INSERT INTO public.chatroom (
+        id,
+        "content",
+        from_user,
+        to_user,
+        created_at,
+        updated_at,
+        content_time
+    )
+VALUES(
+        6,
+        'hi',
+        7,
+        NULL,
+        '2023-01-29 18:18:18.998',
+        '2023-01-29 18:18:18.998',
+        NULL
+    );
+INSERT INTO public.chatroom (
+        id,
+        "content",
+        from_user,
+        to_user,
+        created_at,
+        updated_at,
+        content_time
+    )
+VALUES(
+        7,
+        'hi',
+        7,
+        NULL,
+        '2023-01-29 18:25:32.292',
+        '2023-01-29 18:25:32.292',
+        NULL
+    );
+INSERT INTO public.chatroom (
+        id,
+        "content",
+        from_user,
+        to_user,
+        created_at,
+        updated_at,
+        content_time
+    )
+VALUES(
+        8,
+        'hihi',
+        7,
+        NULL,
+        '2023-01-29 18:25:37.437',
+        '2023-01-29 18:25:37.437',
+        NULL
+    );
+INSERT INTO public.chatroom (
+        id,
+        "content",
+        from_user,
+        to_user,
+        created_at,
+        updated_at,
+        content_time
+    )
+VALUES(
+        9,
+        'hi',
+        7,
+        NULL,
+        '2023-01-29 18:51:01.496',
+        '2023-01-29 18:51:01.496',
+        NULL
+    );
+INSERT INTO public.chatroom (
+        id,
+        "content",
+        from_user,
+        to_user,
+        created_at,
+        updated_at,
+        content_time
+    )
+VALUES(
+        10,
+        'hhihi',
+        7,
+        NULL,
+        '2023-01-29 18:51:04.311',
+        '2023-01-29 18:51:04.311',
+        NULL
+    );
+INSERT INTO public.chatroom (
+        id,
+        "content",
+        from_user,
+        to_user,
+        created_at,
+        updated_at,
+        content_time
+    )
+VALUES(
+        11,
+        'hi
+',
+        7,
+        NULL,
+        '2023-01-29 18:56:07.862',
+        '2023-01-29 18:56:07.862',
+        NULL
+    );
+INSERT INTO public.chatroom (
+        id,
+        "content",
+        from_user,
+        to_user,
+        created_at,
+        updated_at,
+        content_time
+    )
+VALUES(
+        12,
+        'hi',
+        7,
+        NULL,
+        '2023-01-29 19:37:14.681',
+        '2023-01-29 19:37:14.681',
+        NULL
+    );
+INSERT INTO public.chatroom (
+        id,
+        "content",
+        from_user,
+        to_user,
+        created_at,
+        updated_at,
+        content_time
+    )
+VALUES(
+        13,
+        'hhihiih',
+        7,
+        NULL,
+        '2023-01-29 19:37:19.040',
+        '2023-01-29 19:37:19.040',
+        NULL
     );
 INSERT INTO public.forum (id, "name", created_at, updated_at)
 VALUES(
@@ -2635,42 +3137,6 @@ INSERT INTO public.forum (id, "name", created_at, updated_at)
 VALUES(
         2,
         '試題資源區',
-        '2023-01-18 12:18:49.700',
-        '2023-01-18 12:18:49.700'
-    );
-INSERT INTO public.forum_post (
-        id,
-        title,
-        status,
-        forum_id,
-        author_id,
-        created_at,
-        updated_at
-    )
-VALUES(
-        1,
-        '英國研究：吃塑膠包裝食品1年 等同把2個塑膠袋吃下肚',
-        'published',
-        1,
-        1,
-        '2023-01-18 12:18:49.700',
-        '2023-01-18 12:18:49.700'
-    );
-INSERT INTO public.forum_post (
-        id,
-        title,
-        status,
-        forum_id,
-        author_id,
-        created_at,
-        updated_at
-    )
-VALUES(
-        2,
-        '美國宣布：對中國晶片出口管制擴大至澳門！以保護國家安全',
-        'pending',
-        2,
-        4,
         '2023-01-18 12:18:49.700',
         '2023-01-18 12:18:49.700'
     );
@@ -2735,4 +3201,587 @@ However, research published in 2021 by U.K. researchers found that microplastics
         2,
         '2023-01-18 12:18:49.700',
         '2023-01-18 12:18:49.700'
+    );
+INSERT INTO public.forum_post (
+        id,
+        title,
+        status,
+        forum_id,
+        author_id,
+        created_at,
+        updated_at
+    )
+VALUES(
+        1,
+        '英國研究：吃塑膠包裝食品1年 等同把2個塑膠袋吃下肚',
+        'published',
+        1,
+        1,
+        '2023-01-18 12:18:49.700',
+        '2023-01-18 12:18:49.700'
+    );
+INSERT INTO public.forum_post (
+        id,
+        title,
+        status,
+        forum_id,
+        author_id,
+        created_at,
+        updated_at
+    )
+VALUES(
+        2,
+        '美國宣布：對中國晶片出口管制擴大至澳門！以保護國家安全',
+        'pending',
+        2,
+        4,
+        '2023-01-18 12:18:49.700',
+        '2023-01-18 12:18:49.700'
+    );
+INSERT INTO public.image (id, user_id, image_icon, created_at, updated_at)
+VALUES(
+        10,
+        63,
+        'image-1674727526524.png',
+        '2023-01-26 18:05:26.541',
+        '2023-01-26 18:05:26.541'
+    );
+INSERT INTO public.image (id, user_id, image_icon, created_at, updated_at)
+VALUES(
+        12,
+        66,
+        'image-1674730709939.png',
+        '2023-01-26 18:58:29.965',
+        '2023-01-26 18:58:29.965'
+    );
+INSERT INTO public.image (id, user_id, image_icon, created_at, updated_at)
+VALUES(
+        13,
+        67,
+        'image-1674786959088.jpeg',
+        '2023-01-27 10:35:59.112',
+        '2023-01-27 10:35:59.112'
+    );
+INSERT INTO public.image (id, user_id, image_icon, created_at, updated_at)
+VALUES(
+        14,
+        68,
+        'image-1674787041760.jpeg',
+        '2023-01-27 10:37:21.771',
+        '2023-01-27 10:37:21.771'
+    );
+INSERT INTO public.image (id, user_id, image_icon, created_at, updated_at)
+VALUES(
+        15,
+        69,
+        'image-1674787127165.jpeg',
+        '2023-01-27 10:38:47.179',
+        '2023-01-27 10:38:47.179'
+    );
+INSERT INTO public.image (id, user_id, image_icon, created_at, updated_at)
+VALUES(
+        16,
+        70,
+        'image-1674787160497.jpeg',
+        '2023-01-27 10:39:20.508',
+        '2023-01-27 10:39:20.508'
+    );
+INSERT INTO public.image (id, user_id, image_icon, created_at, updated_at)
+VALUES(
+        17,
+        71,
+        'image-1674787166627.jpeg',
+        '2023-01-27 10:39:26.644',
+        '2023-01-27 10:39:26.644'
+    );
+INSERT INTO public.image (id, user_id, image_icon, created_at, updated_at)
+VALUES(
+        18,
+        72,
+        'image-1674787243996.jpeg',
+        '2023-01-27 10:40:44.011',
+        '2023-01-27 10:40:44.011'
+    );
+INSERT INTO public.image (id, user_id, image_icon, created_at, updated_at)
+VALUES(
+        19,
+        73,
+        'image-1674787277190.jpeg',
+        '2023-01-27 10:41:17.202',
+        '2023-01-27 10:41:17.202'
+    );
+INSERT INTO public.image (id, user_id, image_icon, created_at, updated_at)
+VALUES(
+        20,
+        74,
+        'image-1674787318292.png',
+        '2023-01-27 10:41:58.313',
+        '2023-01-27 10:41:58.313'
+    );
+INSERT INTO public.image (id, user_id, image_icon, created_at, updated_at)
+VALUES(
+        21,
+        75,
+        'image-1674787319483.png',
+        '2023-01-27 10:41:59.502',
+        '2023-01-27 10:41:59.502'
+    );
+INSERT INTO public.image (id, user_id, image_icon, created_at, updated_at)
+VALUES(
+        22,
+        76,
+        'image-1674787372709.png',
+        '2023-01-27 10:42:52.725',
+        '2023-01-27 10:42:52.725'
+    );
+INSERT INTO public.image (id, user_id, image_icon, created_at, updated_at)
+VALUES(
+        23,
+        77,
+        'image-1674787374965.png',
+        '2023-01-27 10:42:54.981',
+        '2023-01-27 10:42:54.981'
+    );
+INSERT INTO public.image (id, user_id, image_icon, created_at, updated_at)
+VALUES(
+        24,
+        78,
+        'image-1674787488544.png',
+        '2023-01-27 10:44:48.571',
+        '2023-01-27 10:44:48.571'
+    );
+INSERT INTO public.image (id, user_id, image_icon, created_at, updated_at)
+VALUES(
+        25,
+        79,
+        'image-1674787502472.png',
+        '2023-01-27 10:45:02.484',
+        '2023-01-27 10:45:02.484'
+    );
+INSERT INTO public.image (id, user_id, image_icon, created_at, updated_at)
+VALUES(
+        26,
+        80,
+        'image-1674787503550.png',
+        '2023-01-27 10:45:03.569',
+        '2023-01-27 10:45:03.569'
+    );
+INSERT INTO public.image (id, user_id, image_icon, created_at, updated_at)
+VALUES(
+        27,
+        81,
+        'image-1674788065072.jpeg',
+        '2023-01-27 10:54:25.093',
+        '2023-01-27 10:54:25.093'
+    );
+INSERT INTO public.image (id, user_id, image_icon, created_at, updated_at)
+VALUES(
+        28,
+        82,
+        'image-1674788833966.jpeg',
+        '2023-01-27 11:07:13.988',
+        '2023-01-27 11:07:13.988'
+    );
+INSERT INTO public.image (id, user_id, image_icon, created_at, updated_at)
+VALUES(
+        29,
+        83,
+        'image-1674789019746.jpeg',
+        '2023-01-27 11:10:19.768',
+        '2023-01-27 11:10:19.768'
+    );
+INSERT INTO public.image (id, user_id, image_icon, created_at, updated_at)
+VALUES(
+        30,
+        84,
+        'image-1674789046465.jpeg',
+        '2023-01-27 11:10:46.488',
+        '2023-01-27 11:10:46.488'
+    );
+INSERT INTO public.image (id, user_id, image_icon, created_at, updated_at)
+VALUES(
+        31,
+        85,
+        'image-1674790591863.jpeg',
+        '2023-01-27 11:36:31.882',
+        '2023-01-27 11:36:31.882'
+    );
+INSERT INTO public.image (id, user_id, image_icon, created_at, updated_at)
+VALUES(
+        32,
+        86,
+        'image-1674790655699.jpeg',
+        '2023-01-27 11:37:35.720',
+        '2023-01-27 11:37:35.720'
+    );
+INSERT INTO public.image (id, user_id, image_icon, created_at, updated_at)
+VALUES(
+        33,
+        87,
+        'image-1674790695889.jpeg',
+        '2023-01-27 11:38:15.915',
+        '2023-01-27 11:38:15.915'
+    );
+INSERT INTO public.image (id, user_id, image_icon, created_at, updated_at)
+VALUES(
+        34,
+        88,
+        'image-1674801652522.jpeg',
+        '2023-01-27 14:40:52.551',
+        '2023-01-27 14:40:52.551'
+    );
+INSERT INTO public.image (id, user_id, image_icon, created_at, updated_at)
+VALUES(
+        35,
+        90,
+        'image-1674817743601.jpeg',
+        '2023-01-27 19:09:03.617',
+        '2023-01-27 19:09:03.617'
+    );
+INSERT INTO public.image (id, user_id, image_icon, created_at, updated_at)
+VALUES(
+        1,
+        44,
+        'image-1674730709939.png',
+        '2023-01-26 16:42:41.431',
+        '2023-01-26 16:42:41.431'
+    );
+INSERT INTO public.image (id, user_id, image_icon, created_at, updated_at)
+VALUES(
+        2,
+        45,
+        'image-1674730709939.png',
+        '2023-01-26 16:43:24.064',
+        '2023-01-26 16:43:24.064'
+    );
+INSERT INTO public.image (id, user_id, image_icon, created_at, updated_at)
+VALUES(
+        3,
+        46,
+        'image-1674730709939.png',
+        '2023-01-26 16:44:00.894',
+        '2023-01-26 16:44:00.894'
+    );
+INSERT INTO public.image (id, user_id, image_icon, created_at, updated_at)
+VALUES(
+        4,
+        47,
+        'image-1674730709939.png',
+        '2023-01-26 16:49:34.882',
+        '2023-01-26 16:49:34.882'
+    );
+INSERT INTO public.image (id, user_id, image_icon, created_at, updated_at)
+VALUES(
+        5,
+        57,
+        'image-1674730709939.png',
+        '2023-01-26 17:33:15.692',
+        '2023-01-26 17:33:15.692'
+    );
+INSERT INTO public.image (id, user_id, image_icon, created_at, updated_at)
+VALUES(
+        6,
+        58,
+        'image-1674730709939.png',
+        '2023-01-26 17:35:13.634',
+        '2023-01-26 17:35:13.634'
+    );
+INSERT INTO public.image (id, user_id, image_icon, created_at, updated_at)
+VALUES(
+        7,
+        59,
+        'image-1674730709939.png',
+        '2023-01-26 17:36:07.544',
+        '2023-01-26 17:36:07.544'
+    );
+INSERT INTO public.image (id, user_id, image_icon, created_at, updated_at)
+VALUES(
+        8,
+        60,
+        'image-1674730709939.png',
+        '2023-01-26 17:37:07.372',
+        '2023-01-26 17:37:07.372'
+    );
+INSERT INTO public.image (id, user_id, image_icon, created_at, updated_at)
+VALUES(
+        9,
+        61,
+        'image-1674730709939.png',
+        '2023-01-26 17:59:42.530',
+        '2023-01-26 17:59:42.530'
+    );
+INSERT INTO public.image (id, user_id, image_icon, created_at, updated_at)
+VALUES(
+        11,
+        65,
+        'image-1674730709939.png',
+        '2023-01-26 18:05:56.417',
+        '2023-01-26 18:05:56.417'
+    );
+INSERT INTO public.image (id, user_id, image_icon, created_at, updated_at)
+VALUES(
+        36,
+        91,
+        'image-1674832853062.jpeg',
+        '2023-01-27 23:20:53.085',
+        '2023-01-27 23:20:53.085'
+    );
+INSERT INTO public.image (id, user_id, image_icon, created_at, updated_at)
+VALUES(
+        37,
+        92,
+        'image-1674895556592.jpeg',
+        '2023-01-28 16:45:56.611',
+        '2023-01-28 16:45:56.611'
+    );
+INSERT INTO public.image (id, user_id, image_icon, created_at, updated_at)
+VALUES(
+        38,
+        93,
+        'image-1674896026074.jpeg',
+        '2023-01-28 16:53:46.082',
+        '2023-01-28 16:53:46.082'
+    );
+INSERT INTO public.image (id, user_id, image_icon, created_at, updated_at)
+VALUES(
+        39,
+        94,
+        'image-1674897799280.png',
+        '2023-01-28 17:23:19.299',
+        '2023-01-28 17:23:19.299'
+    );
+INSERT INTO public.chatroom (
+        id,
+        "content",
+        from_user,
+        to_user,
+        created_at,
+        updated_at,
+        content_time
+    )
+VALUES(
+        2,
+        '教學tips',
+        3,
+        2,
+        '2023-01-18 12:18:49.700',
+        '2023-01-18 12:18:49.700',
+        NULL
+    );
+INSERT INTO public.chatroom (
+        id,
+        "content",
+        from_user,
+        to_user,
+        created_at,
+        updated_at,
+        content_time
+    )
+VALUES(
+        1,
+        '有功課想問',
+        7,
+        4,
+        '2023-01-18 12:18:49.700',
+        '2023-01-18 12:18:49.700',
+        NULL
+    );
+INSERT INTO public.chatroom (
+        id,
+        "content",
+        from_user,
+        to_user,
+        created_at,
+        updated_at,
+        content_time
+    )
+VALUES(
+        3,
+        '123',
+        4,
+        7,
+        '2023-01-28 19:50:28.713',
+        '2023-01-28 19:50:28.713',
+        NULL
+    );
+INSERT INTO public.chatroom (
+        id,
+        "content",
+        from_user,
+        to_user,
+        created_at,
+        updated_at,
+        content_time
+    )
+VALUES(
+        4,
+        '321',
+        7,
+        4,
+        '2023-01-28 19:50:28.720',
+        '2023-01-28 19:50:28.720',
+        NULL
+    );
+INSERT INTO public.chatroom (
+        id,
+        "content",
+        from_user,
+        to_user,
+        created_at,
+        updated_at,
+        content_time
+    )
+VALUES(
+        5,
+        'hihi',
+        7,
+        NULL,
+        '2023-01-29 18:17:34.397',
+        '2023-01-29 18:17:34.397',
+        NULL
+    );
+INSERT INTO public.chatroom (
+        id,
+        "content",
+        from_user,
+        to_user,
+        created_at,
+        updated_at,
+        content_time
+    )
+VALUES(
+        6,
+        'hi',
+        7,
+        NULL,
+        '2023-01-29 18:18:18.998',
+        '2023-01-29 18:18:18.998',
+        NULL
+    );
+INSERT INTO public.chatroom (
+        id,
+        "content",
+        from_user,
+        to_user,
+        created_at,
+        updated_at,
+        content_time
+    )
+VALUES(
+        7,
+        'hi',
+        7,
+        NULL,
+        '2023-01-29 18:25:32.292',
+        '2023-01-29 18:25:32.292',
+        NULL
+    );
+INSERT INTO public.chatroom (
+        id,
+        "content",
+        from_user,
+        to_user,
+        created_at,
+        updated_at,
+        content_time
+    )
+VALUES(
+        8,
+        'hihi',
+        7,
+        NULL,
+        '2023-01-29 18:25:37.437',
+        '2023-01-29 18:25:37.437',
+        NULL
+    );
+INSERT INTO public.chatroom (
+        id,
+        "content",
+        from_user,
+        to_user,
+        created_at,
+        updated_at,
+        content_time
+    )
+VALUES(
+        9,
+        'hi',
+        7,
+        NULL,
+        '2023-01-29 18:51:01.496',
+        '2023-01-29 18:51:01.496',
+        NULL
+    );
+INSERT INTO public.chatroom (
+        id,
+        "content",
+        from_user,
+        to_user,
+        created_at,
+        updated_at,
+        content_time
+    )
+VALUES(
+        10,
+        'hhihi',
+        7,
+        NULL,
+        '2023-01-29 18:51:04.311',
+        '2023-01-29 18:51:04.311',
+        NULL
+    );
+INSERT INTO public.chatroom (
+        id,
+        "content",
+        from_user,
+        to_user,
+        created_at,
+        updated_at,
+        content_time
+    )
+VALUES(
+        11,
+        'hi
+',
+        7,
+        NULL,
+        '2023-01-29 18:56:07.862',
+        '2023-01-29 18:56:07.862',
+        NULL
+    );
+INSERT INTO public.chatroom (
+        id,
+        "content",
+        from_user,
+        to_user,
+        created_at,
+        updated_at,
+        content_time
+    )
+VALUES(
+        12,
+        'hi',
+        7,
+        NULL,
+        '2023-01-29 19:37:14.681',
+        '2023-01-29 19:37:14.681',
+        NULL
+    );
+INSERT INTO public.chatroom (
+        id,
+        "content",
+        from_user,
+        to_user,
+        created_at,
+        updated_at,
+        content_time
+    )
+VALUES(
+        13,
+        'hhihiih',
+        7,
+        NULL,
+        '2023-01-29 19:37:19.040',
+        '2023-01-29 19:37:19.040',
+        NULL
     );
