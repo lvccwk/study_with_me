@@ -85,9 +85,9 @@ io.on('connection', (socket) => {
 		users[socket.id] = { name: req.session.user?.username }
 		// let userInfos = users[socket.id]
 
-		console.log(`睇下user 名 : ${user}`)
-		console.log(`睇下${user} 電郵  : ${userEmail}`)
-		console.log(`睇下${user} 訊息: ${msg}`)
+		// console.log(`睇下user 名 : ${user}`)
+		// console.log(`睇下${user} 電郵  : ${userEmail}`)
+		// console.log(`睇下${user} 訊息: ${msg}`)
 
 		let checkUserId = await client.query(
 			`Select id from users where users.email = ($1) and users.username = ($2)`,

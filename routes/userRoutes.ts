@@ -100,7 +100,7 @@ async function loginGoogle(
 			// registration
 
 			let hashedPassword = await hashPassword(crypto.randomUUID())
-			console.log(`googleUserProfile = ${googleUserProfile.email}`)
+
 			// let emailPrefix = googleUserProfile.email.split('@')[0]
 
 			user = (
@@ -116,7 +116,6 @@ async function loginGoogle(
 				)
 			).rows[0]
 		}
-		// console.log(user)
 
 		req.session['user'] = user
 

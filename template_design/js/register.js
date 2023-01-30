@@ -18,7 +18,7 @@ contactsFormFile.addEventListener('submit',async(e) => {
   //3. post request handling
 
   let data = await res.json()
-  console.log(data)
+  // console.log(data)
   if(res.ok){
     window.location.replace("/account.html");
     alert('create account success')
@@ -47,7 +47,7 @@ async function getGoogleInfo(){
   let data = await res.json()
   let user1 = data.data
 
-  console.log(user1)
+  // console.log(user1)
 
 
 }

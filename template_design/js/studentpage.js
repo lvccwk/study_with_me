@@ -4,13 +4,10 @@ async function loadStudentInfo() {
 		let data = await res.json()
 		let studentInfos = data.data
 
-    // console.log(tutorInfos)
-		// getTutorInfo(tutorInfos)
-		// console.table(tutorInfos)
   let tutorContainerElem = document.querySelector('.grid')
   for(let studentInfo of studentInfos.rows){
     let imagePath = studentInfo.image_icon ? `${await getImage(studentInfo.image_icon)}` : "images/avatar/pretty-smiling-joyfully-female-with-fair-hair-dressed-casually-looking-with-satisfaction.jpg"
-    console.log(studentInfo.username,imagePath,studentInfo.chinese_name) 
+    // console.log(studentInfo.username,imagePath,studentInfo.chinese_name) 
     tutorContainerElem.innerHTML += 
       `  <div class="element-item metalloid " data-category="transition">
       <h3 class="name">${studentInfo.username}</h3>

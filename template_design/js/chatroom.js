@@ -36,8 +36,8 @@ async function getChatRecord(){
 
 	let userContainerElem = document.querySelector('#record')
 	for(let userInfo of userInfos){
-		console.log(userInfo.chat_record)
-	// let imagePath = tutorInfo.image_icon ? `${await getImage(tutorInfo.image_icon)}` : "images/avatar/portrait-good-looking-brunette-young-asian-woman.jpg"
+		// console.log(userInfo.chat_record)
+	let imagePath = tutorInfo.image_icon ? `${await getImage(tutorInfo.image_icon)}` : "images/avatar/portrait-good-looking-brunette-young-asian-woman.jpg"
 	// console.log(`chat room 112321321232121321312${userInfo.username}`) 
 	userContainerElem.innerHTML +=
 	// <div class="chathistory" >${userInfo.username},${userInfo.username}</div>
