@@ -4,7 +4,6 @@ let messages = document.getElementById('messages')
 let form = document.getElementById('form')
 let input = document.getElementById('input')
 
-
 //Ajax
 form.addEventListener('submit', function (e) {
 	e.preventDefault()
@@ -13,13 +12,12 @@ form.addEventListener('submit', function (e) {
 		socket.emit('chat message', input.value)
 		input.value = ''
 	}
-	
 })
 
-socket.on('chat message', ([userId,msg]) => {
+socket.on('chat message', ({ senderId, senderUsername, msg, receiverId }) => {
 	// console.log(('JS msg:',msg))
-	console.log(msg, userId)
-	// let msgTemplate = document.querySelector('.message')
+	console.log(senderId)
+	// let msgTemplate = document.querySelector('.message')s
 	// let msgDiv = msgTemplate.cloneNode((deep = true))
 	// msgDiv.querySelector('.sender').textContent = msg.sender
 	// msgDiv.querySelector('.createdAt').textContent = msg.createdAt
@@ -29,34 +27,37 @@ socket.on('chat message', ([userId,msg]) => {
 	// //   item.textContent = msg
 	// messages.appendChild(msgDiv)
 
-
-	instantChat(msg, userId)
+	instantChat({
+		senderId,
+		senderUsername,
+		msg
+	})
 })
 
+async function instantChat({ senderId, senderUsername, msg }) {
+	const ownerId = localStorage.getItem('ownerId')
+	// console.log(userInfo)
+	let userContainerElem = document.querySelector('#instantchat')
 
-async function instantChat(msg, userId){
-console.log(msg, userId)
-		let userContainerElem = document.querySelector('#instantchat')
-
-		if(id == userId){
 	// let imagePath = tutorInfo.image_icon ? `${await getImage(tutorInfo.image_icon)}` : "images/avatar/portrait-good-looking-brunette-young-asian-woman.jpg"
-	// console.log(`chat room 112321321232121321312${userInfo.username}`) 
+	// console.log(`chat room 112321321232121321312${userInfo.username}`)
 
-	
-	userContainerElem.innerHTML +=
-		`
+	console.log({ senderId })
+	console.log({ ownerId })
 
+	if (senderId == ownerId) {
+		userContainerElem.innerHTML += `
 		<div
 			class="d-flex flex-row justify-content-end">
 			
-			<div>${userInfo.username}
+			<div>${senderUsername}
 			
 			<div>
 			<p
 			class="small p-2 me-3 mb-1 text-white rounded-3 bg-primary"
 			"
 		>
-			${userInfo.chat_record}
+			${msg}
 			</p>
 			<p
 			class="small ms-3 mb-3 rounded-3 text-muted float-end"
@@ -76,71 +77,64 @@ console.log(msg, userId)
 			
 		</div>
 		`
-	}else{
-		userContainerElem.innerHTML +=
-		`
-
-		<div
-			class="d-flex flex-row justify-content-start"
-		>
-			<img
-				src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava6-bg.webp"
-				alt="avatar 1"
-				style="
-					width: 65px;
-					height: 100%;
-				"
-			/>
-		
-			<div>${userInfo.username}
-			
-			<div>
-			<p
-				class="small p-2 ms-3 mb-1 rounded-3"
-				style="
-					background-color: #f5f6f7;
-				"
-			>
-			${userInfo.chat_record}
-			</p>
-			<p
-				class="small ms-3 mb-3 rounded-3 text-muted float-end"
-			>
-				12:00 PM | Aug 13
-			</p>
-		</div>
-			
-			
-			
-			</div>
-
-		</div>
-		`
-	}
-	}
+	} else {
+		userContainerElem.innerHTML += `
 	
+			<div
+				class="d-flex flex-row justify-content-start"
+			>
+				<img
+					src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava6-bg.webp"
+					alt="avatar 1"
+					style="
+						width: 65px;
+						height: 100%;
+					"
+				/>
+			
+				<div>${senderUsername}
+				
+				<div>
+				<p
+					class="small p-2 ms-3 mb-1 rounded-3"
+					style="
+						background-color: #f5f6f7;
+					"
+				>
+				${msg}
+				</p>
+				<p
+					class="small ms-3 mb-3 rounded-3 text-muted float-end"
+				>
+					12:00 PM | Aug 13
+				</p>
+			</div>
+				
+				
+				
+				</div>
+	
+			</div>
+			`
+	}
+	scrollBottom()
+}
 
-
-
-async function getChatRecord(){
+async function getChatRecord() {
 	let res = await fetch('/chatrecord')
 	if (res.ok) {
 		let data = await res.json()
 		let userInfos = data.data
 
 		let userContainerElem = document.querySelector('#record')
-		console.log("getChatRecord", userInfos)
-		userContainerElem.innerHTML =''
-		for(let userInfo of userInfos){
-			
-	
-		if(userInfo.is_myself === true){
-	// let imagePath = tutorInfo.image_icon ? `${await getImage(tutorInfo.image_icon)}` : "images/avatar/portrait-good-looking-brunette-young-asian-woman.jpg"
-	// console.log(`chat room 112321321232121321312${userInfo.username}`) 
+		console.log('getChatRecord', userInfos)
+		userContainerElem.innerHTML = ''
+		for (let userInfo of userInfos) {
+			if (userInfo.is_myself === true) {
+				// let imagePath = tutorInfo.image_icon ? `${await getImage(tutorInfo.image_icon)}` : "images/avatar/portrait-good-looking-brunette-young-asian-woman.jpg"
+				// console.log(`chat room 112321321232121321312${userInfo.username}`)
 
-	
-	userContainerElem.innerHTML +=
-		`
+				userContainerElem.innerHTML += `
 
 		<div
 			class="d-flex flex-row justify-content-end">
@@ -172,9 +166,8 @@ async function getChatRecord(){
 			
 		</div>
 		`
-	}else{
-		userContainerElem.innerHTML +=
-		`
+			} else {
+				userContainerElem.innerHTML += `
 
 		<div
 			class="d-flex flex-row justify-content-start"
@@ -212,32 +205,31 @@ async function getChatRecord(){
 
 		</div>
 		`
-	}
-	}
+			}
+		}
 	} else {
 		alert('cannot fetch info')
 	}
 }
 
-
 async function getUserlist() {
-
 	let res = await fetch('/chatroom')
 	if (res.ok) {
 		let data = await res.json()
 		let userInfos = data.data
 
-	// console.log(tutorInfos)
+		// console.log(tutorInfos)
 		// getTutorInfo(tutorInfos)
 		// console.table(tutorInfos)
-	let userContainerElem = document.querySelector('.chatuserlist')
-	for(let userInfo of userInfos){
-		// console.log(userInfo)
-	let imagePath = userInfo.image_icon ? userInfo.image_icon : "images/avatar/portrait-good-looking-brunette-young-asian-woman.jpg"
+		let userContainerElem = document.querySelector('.chatuserlist')
+		for (let userInfo of userInfos) {
+			// console.log(userInfo)
+			let imagePath = userInfo.image_icon
+				? userInfo.image_icon
+				: 'images/avatar/portrait-good-looking-brunette-young-asian-woman.jpg'
 
-	// console.log(`chat room 112321321232121321312${userInfo.username}`) 
-	userContainerElem.innerHTML += 
-	`
+			// console.log(`chat room 112321321232121321312${userInfo.username}`)
+			userContainerElem.innerHTML += `
 	<ul class="list-unstyled mb-0" onclick="messageHistory(${userInfo})" onmouseover="" style="cursor: pointer;"="">
 	<li
 		class="p-2 border-bottom"
@@ -291,18 +283,21 @@ async function getUserlist() {
 		</a>
 	</li>
 	`
-{/* <div class="username" onclick="privateMessage()" onmouseover="" style="cursor: pointer;"="">${userInfo.username}</div> */}
-}
-	 
+			{
+				/* <div class="username" onclick="privateMessage()" onmouseover="" style="cursor: pointer;"="">${userInfo.username}</div> */
+			}
+		}
 	} else {
 		alert('cannot fetch info')
 	}
 }
 
-function scrollBottom(){
+function scrollBottom() {
+	console.log('scrollBottom')
 	// document.querySelector('#recordchat').scrollTop = document.querySelector('#recordchat').scrollHeight
-	document.querySelector('#recordchat').scrollTop = document.querySelector('#recordchat').scrollHeight
-} 
+	document.querySelector('#recordchat').scrollTop =
+		document.querySelector('#recordchat').scrollHeight
+}
 
 // // message content  - this code not work
 // async function messageHistory(username){
@@ -320,7 +315,7 @@ function scrollBottom(){
 //     }
 // }
 
-async function init(){
+async function init() {
 	// getSubject()
 	await getChatRecord()
 	await getUserlist()

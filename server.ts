@@ -76,27 +76,10 @@ io.on('connection', (socket) => {
 	//html > script
 	socket.on('chat message', async (msg) => {
 		let req = socket.request as express.Request
-
-		// let date = Date.now()
-
-		let user = req.session.user?.username
-		let userEmail = req.session.user?.email
+		let username = req.session.user?.username
 		let userId = req.session.user?.id
 
-		users[socket.id] = { name: req.session.user?.username }
-		// let userInfos = users[socket.id]
-
-		// console.log(`睇下user 名 : ${user}`)
-		// console.log(`睇下${user} 電郵  : ${userEmail}`)
-		// console.log(`睇下${user} 訊息: ${msg}`)
-
-		// let checkUserId = await client.query(
-		// 	`Select id from users where users.email = ($1) and users.username = ($2)`,
-		// 	[userEmail, user]
-		// )
 		//user id here
-		user
-		userEmail
 		console.log(`睇下user id : ${userId}`)
 
 		await client.query(
@@ -104,25 +87,12 @@ io.on('connection', (socket) => {
 			[userId, msg]
 		)
 
-		// sendMsgToDatabase
-
-		// messages.push({
-		// 	sender: users[socket.id].name,
-		// 	content: msg,
-		// 	createdAt: moment(date).format('MMMM Do YYYY, h:mm:ss a')
-
-		// 	// new Date(Date.now()).toString()
-		// })
-
-		io.emit('chat message', [userId, msg])
-
-		// await client.query(
-		// 	`INSERT INTO chatroom (from_user,to_user,content,created_at, updated_at) values ($1,$2,$3,now(),now())`,
-		// 	[chatroom_id, , message]
-		// )
-
-		// let msgToDatabase = await client.query(`
-		// INSERT INTO chatroom (content, from_user , created_at, updated_at)`)
+		io.emit('chat message', {
+			senderId: userId,
+			senderUsername: username,
+			msg,
+			receiverId: 0
+		})
 	})
 
 	socket.on('disconnect', () => {
@@ -131,7 +101,7 @@ io.on('connection', (socket) => {
 })
 
 app.get('/me', (req, res) => {
-	res.json(req.session)
+	res.json(req.session.user)
 })
 
 app.use(express.static(path.join(__dirname, 'template_design')))
