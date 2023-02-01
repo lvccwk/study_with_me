@@ -417,4 +417,76 @@ from users
 SELECT *
 from users
     FULL OUTER JOIN student ON users.id = student.user_id
-    FULL OUTER JOIN teacher ON users.id = teacher.user_id;
+    FULL OUTER JOIN teacher ON users.id = teacher.user_id
+WHERE users.id = 1;
+SELECT *
+from teacher;
+SELECt *
+from teacher_subject;
+DROP SCHEMA public CASCADE;
+CREATE SCHEMA public;
+SELECT *
+from image;
+UPDATE image
+SET image_icon = 'image-1675240601154.jpeg'
+WHERE id = 1;
+UPDATE image
+SET image_icon = 'image-1675245248560.jpeg'
+WHERE id = 2;
+UPDATE image
+SET image_icon = 'image-1675244864496.webp'
+WHERE id = 3;
+UPDATE image
+SET image_icon = 'image-1675151564620.jpeg'
+WHERE id = 4;
+UPDATE users
+SET type = 'student'
+WHERE id = 2;
+SELECT *
+FROM student;
+SELECT *
+FROM school;
+INSERT INTO school (name, created_at, updated_at)
+VALUES ('Tecky', now(), now())
+INSERT INTO student (
+        user_id,
+        subject_id,
+        school_id,
+        academic_level,
+        created_at,
+        updated_at
+    )
+VALUES(1, 1, 1, 'F.6', now(), now());
+INSERT INTO student (
+        user_id,
+        subject_id,
+        school_id,
+        academic_level,
+        created_at,
+        updated_at
+    )
+VALUES(2, 1, 1, 'F.6', now(), now());
+INSERT INTO student (
+        user_id,
+        subject_id,
+        school_id,
+        academic_level,
+        created_at,
+        updated_at
+    )
+VALUES(4, 1, 1, 'F.6', now(), now());
+ALTER SEQUENCE users_id_seq RESTART WITH 5;
+ALTER SEQUENCE image_id_seq RESTART WITH 5;
+ALTER SEQUENCE student_id_seq RESTART WITH 7;
+ALTER SEQUENCE teacher_id_seq RESTART WITH 2;
+DELETE FROM teacher
+WHERE id = 2;
+INSERT INTO teacher (user_id, created_at, updated_at)
+VALUES (7, now(), now());
+SELECT *
+FROM users;
+UPDATE student
+SET id = 6
+WHERE id = 7;
+SELECT *
+FROM teacher;

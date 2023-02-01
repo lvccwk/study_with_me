@@ -1,6 +1,7 @@
 // const store = window.localStorage;
 import { getSession } from "./account.js"
 import { getAllStudents } from "./account.js"
+import { getAllTeachers } from "./account.js"
 import { checkUrlId } from "./account.js"
 import { getOtherUser } from "./account.js"
 
@@ -21,7 +22,8 @@ async function getConfirmedSchedule() {
 
 export async function createScheduleTable(htmlId) {
     let schedules = await getConfirmedSchedule()
-    console.log(schedules)
+    let session = await getSession()
+    console.log("confirmed schedules = ", schedules)
     const tableAddForm = $(`#${htmlId}`);
     tableAddForm.html(`                            
          <div class="schedule-row">
@@ -90,7 +92,7 @@ export async function createScheduleTable(htmlId) {
         addButton.addEventListener("click", async function () {
             const choseDate = document.querySelector("#calendar-chose-date")
             const choseTime = document.querySelector(`#booking-${hr.id}>.time`)
-            await createInputForm(choseDate.innerHTML, choseTime.innerHTML, "Add")
+            await createInputForm(choseDate.innerHTML, choseTime.innerHTML, "Add", session.user.type)
 
             // const editConfirm = document.querySelector(".edit-confirm")
 
@@ -172,8 +174,14 @@ export async function createScheduleTable(htmlId) {
 // pending request
 // external js: isotope.pkgd.js
 
-async function createInputForm(date, time, action) {
+async function createInputForm(date, time, action, type) {
     const input = document.querySelector(".schedule-input")
+    let oppositeType = ""
+    if (type == "teacher") {
+        oppositeType = "student"
+    } else {
+        oppositeType = "teacher"
+    }
     input.innerHTML = `
     <form>
         <h4> ${action} booking </h4>
@@ -183,9 +191,9 @@ async function createInputForm(date, time, action) {
         <span>Time: </span>
         <input type="text" name="time" value="${time}" readonly>
         <br>
-        <span>student: </span>
-        <select class="form-select form-student-list" aria-label="Default select example" name="student" required>
-            <option value="">student</option>
+        <span>${oppositeType}: </span>
+        <select class="form-select form-user-list" aria-label="Default select example" name="${oppositeType}" required>
+            <option value="">${oppositeType}</option>
         </select>
         <div class="input-group">
             <span class="input-group-text">Detail</span>
@@ -194,13 +202,24 @@ async function createInputForm(date, time, action) {
         <button type="submit" class="submit-confirm">submit</button>
     </form>
     `
-    let studentList = await getAllStudents()
-    for (let student of studentList) {
-        console.log(student)
-        document.querySelector('.form-student-list').innerHTML += `
-        <option value="${student.id}">stu-ID: ${student.id} ${student.username}</option>
-    `
+    if (type == "teacher") {
+        let studentList = await getAllStudents()
+        for (let student of studentList) {
+            console.log(student)
+            document.querySelector('.form-user-list').innerHTML += `
+            <option value="${student.id}">stu-ID: ${student.id} ${student.username}</option>
+        `
+        }
+    } else {
+        let teacherList = await getAllTeachers()
+        for (let teacher of teacherList) {
+            console.log(teacher)
+            document.querySelector('.form-user-list').innerHTML += `
+            <option value="${teacher.id}">tea-ID: ${teacher.id} ${teacher.username}</option>
+        `
+        }
     }
+
 }
 
 async function getPendingSchedule() {
@@ -316,6 +335,12 @@ async function IsotopeInIt() {
 }
 async function scheduleInputSubmit() {
     let session = await getSession()
+    let oppositeType = ""
+    if (session.user.type == "teacher") {
+        oppositeType = "student"
+    } else {
+        oppositeType = "teacher"
+    }
     const input = document.querySelector(".schedule-input")
     input.addEventListener("submit", async function (event) {
         console.log('click')
@@ -324,11 +349,16 @@ async function scheduleInputSubmit() {
         // Serialize the Form afterwards
         const form = event.target;
         const formObject = {};
-
         formObject["inputDate"] = form.date.value;
         formObject["inputTime"] = form.time.value;
-        formObject["studentId"] = form.student.value;
         formObject["details"] = form.details.value;
+        formObject["type"] = session.user.type;
+
+        if (session.user.type == "teacher") {
+            formObject[`studentId`] = form.student.value;
+        } else {
+            formObject[`teacherId`] = form.teacher.value;
+        }
         console.log(formObject)
 
         const res = await fetch(`/admin/add/${session.user.id}`, {

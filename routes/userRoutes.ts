@@ -164,7 +164,7 @@ async function register(req: express.Request, res: express.Response) {
 				[newUser.rows[0].id]
 			)
 
-			let newSubject = await client.query(
+			await client.query(
 				`INSERT INTO teacher_subject (subject_id,teacher_id, created_at, updated_at) values ($1,$2,now(),now()) returning id`,
 				[subjectId, newTeacher.rows[0].id]
 			)
@@ -174,12 +174,19 @@ async function register(req: express.Request, res: express.Response) {
 				[newUser.rows[0].id, files?.image?.newFilename || '']
 			)
 
-			res.json({
-				data: newSubject,
-				imageUser,
-				message: 'register ok'
-			})
+			let imageNewName = await client.query(`SELECT image_icon FROM image where id = $1`, [imageUser.rows[0].id])
+
+			req.session.user = {
+				username: username,
+				email: email,
+				id: newUser.rows[0].id,
+				image: imageNewName.rows[0].image_icon,
+				type: type
+			}
+
+			res.json(req.session.user)
 		} else {
+			console.log("can get into register route student")
 			let newUser = await client.query(
 				`INSERT INTO users (username, password, email, type, created_at, updated_at) values ($1,$2,$3,$4,now(),now()) returning id`,
 				[username, password, email, type]
@@ -195,10 +202,18 @@ async function register(req: express.Request, res: express.Response) {
 				[newUser.rows[0].id, files?.image?.newFilename || '']
 			)
 
-			res.json({
-				imageUser,
-				message: 'register ok'
-			})
+			let imageNewName = await client.query(`SELECT image_icon FROM image where id = $1`, [imageUser.rows[0].id])
+
+			req.session.user = {
+				username: username,
+				email: email,
+				id: newUser.rows[0].id,
+				image: imageNewName.rows[0].image_icon,
+				type: type
+			}
+
+			res.json(req.session.user)
+
 		}
 	} catch (error) {
 		logger.error(error)
@@ -282,9 +297,9 @@ async function login(req: express.Request, res: express.Response) {
 		let isTeacher = await client.query(
 			`select teacher.id from teacher join users on teacher.user_id = users.id where users.id = ${foundUser.id}`
 		)
-		console.log(isTeacher)
+		console.log(isTeacher.rows[0])
 
-		if (isTeacher) {
+		if (isTeacher.rows[0]) {
 			foundUser['type'] = 'teacher'
 		} else {
 			foundUser['type'] = 'student'
