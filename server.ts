@@ -268,7 +268,7 @@ app.use('/admin', adminRoutes)
 app.use(express.static(path.join(__dirname, 'uploads')))
 
 app.get('/me', (req, res) => {
-	res.json(req.session)
+	res.json(req.session.user)
 })
 
 app.use(express.static(path.join(__dirname, 'template_design')))
