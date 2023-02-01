@@ -7,6 +7,7 @@ import crypto from 'crypto'
 import { client } from '../util/db'
 import { User } from '../util/interface'
 import { formParsePromise } from '../util/formidable'
+import moment = require('moment')
 
 // import { uploadInfo } from '../util/interface'
 // import { sessionMiddleware } from '../server'
@@ -33,6 +34,8 @@ userRoutes.get('/homepage-tutor', getTutorHome)
 userRoutes.get('/chatroom', getUserList)
 userRoutes.get('/chatrecord', getChatRecord)
 userRoutes.get('/instantchat', instantChat)
+// userRoutes.get('/getgrouplist', instantChat)
+
 // userRoutes.get('/getgoogle', getGoogleInfo)
 
 // userRoutes.get('/chatroom', getUsername)
@@ -397,8 +400,12 @@ async function getTutorHome(req: express.Request, res: express.Response) {
 async function getUserList(req: express.Request, res: express.Response) {
 	try {
 		let selectUserResult = await client.query(
-			`select users.id, users.username,image.image_icon from users 
-			JOIN image ON users.id = image.user_id`
+			`select users.id,
+			users.username,
+			users.type,
+			image.image_icon
+		from users
+			left JOIN image ON users.id = image.user_id`
 		)
 
 		// let userImage = await client.query(
@@ -422,7 +429,7 @@ async function getChatRecord(req: express.Request, res: express.Response) {
 		let databaseToPublicChats = await client.query(
 			`Select 
 			($1=users.id) as is_myself,
-			users.id, users.username, public_chat.chat_record
+			users.id, users.username, public_chat.chat_record, public_chat.created_at
 			FROM public_chat
 			JOIN users ON users.id = public_chat.user_id
 			ORDER BY public_chat.id ASC`,
@@ -435,8 +442,15 @@ async function getChatRecord(req: express.Request, res: express.Response) {
 		let foundMember = databaseToPublicChats.rows
 		console.log(databaseToPublicChats.rows)
 
+		let timeResults = databaseToPublicChats.rows[0].created_at
+		console.log(`check my time moment`, timeResults)
+
+		let timeResult = moment(timeResults).format('MMMM Do YYYY, h:mm:ss a')
+		// let timeResult = moment(timeResults).format('MMMM Do YYYY, h:mm:ss a')
+
 		res.json({
-			data: foundMember
+			data: foundMember,
+			time: timeResult
 		})
 	} catch (error) {
 		logger.error(error)
@@ -461,10 +475,15 @@ async function instantChat(req: express.Request, res: express.Response) {
 		// 	`SELECT image_icon from image JOIN users ON image.user_id = users.id`
 		// )
 		let foundMember = databaseToPublicChats.rows
-		console.log(databaseToPublicChats.rows)
+		console.log('hiihiihhihihi', databaseToPublicChats.rows)
 
+		let timeResults = databaseToPublicChats.rows[0].created_at
+		console.log(`check my time moment`, timeResults)
+
+		let timeResult = moment(timeResults).format('MMMM Do YYYY, h:mm:ss a')
 		res.json({
-			data: foundMember
+			data: foundMember,
+			time: timeResult
 		})
 	} catch (error) {
 		logger.error(error)

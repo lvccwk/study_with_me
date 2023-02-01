@@ -41,14 +41,15 @@
         margin-top: -.75rem;
         }
 
+        
         .row{
             height: 750px;
         }
         
-        .py-5 {
-                height: 1000px;
-            height: 1000px;
-        }
+        /* .py-5 {
+            height: 100%;
+            width: 100%;
+        } */
 
         #scroll-bar {
             height: 100%;
