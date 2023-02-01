@@ -174,7 +174,10 @@ async function register(req: express.Request, res: express.Response) {
 				[newUser.rows[0].id, files?.image?.newFilename || '']
 			)
 
-			let imageNewName = await client.query(`SELECT image_icon FROM image where id = $1`, [imageUser.rows[0].id])
+			let imageNewName = await client.query(
+				`SELECT image_icon FROM image where id = $1`,
+				[imageUser.rows[0].id]
+			)
 
 			req.session.user = {
 				username: username,
@@ -186,7 +189,7 @@ async function register(req: express.Request, res: express.Response) {
 
 			res.json(req.session.user)
 		} else {
-			console.log("can get into register route student")
+			console.log('can get into register route student')
 			let newUser = await client.query(
 				`INSERT INTO users (username, password, email, type, created_at, updated_at) values ($1,$2,$3,$4,now(),now()) returning id`,
 				[username, password, email, type]
@@ -202,7 +205,10 @@ async function register(req: express.Request, res: express.Response) {
 				[newUser.rows[0].id, files?.image?.newFilename || '']
 			)
 
-			let imageNewName = await client.query(`SELECT image_icon FROM image where id = $1`, [imageUser.rows[0].id])
+			let imageNewName = await client.query(
+				`SELECT image_icon FROM image where id = $1`,
+				[imageUser.rows[0].id]
+			)
 
 			req.session.user = {
 				username: username,
@@ -213,7 +219,6 @@ async function register(req: express.Request, res: express.Response) {
 			}
 
 			res.json(req.session.user)
-
 		}
 	} catch (error) {
 		logger.error(error)
