@@ -6,12 +6,13 @@ import dotenv from 'dotenv'
 import { Server as SocketIO } from 'socket.io'
 import expressSession from 'express-session'
 import { userRoutes } from './routes/userRoutes'
+import { adminRoutes } from './routes/adminRoutes'
 import { grantExpress, expressSessionConfig } from './plugin-config'
 import moment = require('moment')
 dotenv.config()
 let app = express()
 let server = new HTTP.Server(app)
-const io = new SocketIO(server)
+export const io = new SocketIO(server)
 app.use(express.json())
 
 export const client = new pg.Client({
@@ -256,14 +257,18 @@ app.post('/getuserandroomid', async (req, res) => {
 	}
 })
 
+app.use('/admin', adminRoutes)
+
 app.get('/me', (req, res) => {
 	res.json(req.session.user)
 })
 
 app.use(express.static(path.join(__dirname, 'template_design')))
 app.use(express.static(path.join(__dirname, 'public')))
-app.use(express.static(path.join(__dirname, 'private')))
+app.use('/admin', express.static(path.join(__dirname, 'private')))
 app.use(express.static('uploads'))
+
+
 
 app.use((req, res) => {
 	res.redirect('404.html')

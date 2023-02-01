@@ -10,6 +10,7 @@
 
     <title>account</title>
 
+
     <!-- CSS FILES -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
 
@@ -39,6 +40,8 @@
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
         rel="stylesheet" />
 
+    <!-- TemplateMo 575 Leadership Event https://templatemo.com/tm-575-leadership-event -->
+
 </head>
 
 <body>
@@ -49,7 +52,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-            <a href="index.html" class="navbar-brand mx-auto mx-lg-0">
+            <a href="/" class="navbar-brand mx-auto mx-lg-0">
                 <i class="bi-bullseye brand-logo"></i>
                 <span class="brand-text">study with <br />
                     ME</span>
@@ -96,21 +99,13 @@
     </nav>
 
     <main>
-        <section class="highlight">
+        <section class="highlight" id="section_1">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-4 col-md-6 col-12">
-                        <div class="profile">
-                            <img src="/images/avatar/pretty-smiling-joyfully-female-with-fair-hair-dressed-casually-looking-with-satisfaction.jpg"
-                                class="profile-image img-fluid" alt="" />
-                        </div>
+                    <div class="col-lg-4 col-md-6 col-12 profile-picture">
                     </div>
 
                     <div class="col-lg-4 col-md-6 col-12 welcome-div">
-                        <h1 class="welcome-msg">Student Name</h1>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6 col-12">
                     </div>
                 </div>
             </div>
@@ -123,15 +118,10 @@
                         <h3 class="mb-3">
                             Profile details
                         </h3>
-                        <div>
+                        <div class="profile-detail">
                             <span>Education level: </span>
-                            <span>Graduate </span>
+                            <span id="education-level"> </span>
                         </div>
-                        <div>
-                            <span>School Name: </span>
-                            <span>Queen's College</span>
-                        </div>
-
                     </div>
                 </div>
             </div>
@@ -169,10 +159,6 @@
                         <div class="col-12 schedule-table" id="teacher-id">
                         </div>
                     </div>
-                    <form>
-                        <div class="col-12 schedule-input">
-                        </div>
-                    </form>
                 </div>
             </div>
         </section>
@@ -185,8 +171,8 @@
                     <div class="d-flex">
                         <a href="index.html" class="navbar-brand">
                             <i class="bi-bullseye brand-logo"></i>
-                            <span class="brand-text">study with <br />
-                                me</span>
+                            <span class="brand-text">Leadership <br />
+                                Event</span>
                         </a>
 
                         <ul class="social-icon ms-auto">
@@ -232,7 +218,7 @@
                 <div class="col-lg-5 col-12 ms-lg-auto">
                     <div class="copyright-text-wrap d-flex align-items-center">
                         <p class="copyright-text ms-lg-auto me-4 mb-0">
-                            Copyright © 2022 Study With Me Edu, Ltd.
+                            Copyright © 2022 Leadership Event Co., Ltd.
 
                             <br />All Rights Reserved.
 
@@ -260,15 +246,14 @@
     <script src="/js/jquery.sticky.js"></script>
     <!-- <script src="/js/click-scroll.js"></script> -->
     <script src="/js/custom.js"></script>
-    <script src="/js/account.js"></script>
-    <script src="/js/calendar.js" defer></script>
+    <script type="module" src="/js/account.js"></script>
+    <script type="module" src="/js/calendar.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.js"
         integrity="sha512-E/yP5UiPXb6VelX+dFLuUD+1IZw/Kz7tMncFTYbtoNSCdRZPFoGN3jZ2p27VUxHEkhbPiLuZhZpVEXxk9wAHCQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
-    <script type="module" src="/js/schedule.js"></script>
-    <script type="module" src="/js/carousel.js"></script>
+    <script type="module" src="/js/schedule.js" defer></script>
 
 </body>
 

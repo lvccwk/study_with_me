@@ -1,8 +1,9 @@
 export interface User {
 	username: string
-	password: string
 	email: string
-	id: string
+	id: number
+	image: any
+	type: string
 }
 
 export interface uploadInfo {
