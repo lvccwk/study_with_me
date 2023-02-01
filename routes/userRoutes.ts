@@ -123,7 +123,7 @@ async function loginGoogle(
 		req.session['user'] = user
 
 		// console.log('loading google login')
-		return res.redirect('/account.html')
+		return res.redirect('/admin')
 	} catch (error) {
 		logger.error(error)
 		res.status(500).json({
@@ -153,31 +153,53 @@ async function register(req: express.Request, res: express.Response) {
 			return
 		}
 
-		let newUser = await client.query(
-			`INSERT INTO users (username, password, email, type, created_at, updated_at) values ($1,$2,$3,$4,now(),now()) returning id`,
-			[username, password, email, type]
-		)
+		if (type == 'teacher') {
+			let newUser = await client.query(
+				`INSERT INTO users (username, password, email, type, created_at, updated_at) values ($1,$2,$3,$4,now(),now()) returning id`,
+				[username, password, email, type]
+			)
 
-		let newTeacher = await client.query(
-			`INSERT INTO teacher (user_id, created_at, updated_at) values ($1,now(),now()) returning id`,
-			[newUser.rows[0].id]
-		)
+			let newTeacher = await client.query(
+				`INSERT INTO teacher (user_id, created_at, updated_at) values ($1,now(),now()) returning id`,
+				[newUser.rows[0].id]
+			)
 
-		let newSubject = await client.query(
-			`INSERT INTO teacher_subject (subject_id,teacher_id, created_at, updated_at) values ($1,$2,now(),now()) returning id`,
-			[subjectId, newTeacher.rows[0].id]
-		)
+			let newSubject = await client.query(
+				`INSERT INTO teacher_subject (subject_id,teacher_id, created_at, updated_at) values ($1,$2,now(),now()) returning id`,
+				[subjectId, newTeacher.rows[0].id]
+			)
 
-		let imageUser = await client.query(
-			`INSERT INTO image (user_id,image_icon, created_at, updated_at) values ($1,$2,now(),now()) returning id`,
-			[newUser.rows[0].id, files?.image?.newFilename || '']
-		)
+			let imageUser = await client.query(
+				`INSERT INTO image (user_id,image_icon, created_at, updated_at) values ($1,$2,now(),now()) returning id`,
+				[newUser.rows[0].id, files?.image?.newFilename || '']
+			)
 
-		res.json({
-			data: newSubject,
-			imageUser,
-			message: 'register ok'
-		})
+			res.json({
+				data: newSubject,
+				imageUser,
+				message: 'register ok'
+			})
+		} else {
+			let newUser = await client.query(
+				`INSERT INTO users (username, password, email, type, created_at, updated_at) values ($1,$2,$3,$4,now(),now()) returning id`,
+				[username, password, email, type]
+			)
+
+			await client.query(
+				`INSERT INTO student (user_id, subject_id, created_at, updated_at) values ($1,$2,now(),now())`,
+				[newUser.rows[0].id, subjectId]
+			)
+
+			let imageUser = await client.query(
+				`INSERT INTO image (user_id,image_icon, created_at, updated_at) values ($1,$2,now(),now()) returning id`,
+				[newUser.rows[0].id, files?.image?.newFilename || '']
+			)
+
+			res.json({
+				imageUser,
+				message: 'register ok'
+			})
+		}
 	} catch (error) {
 		logger.error(error)
 		res.status(500).json({

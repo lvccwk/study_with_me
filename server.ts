@@ -257,19 +257,18 @@ app.post('/getuserandroomid', async (req, res) => {
 	}
 })
 
+// app.use(express.static('uploads'))
 app.use('/admin', adminRoutes)
+app.use(express.static(path.join(__dirname, 'uploads')))
 
 app.get('/me', (req, res) => {
-	res.json(req.session.user)
+	res.json(req.session)
 })
 
 app.use(express.static(path.join(__dirname, 'template_design')))
 app.use(express.static(path.join(__dirname, 'public')))
 app.use('/admin', express.static(path.join(__dirname, 'private')))
-app.use(express.static('uploads'))
-
-
-
+app.use(express.static('private'))
 app.use((req, res) => {
 	res.redirect('404.html')
 })

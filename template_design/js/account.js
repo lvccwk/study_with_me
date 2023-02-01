@@ -19,10 +19,14 @@ async function showProfile(session, otherUserId) {
 	)
 
 	if (!otherUserId) {
+		console.log(session)
+		console.log(welcome)
+		console.log(dp)
+		console.log(welcome)
 		welcome.innerHTML = `<h1 class="welcome-msg"> Welcome back! <br>${session.user.username}</h1>`
 		dp.innerHTML = `
             <div class="profile">
-                <img src="/images/avatar/${session.user.image}"
+                <img src="/${session.user.image}"
                 class="profile-image img-fluid" alt="" />
             </div>
         `

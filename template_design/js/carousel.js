@@ -1,15 +1,17 @@
-import { getAllStudents } from "./account.js"
-import { getSession } from "./account.js"
+import { getAllStudents } from './account.js'
+import { getSession } from './account.js'
 
 async function showUserCarousel(type) {
-    console.log(type)
-    if (type == 'teacher') {
+	console.log(type)
+	if (type == 'teacher') {
+		let studentList = await getAllStudents()
+		console.log(`student list = ${studentList}`)
+		console.log(studentList)
+		const carousel = document.querySelector(
+			'.carousel-user-list > .carousel-area'
+		)
 
-        let studentList = await getAllStudents()
-        console.log(studentList)
-        const carousel = document.querySelector(".carousel-user-list > .carousel-area")
-
-        carousel.innerHTML = `
+		carousel.innerHTML = `
         <div class="carousel-cell">
             <img class="carousel-cell-image"
                 data-flickity-lazyload="/images/avatar/happy-asian-man-standing-with-arms-crossed-grey-wall.jpg"
@@ -22,12 +24,12 @@ async function showUserCarousel(type) {
         </div>
 `
 
-        for (let student of studentList) {
-            carousel.innerHTML += `
+		for (let student of studentList) {
+			carousel.innerHTML += `
                 <div class="carousel-cell" id="carousel-userId-${student.id}">
                     <a href="/admin/viewotheruser?id=${student.id}">
                         <img class="carousel-cell-image"
-                            data-flickity-lazyload="/images/avatar/${student.image_icon}"
+                            data-flickity-lazyload="/${student.image_icon}"
                             alt="tulip" />
                         <div>
                         <span>${student.username}</span>
@@ -35,23 +37,23 @@ async function showUserCarousel(type) {
                     </a>
                 </div>
             `
-        }
+		}
 
-        $('.carousel-area').flickity({
-            // options
-            // cellAlign: 'left',
-            // contain: true
-            groupCells: true,
-            wrapAround: true,
-            lazyLoad: true
-        });
-    }
+		$('.carousel-area').flickity({
+			// options
+			// cellAlign: 'left',
+			// contain: true
+			groupCells: true,
+			wrapAround: true,
+			lazyLoad: true
+		})
+	}
 }
 
 async function carouselInit() {
-    let session = await getSession()
-    console.log(session)
-    await showUserCarousel(session.user.type)
+	let session = await getSession()
+	console.log(session)
+	await showUserCarousel(session.user.type)
 }
 
 carouselInit()

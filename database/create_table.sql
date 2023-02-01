@@ -84,7 +84,24 @@ CREATE TABLE public_chat(
     chat_message_time TIME,
     created_at TIMESTAMP,
     updated_at TIMESTAMP
-) -- //8
+) --//10
+CREATE TABLE bookings(
+    id SERIAL primary key,
+    teacher_id INTEGER,
+    FOREIGN KEY (teacher_id) REFERENCES teacher(id),
+    student_id INTEGER,
+    FOREIGN KEY (student_id) REFERENCES student(id),
+    booking_date DATE,
+    booking_time TIME,
+    details TEXT,
+    booking_status VARCHAR(255),
+    student_status VARCHAR(255),
+    teacher_status VARCHAR(255),
+    created_by VARCHAR(255),
+    created_at TIMESTAMP,
+    updated_at TIMESTAMP
+);
+-- //8
 -- CREATE TABLE chatroom(
 --     id SERIAL primary key,
 --     content VARCHAR(255),
