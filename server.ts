@@ -86,12 +86,15 @@ io.on('connection', (socket) => {
 			let dataB = String(req.session.user?.id) + '-' + String(data)
 
 			// console.log(dataA)
+			// console.log(dataB)
+
 			socket.join(dataA)
 			socket.join(dataB)
 
 			io.to(dataA).emit('private msg', dataA)
 			io.to(dataB).emit('private msg', dataB)
 		} catch (error) {
+			console.log(error)
 			res.status(500).json({
 				message: '[USR001] - Server error'
 			})
@@ -205,6 +208,7 @@ app.post('/getuserandroomid', async (req, res) => {
 		// 	receiverID
 		// ])
 
+		console.log(receiverID)
 		let result = await client.query(
 			`
 			select ${req.session['user']!['id']} as user_id, 

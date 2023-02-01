@@ -485,18 +485,26 @@ async function getChatRecord(req: express.Request, res: express.Response) {
 		// 	`SELECT image_icon from image JOIN users ON image.user_id = users.id`
 		// )
 		let foundMember = databaseToPublicChats.rows
-		console.log(databaseToPublicChats.rows)
 
-		let timeResults = databaseToPublicChats.rows[0].created_at
-		console.log(`check my time moment`, timeResults)
+		if (foundMember.length > 1) {
+			let timeResults = foundMember[0].created_at
+			// console.log(`check my time moment`, timeResults)
 
-		let timeResult = moment(timeResults).format('MMMM Do YYYY, h:mm:ss a')
-		// let timeResult = moment(timeResults).format('MMMM Do YYYY, h:mm:ss a')
+			let timeResult = moment(timeResults).format(
+				'MMMM Do YYYY, h:mm:ss a'
+			)
+			// let timeResult = moment(timeResults).format('MMMM Do YYYY, h:mm:ss a')
 
-		res.json({
-			data: foundMember,
-			time: timeResult
+			res.json({
+				data: foundMember,
+				time: timeResult
+			})
+			return
+		}
+		res.status(500).json({
+			message: '[USR001] - Not foundMember'
 		})
+		return
 	} catch (error) {
 		logger.error(error)
 		res.status(500).json({

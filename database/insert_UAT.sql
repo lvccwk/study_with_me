@@ -188,429 +188,516 @@ VALUES(
         '2023-01-26 16:51:50.902',
         '視覺藝術'
     );
-INSERT INTO public.student (
+INSERT INTO public.image (id, user_id, image_icon, created_at, updated_at)
+VALUES(
+        1,
+        1,
+        'image-1674727526524.png',
+        '2023-01-26 18:05:26.541',
+        '2023-01-26 18:05:26.541'
+    );
+INSERT INTO public.image (id, user_id, image_icon, created_at, updated_at)
+VALUES(
+        2,
+        2,
+        'image-1674727526524.png',
+        '2023-01-26 18:05:26.541',
+        '2023-01-26 18:05:26.541'
+    );
+INSERT INTO public.image (id, user_id, image_icon, created_at, updated_at)
+VALUES(
+        3,
+        4,
+        'image-1674727526524.png',
+        '2023-01-26 18:05:26.541',
+        '2023-01-26 18:05:26.541'
+    );
+INSERT INTO public.image (id, user_id, image_icon, created_at, updated_at)
+VALUES(
+        4,
+        3,
+        'image-1674727526524.png',
+        '2023-01-26 18:05:26.541',
+        '2023-01-26 18:05:26.541'
+    );
+INSERT INTO public.public_chat (
         id,
         user_id,
-        subject_id,
-        school_id,
-        academic_level,
+        sender,
+        receiver,
+        is_public,
+        room_id,
+        chat_record,
+        chat_message_time,
         created_at,
         updated_at
     )
 VALUES(
         1,
-        5,
-        4,
-        NULL,
-        NULL,
-        '2023-02-01 17:47:44.506',
-        '2023-02-01 17:47:44.506'
-    );
-INSERT INTO public.public_chat (
-        id,
-        user_id,
-        sender,
-        chat_record,
-        chat_message_time,
-        created_at,
-        updated_at,
-        receiver,
-        is_public,
-        room_id
-    )
-VALUES(
+        2,
         1,
+        0,
         NULL,
-        1,
+        NULL,
         'zdgzd',
         '16:25:33',
         '2023-02-01 16:25:33.725',
-        '2023-02-01 16:25:33.725',
-        0,
-        NULL,
-        NULL
+        '2023-02-01 16:25:33.725'
     );
 INSERT INTO public.public_chat (
         id,
         user_id,
         sender,
+        receiver,
+        is_public,
+        room_id,
         chat_record,
         chat_message_time,
         created_at,
-        updated_at,
-        receiver,
-        is_public,
-        room_id
+        updated_at
     )
 VALUES(
         2,
-        NULL,
+        2,
         1,
+        1,
+        NULL,
+        NULL,
         'zxcxzc',
         '16:25:36',
         '2023-02-01 16:25:36.457',
-        '2023-02-01 16:25:36.457',
-        1,
-        NULL,
-        NULL
+        '2023-02-01 16:25:36.457'
     );
 INSERT INTO public.public_chat (
         id,
         user_id,
         sender,
+        receiver,
+        is_public,
+        room_id,
         chat_record,
         chat_message_time,
         created_at,
-        updated_at,
-        receiver,
-        is_public,
-        room_id
+        updated_at
     )
 VALUES(
         3,
-        NULL,
+        4,
         1,
+        1,
+        NULL,
+        NULL,
         'zxczx',
         '16:25:37',
         '2023-02-01 16:25:37.274',
-        '2023-02-01 16:25:37.274',
-        1,
-        NULL,
-        NULL
+        '2023-02-01 16:25:37.274'
     );
 INSERT INTO public.public_chat (
         id,
         user_id,
         sender,
+        receiver,
+        is_public,
+        room_id,
         chat_record,
         chat_message_time,
         created_at,
-        updated_at,
-        receiver,
-        is_public,
-        room_id
+        updated_at
     )
 VALUES(
         4,
-        NULL,
         2,
+        2,
+        2,
+        NULL,
+        NULL,
         'dsbsd',
         '16:35:19',
         '2023-02-01 16:35:19.469',
-        '2023-02-01 16:35:19.469',
-        2,
-        NULL,
-        NULL
+        '2023-02-01 16:35:19.469'
     );
 INSERT INTO public.public_chat (
         id,
         user_id,
         sender,
+        receiver,
+        is_public,
+        room_id,
         chat_record,
         chat_message_time,
         created_at,
-        updated_at,
-        receiver,
-        is_public,
-        room_id
+        updated_at
     )
 VALUES(
         5,
-        NULL,
+        3,
         2,
+        2,
+        NULL,
+        NULL,
         'adsfsafgasf',
         '16:35:20',
         '2023-02-01 16:35:20.844',
-        '2023-02-01 16:35:20.844',
-        2,
-        NULL,
-        NULL
+        '2023-02-01 16:35:20.844'
     );
 INSERT INTO public.public_chat (
         id,
         user_id,
         sender,
+        receiver,
+        is_public,
+        room_id,
         chat_record,
         chat_message_time,
         created_at,
-        updated_at,
-        receiver,
-        is_public,
-        room_id
+        updated_at
     )
 VALUES(
         6,
-        NULL,
         2,
+        2,
+        1,
+        NULL,
+        NULL,
         'asfas',
         '16:35:23',
         '2023-02-01 16:35:23.022',
-        '2023-02-01 16:35:23.022',
-        1,
-        NULL,
-        NULL
+        '2023-02-01 16:35:23.022'
     );
 INSERT INTO public.public_chat (
         id,
         user_id,
         sender,
+        receiver,
+        is_public,
+        room_id,
         chat_record,
         chat_message_time,
         created_at,
-        updated_at,
-        receiver,
-        is_public,
-        room_id
+        updated_at
     )
 VALUES(
         7,
-        NULL,
+        3,
         2,
+        1,
+        NULL,
+        NULL,
         'safas',
         '16:35:24',
         '2023-02-01 16:35:24.063',
-        '2023-02-01 16:35:24.063',
-        1,
-        NULL,
-        NULL
+        '2023-02-01 16:35:24.063'
     );
 INSERT INTO public.public_chat (
         id,
         user_id,
         sender,
+        receiver,
+        is_public,
+        room_id,
         chat_record,
         chat_message_time,
         created_at,
-        updated_at,
-        receiver,
-        is_public,
-        room_id
+        updated_at
     )
 VALUES(
         8,
-        NULL,
+        1,
         2,
+        1,
+        NULL,
+        NULL,
         'safasf',
         '16:35:25',
         '2023-02-01 16:35:25.133',
-        '2023-02-01 16:35:25.133',
-        1,
-        NULL,
-        NULL
+        '2023-02-01 16:35:25.133'
     );
 INSERT INTO public.public_chat (
         id,
         user_id,
         sender,
+        receiver,
+        is_public,
+        room_id,
         chat_record,
         chat_message_time,
         created_at,
-        updated_at,
-        receiver,
-        is_public,
-        room_id
+        updated_at
     )
 VALUES(
         9,
-        NULL,
+        3,
         2,
+        1,
+        NULL,
+        NULL,
         'safasf',
         '16:35:27',
         '2023-02-01 16:35:27.302',
-        '2023-02-01 16:35:27.302',
-        1,
-        NULL,
-        NULL
+        '2023-02-01 16:35:27.302'
     );
 INSERT INTO public.public_chat (
         id,
         user_id,
         sender,
+        receiver,
+        is_public,
+        room_id,
         chat_record,
         chat_message_time,
         created_at,
-        updated_at,
-        receiver,
-        is_public,
-        room_id
+        updated_at
     )
 VALUES(
         10,
-        NULL,
         2,
-        'asfsafa',
-        '16:35:28',
-        '2023-02-01 16:35:28.643',
-        '2023-02-01 16:35:28.643',
+        2,
         1,
         NULL,
-        NULL
-    );
-INSERT INTO public.public_chat (
-        id,
-        user_id,
-        sender,
-        chat_record,
-        chat_message_time,
-        created_at,
-        updated_at,
-        receiver,
-        is_public,
-        room_id
-    )
-VALUES(
-        11,
         NULL,
-        2,
         'safsaf',
         '16:35:29',
         '2023-02-01 16:35:29.565',
-        '2023-02-01 16:35:29.565',
-        1,
-        NULL,
-        NULL
+        '2023-02-01 16:35:29.565'
     );
 INSERT INTO public.public_chat (
         id,
         user_id,
         sender,
+        receiver,
+        is_public,
+        room_id,
         chat_record,
         chat_message_time,
         created_at,
-        updated_at,
-        receiver,
-        is_public,
-        room_id
+        updated_at
     )
 VALUES(
-        12,
-        NULL,
+        11,
+        1,
         3,
+        2,
+        NULL,
+        NULL,
         'hdfhdfh',
         '17:25:05',
         '2023-02-01 17:25:05.752',
-        '2023-02-01 17:25:05.752',
-        2,
-        NULL,
-        NULL
+        '2023-02-01 17:25:05.752'
     );
 INSERT INTO public.public_chat (
         id,
         user_id,
         sender,
+        receiver,
+        is_public,
+        room_id,
         chat_record,
         chat_message_time,
         created_at,
-        updated_at,
-        receiver,
-        is_public,
-        room_id
+        updated_at
     )
 VALUES(
-        13,
-        NULL,
+        12,
+        1,
         3,
+        2,
+        NULL,
+        NULL,
         'dfhdfdfh',
         '17:25:06',
         '2023-02-01 17:25:06.847',
-        '2023-02-01 17:25:06.847',
-        2,
-        NULL,
-        NULL
+        '2023-02-01 17:25:06.847'
     );
 INSERT INTO public.public_chat (
         id,
         user_id,
         sender,
+        receiver,
+        is_public,
+        room_id,
         chat_record,
         chat_message_time,
         created_at,
-        updated_at,
-        receiver,
-        is_public,
-        room_id
+        updated_at
     )
 VALUES(
-        14,
-        NULL,
+        13,
+        1,
         3,
+        1,
+        NULL,
+        NULL,
         'dfhdf',
         '17:25:08',
         '2023-02-01 17:25:08.399',
-        '2023-02-01 17:25:08.399',
-        1,
-        NULL,
-        NULL
+        '2023-02-01 17:25:08.399'
     );
 INSERT INTO public.public_chat (
         id,
         user_id,
         sender,
+        receiver,
+        is_public,
+        room_id,
         chat_record,
         chat_message_time,
         created_at,
-        updated_at,
-        receiver,
-        is_public,
-        room_id
+        updated_at
     )
 VALUES(
-        15,
-        NULL,
+        14,
+        1,
         3,
+        6,
+        NULL,
+        NULL,
         'safafssa',
         '18:00:32',
         '2023-02-01 18:00:32.967',
-        '2023-02-01 18:00:32.967',
-        6,
-        NULL,
-        NULL
+        '2023-02-01 18:00:32.967'
     );
 INSERT INTO public.public_chat (
         id,
         user_id,
         sender,
+        receiver,
+        is_public,
+        room_id,
         chat_record,
         chat_message_time,
         created_at,
-        updated_at,
-        receiver,
-        is_public,
-        room_id
+        updated_at
     )
 VALUES(
-        16,
-        NULL,
+        15,
+        1,
         3,
+        6,
+        NULL,
+        NULL,
         'eges',
         '18:00:37',
         '2023-02-01 18:00:37.471',
-        '2023-02-01 18:00:37.471',
-        6,
-        NULL,
-        NULL
+        '2023-02-01 18:00:37.471'
     );
 INSERT INTO public.public_chat (
         id,
         user_id,
         sender,
+        receiver,
+        is_public,
+        room_id,
         chat_record,
         chat_message_time,
         created_at,
-        updated_at,
+        updated_at
+    )
+VALUES(
+        16,
+        1,
+        3,
+        3,
+        NULL,
+        NULL,
+        'seg',
+        '18:00:46',
+        '2023-02-01 18:00:46.200',
+        '2023-02-01 18:00:46.200'
+    );
+INSERT INTO public.public_chat (
+        id,
+        user_id,
+        sender,
         receiver,
         is_public,
-        room_id
+        room_id,
+        chat_record,
+        chat_message_time,
+        created_at,
+        updated_at
     )
 VALUES(
         17,
         NULL,
         3,
-        'seg',
-        '18:00:46',
-        '2023-02-01 18:00:46.200',
-        '2023-02-01 18:00:46.200',
+        0,
+        NULL,
+        NULL,
+        '123
+',
+        '19:12:57',
+        '2023-02-01 19:12:57.710',
+        '2023-02-01 19:12:57.710'
+    );
+INSERT INTO public.public_chat (
+        id,
+        user_id,
+        sender,
+        receiver,
+        is_public,
+        room_id,
+        chat_record,
+        chat_message_time,
+        created_at,
+        updated_at
+    )
+VALUES(
+        18,
+        NULL,
+        3,
+        1,
+        NULL,
+        NULL,
+        '4124',
+        '19:13:04',
+        '2023-02-01 19:13:04.630',
+        '2023-02-01 19:13:04.630'
+    );
+INSERT INTO public.public_chat (
+        id,
+        user_id,
+        sender,
+        receiver,
+        is_public,
+        room_id,
+        chat_record,
+        chat_message_time,
+        created_at,
+        updated_at
+    )
+VALUES(
+        19,
+        NULL,
+        3,
+        4,
+        NULL,
+        NULL,
+        '234',
+        '19:13:06',
+        '2023-02-01 19:13:06.514',
+        '2023-02-01 19:13:06.514'
+    );
+INSERT INTO public.public_chat (
+        id,
+        user_id,
+        sender,
+        receiver,
+        is_public,
+        room_id,
+        chat_record,
+        chat_message_time,
+        created_at,
+        updated_at
+    )
+VALUES(
+        20,
+        NULL,
+        3,
         3,
         NULL,
-        NULL
+        NULL,
+        '123213',
+        '19:13:08',
+        '2023-02-01 19:13:08.537',
+        '2023-02-01 19:13:08.537'
     );
