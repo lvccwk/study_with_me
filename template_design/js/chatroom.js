@@ -131,7 +131,7 @@ async function instantChat({
 			<div
 				class="d-flex flex-row justify-content-end">
 	
-				<div>${receiverUsername}
+				<div>${senderUsername}
 	
 				<div>
 				<p
@@ -173,7 +173,7 @@ async function instantChat({
 					"
 				/>
 	
-				<div>${receiverUsername}
+				<div>${senderUsername}
 	
 				<div>
 				<p
@@ -285,13 +285,16 @@ async function getGrouplist() {
 	`
 }
 
-async function getPrivateChatRecord(data, time) {
+async function getPrivateChatRecord(data) {
 	let userContainerElem = document.querySelector('#record')
 	// console.log('getPublicChatRecord', data, '21e124e214214124', time)
 	userContainerElem.innerHTML = ''
 
 	for (let userInfo of data) {
-		// console.log('final!!!!', userInfo)
+		const timeFormat = userInfo.chat_message_time
+		let timeResult = timeFormat.split('')
+		console.log(`check time`, timeResult[8])
+		console.log('final!!!!', userInfo)
 		if (userInfo.sender_id === userInfo.user_id) {
 			// let imagePath = tutorInfo.image_icon ? `${await getImage(tutorInfo.image_icon)}` : "images/avatar/portrait-good-looking-brunette-young-asian-woman.jpg"
 			// console.log(`chat room 112321321232121321312${userInfo.username}`)
@@ -313,7 +316,7 @@ async function getPrivateChatRecord(data, time) {
 				<p
 				class="small ms-3 mb-3 rounded-3 text-muted float-end"
 				>
-				${time}
+				${userInfo.chat_message_time}
 				</p>
 				</div>
 
@@ -352,12 +355,12 @@ async function getPrivateChatRecord(data, time) {
 						background-color: #f5f6f7;
 					"
 				>
-				${userInfo.chat_record}
+				${userInfo.chat_message_time}
 				</p>
 				<p
 					class="small ms-3 mb-3 rounded-3 text-muted float-end"
 				>
-					${time}
+					${userInfo.created_at}
 				</p>
 			</div>
 
@@ -588,7 +591,7 @@ async function getUserAndRoomId(userId) {
 	let data = result.data
 	let time = result.time
 	// console.log(data)
-	// console.log(`checkcheck12321312`, time)
+
 	localStorage.setItem('senderId', data.sender)
 	localStorage.setItem('receiverId', data.receiver)
 
