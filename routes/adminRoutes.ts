@@ -141,7 +141,7 @@ async function findPendingSchedules(
 async function findAllStudents(req: express.Request, res: express.Response) {
 	try {
 		let findAllStudents = await client.query(`
-        select users.* , image.image_icon
+        select student.id as student_id, users.* , image.image_icon
         from users Join student on users.id = student.user_id JOIN image on users.id = image.user_id;
         `)
 		res.json(findAllStudents.rows)
@@ -156,7 +156,7 @@ async function findAllStudents(req: express.Request, res: express.Response) {
 async function findAllTeachers(req: express.Request, res: express.Response) {
 	try {
 		let findAllTeachers = await client.query(`
-        select users.* , image.image_icon
+        select teacher.id as teacher_id, users.*, image.image_icon
         from users Join teacher on users.id = teacher.user_id JOIN image on users.id = image.user_id;
         `)
 		res.json(findAllTeachers.rows)
@@ -170,13 +170,8 @@ async function findAllTeachers(req: express.Request, res: express.Response) {
 
 async function addSchedule(req: express.Request, res: express.Response) {
 	try {
-		console.log('received')
-		console.log(req.body)
-		console.log("req.body.type = ", req.body.type)
-		console.log("req.body.type's type = ", typeof req.body.type)
-		console.log('req params = ', req.params.userId)
 
-		if (req.body.type = "teacher") {
+		if (req.body.type == "teacher") {
 
 			let teacherId = await client.query(
 				`SELECT teacher.id FROM teacher JOIN users ON teacher.user_id = users.id WHERE users.id = $1`, [req.params.userId]
@@ -195,8 +190,7 @@ async function addSchedule(req: express.Request, res: express.Response) {
 					req.body.details
 				]
 			)
-		} else if (req.body.type = "student") {
-			console.log("1 step")
+		} else if (req.body.type == "student") {
 			let studentId = await client.query(
 				`SELECT student.id FROM student JOIN users ON student.user_id = users.id WHERE users.id = $1`, [req.params.userId]
 			)
@@ -227,19 +221,35 @@ async function addSchedule(req: express.Request, res: express.Response) {
 
 async function cancelSchedule(req: express.Request, res: express.Response) {
 	try {
-		let teacherId = await client.query(
-			`SELECT teacher.id FROM teacher JOIN users ON teacher.user_id = users.id WHERE users.id = ${req.params.userId}`
-		)
-		let date = moment(req.body.cancelDate).format('DD-MM-YYYY')
-		await client.query(
-			`DELETE FROM bookings WHERE teacher_id = $1 AND student_id = $2 AND booking_date = $3 AND booking_time = $4`,
-			[
-				teacherId.rows[0].id,
-				req.body.studentId,
-				date,
-				req.body.cancelTime
-			]
-		)
+		if (req.body.type == "teacher") {
+			let teacherId = await client.query(
+				`SELECT teacher.id FROM teacher JOIN users ON teacher.user_id = users.id WHERE users.id = ${req.params.userId}`
+			)
+			let date = moment(req.body.cancelDate).format('DD-MM-YYYY')
+			await client.query(
+				`DELETE FROM bookings WHERE teacher_id = $1 AND student_id = $2 AND booking_date = $3 AND booking_time = $4`,
+				[
+					teacherId.rows[0].id,
+					req.body.studentId,
+					date,
+					req.body.cancelTime
+				]
+			)
+		} else {
+			let studentId = await client.query(
+				`SELECT student.id FROM student JOIN users ON student.user_id = users.id WHERE users.id = ${req.params.userId}`
+			)
+			let date = moment(req.body.cancelDate).format('DD-MM-YYYY')
+			await client.query(
+				`DELETE FROM bookings WHERE teacher_id = $1 AND student_id = $2 AND booking_date = $3 AND booking_time = $4`,
+				[
+					req.body.teacherId,
+					studentId.rows[0].id,
+					date,
+					req.body.cancelTime
+				]
+			)
+		}
 		res.json('ok')
 	} catch (error) {
 		logger.error(error)

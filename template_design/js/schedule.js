@@ -103,48 +103,17 @@ export async function createScheduleTable(htmlId) {
         let timeId = moment(schedule.booking_time, 'HH:mm a').format('hA')
         // console.log(moment(schedule.booking_date).format('YYYY-MM-DD'))
         if (schedule.booking_status == 'confirmed') {
-            document.querySelector(`#booking-${timeId}>.student`).innerHTML = schedule.student_name
-            document.querySelector(`#booking-${timeId}>.details`).innerHTML = schedule.details
-            document.querySelector(`#booking-${timeId}>.status`).innerHTML = schedule.booking_status
-            document.querySelector(`#booking-${timeId}>.buttons`).innerHTML = `
-                    <button type="button" id="edit-button-${timeId}">edit</button>
-                    <button type="button" id="cancel-button-${timeId}">Cancel</button>
-                `
-            const cancelButton = document.querySelector(`#cancel-button-${timeId}`)
-            cancelButton.addEventListener("click", async function () {
-                console.log("clicked")
-                let session = await getSession()
-                const choseDate = document.querySelector("#calendar-chose-date")
-                const choseTime = document.querySelector(`#booking-${timeId}>.time`)
-
-                const formObject = {};
-
-                formObject["cancelDate"] = choseDate.innerHTML;
-                formObject["cancelTime"] = choseTime.innerHTML;
-                formObject["studentId"] = schedule.student_id;
-                console.log(formObject)
-
-                const res = await fetch(`/admin/cancel/${session.user.id}`, {
-                    method: "DELETE",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify(formObject),
-                });
-                await createScheduleTable("teacher-id")
-            })
-
-        } else {
-            if (schedule.teacher_status == 'confirm') {
+            if (session.user.type == "teacher") {
                 document.querySelector(`#booking-${timeId}>.student`).innerHTML = schedule.student_name
                 document.querySelector(`#booking-${timeId}>.details`).innerHTML = schedule.details
                 document.querySelector(`#booking-${timeId}>.status`).innerHTML = schedule.booking_status
                 document.querySelector(`#booking-${timeId}>.buttons`).innerHTML = `
-                        <button type="button" id="edit-button-${timeId}">edit</button>
-                        <button type="button" id="cancel-button-${timeId}">Cancel</button>
-                    `
+                    <button type="button" id="edit-button-${timeId}">edit</button>
+                    <button type="button" id="cancel-button-${timeId}">Cancel</button>
+                `
                 const cancelButton = document.querySelector(`#cancel-button-${timeId}`)
                 cancelButton.addEventListener("click", async function () {
+                    console.log("clicked")
                     let session = await getSession()
                     const choseDate = document.querySelector("#calendar-chose-date")
                     const choseTime = document.querySelector(`#booking-${timeId}>.time`)
@@ -154,6 +123,8 @@ export async function createScheduleTable(htmlId) {
                     formObject["cancelDate"] = choseDate.innerHTML;
                     formObject["cancelTime"] = choseTime.innerHTML;
                     formObject["studentId"] = schedule.student_id;
+                    formObject["type"] = session.user.type;
+
                     console.log(formObject)
 
                     const res = await fetch(`/admin/cancel/${session.user.id}`, {
@@ -165,6 +136,107 @@ export async function createScheduleTable(htmlId) {
                     });
                     await createScheduleTable("teacher-id")
                 })
+            } else {
+                document.querySelector(`#booking-${timeId}>.student`).innerHTML = schedule.teacher_name
+                document.querySelector(`#booking-${timeId}>.details`).innerHTML = schedule.details
+                document.querySelector(`#booking-${timeId}>.status`).innerHTML = schedule.booking_status
+                document.querySelector(`#booking-${timeId}>.buttons`).innerHTML = `
+                    <button type="button" id="edit-button-${timeId}">edit</button>
+                    <button type="button" id="cancel-button-${timeId}">Cancel</button>
+                `
+                const cancelButton = document.querySelector(`#cancel-button-${timeId}`)
+                cancelButton.addEventListener("click", async function () {
+                    console.log("clicked")
+                    let session = await getSession()
+                    const choseDate = document.querySelector("#calendar-chose-date")
+                    const choseTime = document.querySelector(`#booking-${timeId}>.time`)
+
+                    const formObject = {};
+
+                    formObject["cancelDate"] = choseDate.innerHTML;
+                    formObject["cancelTime"] = choseTime.innerHTML;
+                    formObject["teacherId"] = schedule.teacher_id;
+                    formObject["type"] = session.user.type;
+
+                    console.log(formObject)
+
+                    const res = await fetch(`/admin/cancel/${session.user.id}`, {
+                        method: "DELETE",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify(formObject),
+                    });
+                    await createScheduleTable("teacher-id")
+                })
+            }
+        } else {
+            if (session.user.type == "teacher") {
+                if (schedule.teacher_status == 'confirm') {
+                    document.querySelector(`#booking-${timeId}>.student`).innerHTML = schedule.student_name
+                    document.querySelector(`#booking-${timeId}>.details`).innerHTML = schedule.details
+                    document.querySelector(`#booking-${timeId}>.status`).innerHTML = schedule.booking_status
+                    document.querySelector(`#booking-${timeId}>.buttons`).innerHTML = `
+                            <button type="button" id="edit-button-${timeId}">edit</button>
+                            <button type="button" id="cancel-button-${timeId}">Cancel</button>
+                        `
+                    const cancelButton = document.querySelector(`#cancel-button-${timeId}`)
+                    cancelButton.addEventListener("click", async function () {
+                        let session = await getSession()
+                        const choseDate = document.querySelector("#calendar-chose-date")
+                        const choseTime = document.querySelector(`#booking-${timeId}>.time`)
+
+                        const formObject = {};
+
+                        formObject["cancelDate"] = choseDate.innerHTML;
+                        formObject["cancelTime"] = choseTime.innerHTML;
+                        formObject["studentId"] = schedule.student_id;
+                        formObject["type"] = session.user.type;
+                        console.log(formObject)
+
+                        const res = await fetch(`/admin/cancel/${session.user.id}`, {
+                            method: "DELETE",
+                            headers: {
+                                "Content-Type": "application/json",
+                            },
+                            body: JSON.stringify(formObject),
+                        });
+                        await createScheduleTable("teacher-id")
+                    })
+                }
+            } else {
+                if (schedule.student_status == 'confirm') {
+                    document.querySelector(`#booking-${timeId}>.student`).innerHTML = schedule.teacher_name
+                    document.querySelector(`#booking-${timeId}>.details`).innerHTML = schedule.details
+                    document.querySelector(`#booking-${timeId}>.status`).innerHTML = schedule.booking_status
+                    document.querySelector(`#booking-${timeId}>.buttons`).innerHTML = `
+                            <button type="button" id="edit-button-${timeId}">edit</button>
+                            <button type="button" id="cancel-button-${timeId}">Cancel</button>
+                        `
+                    const cancelButton = document.querySelector(`#cancel-button-${timeId}`)
+                    cancelButton.addEventListener("click", async function () {
+                        let session = await getSession()
+                        const choseDate = document.querySelector("#calendar-chose-date")
+                        const choseTime = document.querySelector(`#booking-${timeId}>.time`)
+
+                        const formObject = {};
+
+                        formObject["cancelDate"] = choseDate.innerHTML;
+                        formObject["cancelTime"] = choseTime.innerHTML;
+                        formObject["teacherId"] = schedule.teacher_id;
+                        formObject["type"] = session.user.type;
+                        console.log(formObject)
+
+                        const res = await fetch(`/admin/cancel/${session.user.id}`, {
+                            method: "DELETE",
+                            headers: {
+                                "Content-Type": "application/json",
+                            },
+                            body: JSON.stringify(formObject),
+                        });
+                        await createScheduleTable("teacher-id")
+                    })
+                }
             }
         }
     }
@@ -207,7 +279,7 @@ async function createInputForm(date, time, action, type) {
         for (let student of studentList) {
             console.log(student)
             document.querySelector('.form-user-list').innerHTML += `
-            <option value="${student.id}">stu-ID: ${student.id} ${student.username}</option>
+            <option value="${student.student_id}">stu-ID: ${student.student_id} ${student.username}</option>
         `
         }
     } else {
@@ -215,7 +287,7 @@ async function createInputForm(date, time, action, type) {
         for (let teacher of teacherList) {
             console.log(teacher)
             document.querySelector('.form-user-list').innerHTML += `
-            <option value="${teacher.id}">tea-ID: ${teacher.id} ${teacher.username}</option>
+            <option value="${teacher.teacher_id}">tea-ID: ${teacher.teacher_id} ${teacher.username}</option>
         `
         }
     }
