@@ -1,4 +1,14 @@
 import express from 'express'
+import { User } from './interface'
+
+
+declare module 'express-session' {
+	interface SessionData {
+		counter?: number
+		user?: User
+	}
+}
+
 
 export const isLoggedIn = (
 	req: express.Request,

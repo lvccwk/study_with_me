@@ -1,3 +1,5 @@
+import { createScheduleTable } from "./schedule.js";
+
 const daysTag = document.querySelector(".days"),
     currentDate = document.querySelector(".current-date"),
     prevNextIcon = document.querySelectorAll(".icons span"),
@@ -12,7 +14,7 @@ let date = new Date(),
 const months = ["January", "February", "March", "April", "May", "June", "July",
     "August", "September", "October", "November", "December"];
 
-const renderCalendar = () => {
+const renderCalendar = async () => {
     let firstDayOfMonth = new Date(currYear, currMonth, 1).getDay(), // getting first day of month
         lastDateOfMonth = new Date(currYear, currMonth + 1, 0).getDate(), // getting last date of month
         lastDayOfMonth = new Date(currYear, currMonth, lastDateOfMonth).getDay(), // getting last day of month
@@ -38,14 +40,14 @@ const renderCalendar = () => {
 
     const thisMonthCalendarDates = document.querySelectorAll(".days>li.thisMonth")
     for (let date of thisMonthCalendarDates) {
-        date.addEventListener("click", function () {
-            console.log(date.innerHTML)
-            schedule.innerHTML = `${date.innerHTML} ${currentDate.innerHTML}`;
+        date.addEventListener("click", async function () {
+            schedule.innerHTML = `${currYear}-0${currMonth + 1}-0${date.innerHTML}`;
+            await createScheduleTable("teacher-id")
         })
     }
 
     const today = document.querySelector(".active")
-    schedule.innerHTML = `${today.innerHTML} ${currentDate.innerHTML}`
+    schedule.innerHTML = `${currYear}-0${currMonth + 1}-0${today.innerHTML}`
 }
 renderCalendar();
 

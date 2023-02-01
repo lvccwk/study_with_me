@@ -203,4 +203,5 @@ Select users.username,
     public_chat.chat_record
 FROM public_chat
     JOIN users ON users.id = public_chat.user_id
-ORDER BY public_chat.id ASC
+ORDER BY public_chat.id ASC;
+

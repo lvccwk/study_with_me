@@ -223,6 +223,7 @@ async function login(req: express.Request, res: express.Response) {
 	try {
 		logger.info('body = ', req.body)
 		let { email, password } = req.body
+		console.log('login input = ')
 		console.log({ email, password })
 
 		if (!email || !password) {
@@ -254,17 +255,32 @@ async function login(req: express.Request, res: express.Response) {
 
 		delete foundUser.password
 
+		let isTeacher = await client.query(`select teacher.id from teacher join users on teacher.user_id = users.id where users.id = ${foundUser.id}`)
+		console.log(isTeacher)
+
+		if (isTeacher) {
+			foundUser['type'] = 'teacher'
+		} else {
+			foundUser['type'] = 'student'
+		}
+
+		let userImage = await client.query(`select image_icon from image join users on image.user_id = users.id where users.id = ${foundUser.id}`)
+
 		// console.log(foundUser.username)
 		req.session.user = {
 			username: foundUser.username,
-			password: '',
-			email: foundUser.email
+			email: foundUser.email,
+			id: foundUser.id,
+			image: userImage.rows[0].image_icon,
+			type: foundUser.type
 		}
 
+		console.log(req.session.user)
 		// console.log(`check req session ${req.session}`)
 		// console.log('foundUser = ', foundUser)
 
-		res.redirect('/account.html')
+
+		res.redirect('/admin')
 	} catch (error) {
 		logger.error(error)
 		res.status(500).json({

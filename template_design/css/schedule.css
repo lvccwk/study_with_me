@@ -1,11 +1,7 @@
-.booking {
-    border-width: 0px 2px;
-    border-style: solid;
-    border-color: black;
-}
-
 .schedule-box {
     /* padding: 1vh 0vw; */
+    border-color: black;
+    border-style: solid;
 }
 
 .schedule-row {
