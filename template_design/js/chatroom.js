@@ -17,7 +17,7 @@ form.addEventListener('submit', async function (e) {
 			socket.emit('chat message', [input.value, userId])
 			// console.log('message123123123', [input.value, userId])
 			// socket.emit('unsubscribe', '123_64')
-
+			console.log('睇清楚啲', input.value, userId)
 			input.value = ''
 
 			let res = await fetch(`/newChatMessage`, {
@@ -94,6 +94,16 @@ async function instantChat({
 	createdAt,
 	chatMessageTime
 }) {
+	console.log({
+		senderId,
+		senderUsername,
+		msg,
+		receiverID,
+		receiverUsername,
+		createdAt,
+		chatMessageTime
+	})
+
 	try {
 		const ownerId = localStorage.getItem('ownerId')
 		// console.log('12312312312321123123321', {
@@ -121,7 +131,7 @@ async function instantChat({
 			<div
 				class="d-flex flex-row justify-content-end">
 	
-				<div>${senderUsername}
+				<div>${receiverUsername}
 	
 				<div>
 				<p
@@ -163,7 +173,7 @@ async function instantChat({
 					"
 				/>
 	
-				<div>${senderUsername}
+				<div>${receiverUsername}
 	
 				<div>
 				<p

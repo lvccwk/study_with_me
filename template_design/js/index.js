@@ -4,20 +4,21 @@ async function loadTutorInfo() {
 		let data = await res.json()
 		let tutorInfos = data.data
 
-    // console.log(tutorInfos)
+		// console.log(tutorInfos)
 		// getTutorInfo(tutorInfos)
 		// console.table(tutorInfos)
-  let tutorContainerElem = document.querySelector('#homepage-tutor')
-  for(let tutorInfo of tutorInfos.rows){
-    let imagePath = tutorInfo.image_icon ? `${await getImage(imageName)}` : "images/avatar/portrait-good-looking-brunette-young-asian-woman.jpg"
-    // console.log(tutorInfo.username,imagePath,tutorInfo.chinese_name) 
-    tutorContainerElem.innerHTML += 
-  
-`
+		let tutorContainerElem = document.querySelector('#homepage-tutor')
+		for (let tutorInfo of tutorInfos.rows) {
+			console.log(tutorInfo)
+			let imagePath = tutorInfo.image_icon
+				? `${await getImage(imageName)}`
+				: 'images/avatar/portrait-good-looking-brunette-young-asian-woman.jpg'
+			// console.log(tutorInfo.username,imagePath,tutorInfo.chinese_name)
+			tutorContainerElem.innerHTML += `
 <div class="col-lg-3 col-md-6 col-12">
 <div class="speakers-thumb speakers-thumb-small">
     <img
-        src="${imagePath}"
+        src="${tutorInfo.image_icon}"
         class="img-fluid speakers-image"
         alt=""
     />
@@ -50,28 +51,24 @@ async function loadTutorInfo() {
 </div>
 </div>
 `
-    }
-
+		}
 	} else {
 		alert('cannot fetch info')
 	}
 }
 
-async function getImage(imageName){
+async function getImage(imageName) {
+	let res = await fetch('imageName')
 
-    let res = await fetch('imageName')
-   
-    if ( res.url.includes('404')){
-        return 'images/avatar/portrait-good-looking-brunette-young-asian-woman.jpg'
-    }else{
-        return `uploads/${imageName}`
-    }
+	if (res.url.includes('404')) {
+		return 'images/avatar/portrait-good-looking-brunette-young-asian-woman.jpg'
+	} else {
+		return `uploads/${imageName}`
+	}
 }
 
-async function init(){
-
-    // js()
-    await loadTutorInfo()
- 
-  }
-  init()
+async function init() {
+	// js()
+	await loadTutorInfo()
+}
+init()

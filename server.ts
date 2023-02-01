@@ -152,6 +152,7 @@ io.on('connection', (socket) => {
 			)
 		).rows[0]
 
+		console.log('dwqdwqdwqdwqwdq', publicChat)
 		let receiverUsername = ''
 		if (receiverId) {
 			receiverUsername = (
@@ -160,6 +161,7 @@ io.on('connection', (socket) => {
 				])
 			).rows[0].username
 		}
+		console.log('check', receiverUsername)
 
 		let created_time = moment(publicChat.created_at).format(
 			'MMMM Do YYYY, h:mm:ss a'
