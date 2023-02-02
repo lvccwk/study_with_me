@@ -26,6 +26,7 @@ async function getConfirmedSchedule() {
 export async function createScheduleTable(htmlId) {
 	let schedules = await getConfirmedSchedule()
 	let session = await getSession()
+	let otherUserId = checkUrlId()
 	console.log('confirmed schedules = ', schedules)
 	const tableAddForm = $(`#${htmlId}`)
 	tableAddForm.html(`                            
@@ -78,12 +79,19 @@ export async function createScheduleTable(htmlId) {
 		const status = $(
 			`<div class="col-2 col-lg-1 schedule-box status"> </div>`
 		)
-
-		const buttons = $(
-			`<div class="col-2 schedule-box buttons">
-                <button type="button" id="add-button-${hr.id}">Add</button>
-                </div>`
-		)
+		let buttons = $()
+		if (!otherUserId) {
+			buttons = $(
+				`<div class="col-2 schedule-box buttons">
+                    <button type="button" id="add-button-${hr.id}">Add</button>
+                    </div>`
+			)
+		} else {
+			buttons = $(
+				`<div class="col-2 schedule-box buttons">
+                    </div>`
+			)
+		}
 
 		grid.append(time)
 		grid.append(student)
@@ -93,28 +101,30 @@ export async function createScheduleTable(htmlId) {
 
 		form.append(grid)
 		tableAddForm.append(form)
-
-		const addButton = document.querySelector(`#add-button-${hr.id}`)
-		addButton.addEventListener('click', async function () {
-			const choseDate = document.querySelector('#calendar-chose-date')
-			const choseTime = document.querySelector(`#booking-${hr.id}>.time`)
-			await createInputForm(
-				choseDate.innerHTML,
-				choseTime.innerHTML,
-				'Add',
-				session.type
-			)
-
-			// const editConfirm = document.querySelector(".edit-confirm")
-		})
+		if (!otherUserId) {
+			const addButton = document.querySelector(`#add-button-${hr.id}`)
+			addButton.addEventListener('click', async function () {
+				const choseDate = document.querySelector('#calendar-chose-date')
+				const choseTime = document.querySelector(
+					`#booking-${hr.id}>.time`
+				)
+				await createInputForm(
+					choseDate.innerHTML,
+					choseTime.innerHTML,
+					'Add',
+					session.user.type
+				)
+			})
+		}
 	})
+
 	for (let schedule of schedules) {
 		let timeId = moment(schedule.booking_time, 'HH:mm a').format('hA')
 		// console.log(moment(schedule.booking_date).format('YYYY-MM-DD'))
 		let otherUserId = checkUrlId()
 		if (!otherUserId) {
 			if (schedule.booking_status == 'confirmed') {
-				if (session.type == 'teacher') {
+				if (session.user.type == 'teacher') {
 					document.querySelector(
 						`#booking-${timeId}>.student`
 					).innerHTML = schedule.student_name
@@ -148,17 +158,20 @@ export async function createScheduleTable(htmlId) {
 						formObject['cancelDate'] = choseDate.innerHTML
 						formObject['cancelTime'] = choseTime.innerHTML
 						formObject['studentId'] = schedule.student_id
-						formObject['type'] = session.type
+						formObject['type'] = session.user.type
 
 						console.log(formObject)
 
-						const res = await fetch(`/admin/cancel/${session.id}`, {
-							method: 'DELETE',
-							headers: {
-								'Content-Type': 'application/json'
-							},
-							body: JSON.stringify(formObject)
-						})
+						const res = await fetch(
+							`/admin/cancel/${session.user.id}`,
+							{
+								method: 'DELETE',
+								headers: {
+									'Content-Type': 'application/json'
+								},
+								body: JSON.stringify(formObject)
+							}
+						)
 						await createScheduleTable('teacher-id')
 					})
 				} else {
@@ -195,22 +208,25 @@ export async function createScheduleTable(htmlId) {
 						formObject['cancelDate'] = choseDate.innerHTML
 						formObject['cancelTime'] = choseTime.innerHTML
 						formObject['teacherId'] = schedule.teacher_id
-						formObject['type'] = session.type
+						formObject['type'] = session.user.type
 
 						console.log(formObject)
 
-						const res = await fetch(`/admin/cancel/${session.id}`, {
-							method: 'DELETE',
-							headers: {
-								'Content-Type': 'application/json'
-							},
-							body: JSON.stringify(formObject)
-						})
+						const res = await fetch(
+							`/admin/cancel/${session.user.id}`,
+							{
+								method: 'DELETE',
+								headers: {
+									'Content-Type': 'application/json'
+								},
+								body: JSON.stringify(formObject)
+							}
+						)
 						await createScheduleTable('teacher-id')
 					})
 				}
 			} else {
-				if (session.type == 'teacher') {
+				if (session.user.type == 'teacher') {
 					if (schedule.teacher_status == 'confirm') {
 						document.querySelector(
 							`#booking-${timeId}>.student`
@@ -246,11 +262,11 @@ export async function createScheduleTable(htmlId) {
 								formObject['cancelDate'] = choseDate.innerHTML
 								formObject['cancelTime'] = choseTime.innerHTML
 								formObject['studentId'] = schedule.student_id
-								formObject['type'] = session.type
+								formObject['type'] = session.user.type
 								console.log(formObject)
 
 								const res = await fetch(
-									`/admin/cancel/${session.id}`,
+									`/admin/cancel/${session.user.id}`,
 									{
 										method: 'DELETE',
 										headers: {
@@ -299,11 +315,11 @@ export async function createScheduleTable(htmlId) {
 								formObject['cancelDate'] = choseDate.innerHTML
 								formObject['cancelTime'] = choseTime.innerHTML
 								formObject['teacherId'] = schedule.teacher_id
-								formObject['type'] = session.type
+								formObject['type'] = session.user.type
 								console.log(formObject)
 
 								const res = await fetch(
-									`/admin/cancel/${session.id}`,
+									`/admin/cancel/${session.user.id}`,
 									{
 										method: 'DELETE',
 										headers: {
@@ -320,7 +336,7 @@ export async function createScheduleTable(htmlId) {
 			}
 		} else {
 			if (schedule.booking_status == 'confirmed') {
-				if (session.type == 'teacher') {
+				if (session.user.type == 'teacher') {
 					document.querySelector(
 						`#booking-${timeId}>.student`
 					).innerHTML = schedule.teacher_name
@@ -342,113 +358,67 @@ export async function createScheduleTable(htmlId) {
 					).innerHTML = schedule.booking_status
 				}
 			} else {
-				if (session.type == 'teacher') {
-					if (schedule.teacher_status == 'confirm') {
-						document.querySelector(
-							`#booking-${timeId}>.student`
-						).innerHTML = schedule.student_name
-						document.querySelector(
-							`#booking-${timeId}>.details`
-						).innerHTML = schedule.details
-						document.querySelector(
-							`#booking-${timeId}>.status`
-						).innerHTML = schedule.booking_status
-						document.querySelector(
-							`#booking-${timeId}>.buttons`
-						).innerHTML = `
-                                <button type="button" id="edit-button-${timeId}">edit</button>
-                                <button type="button" id="cancel-button-${timeId}">Cancel</button>
-                            `
-						const cancelButton = document.querySelector(
-							`#cancel-button-${timeId}`
-						)
-						cancelButton.addEventListener(
-							'click',
-							async function () {
-								let session = await getSession()
-								const choseDate = document.querySelector(
-									'#calendar-chose-date'
-								)
-								const choseTime = document.querySelector(
-									`#booking-${timeId}>.time`
-								)
-
-								const formObject = {}
-
-								formObject['cancelDate'] = choseDate.innerHTML
-								formObject['cancelTime'] = choseTime.innerHTML
-								formObject['studentId'] = schedule.student_id
-								formObject['type'] = session.type
-								console.log(formObject)
-
-								const res = await fetch(
-									`/admin/cancel/${session.id}`,
-									{
-										method: 'DELETE',
-										headers: {
-											'Content-Type': 'application/json'
-										},
-										body: JSON.stringify(formObject)
-									}
-								)
-								await createScheduleTable('teacher-id')
-							}
-						)
-					}
-				} else {
-					if (schedule.student_status == 'confirm') {
-						document.querySelector(
-							`#booking-${timeId}>.student`
-						).innerHTML = schedule.teacher_name
-						document.querySelector(
-							`#booking-${timeId}>.details`
-						).innerHTML = schedule.details
-						document.querySelector(
-							`#booking-${timeId}>.status`
-						).innerHTML = schedule.booking_status
-						document.querySelector(
-							`#booking-${timeId}>.buttons`
-						).innerHTML = `
-                                <button type="button" id="edit-button-${timeId}">edit</button>
-                                <button type="button" id="cancel-button-${timeId}">Cancel</button>
-                            `
-						const cancelButton = document.querySelector(
-							`#cancel-button-${timeId}`
-						)
-						cancelButton.addEventListener(
-							'click',
-							async function () {
-								let session = await getSession()
-								const choseDate = document.querySelector(
-									'#calendar-chose-date'
-								)
-								const choseTime = document.querySelector(
-									`#booking-${timeId}>.time`
-								)
-
-								const formObject = {}
-
-								formObject['cancelDate'] = choseDate.innerHTML
-								formObject['cancelTime'] = choseTime.innerHTML
-								formObject['teacherId'] = schedule.teacher_id
-								formObject['type'] = session.type
-								console.log(formObject)
-
-								const res = await fetch(
-									`/admin/cancel/${session.id}`,
-									{
-										method: 'DELETE',
-										headers: {
-											'Content-Type': 'application/json'
-										},
-										body: JSON.stringify(formObject)
-									}
-								)
-								await createScheduleTable('teacher-id')
-							}
-						)
-					}
-				}
+				// if (session.user.type == "teacher") {
+				//     if (schedule.teacher_status == 'confirm') {
+				//         document.querySelector(`#booking-${timeId}>.student`).innerHTML = schedule.student_name
+				//         document.querySelector(`#booking-${timeId}>.details`).innerHTML = schedule.details
+				//         document.querySelector(`#booking-${timeId}>.status`).innerHTML = schedule.booking_status
+				//         document.querySelector(`#booking-${timeId}>.buttons`).innerHTML = `
+				//                 <button type="button" id="edit-button-${timeId}">edit</button>
+				//                 <button type="button" id="cancel-button-${timeId}">Cancel</button>
+				//             `
+				//         const cancelButton = document.querySelector(`#cancel-button-${timeId}`)
+				//         cancelButton.addEventListener("click", async function () {
+				//             let session = await getSession()
+				//             const choseDate = document.querySelector("#calendar-chose-date")
+				//             const choseTime = document.querySelector(`#booking-${timeId}>.time`)
+				//             const formObject = {};
+				//             formObject["cancelDate"] = choseDate.innerHTML;
+				//             formObject["cancelTime"] = choseTime.innerHTML;
+				//             formObject["studentId"] = schedule.student_id;
+				//             formObject["type"] = session.user.type;
+				//             console.log(formObject)
+				//             const res = await fetch(`/admin/cancel/${session.user.id}`, {
+				//                 method: "DELETE",
+				//                 headers: {
+				//                     "Content-Type": "application/json",
+				//                 },
+				//                 body: JSON.stringify(formObject),
+				//             });
+				//             await createScheduleTable("teacher-id")
+				//         })
+				//     }
+				// } else {
+				//     if (schedule.student_status == 'confirm') {
+				//         document.querySelector(`#booking-${timeId}>.student`).innerHTML = schedule.teacher_name
+				//         document.querySelector(`#booking-${timeId}>.details`).innerHTML = schedule.details
+				//         document.querySelector(`#booking-${timeId}>.status`).innerHTML = schedule.booking_status
+				//         document.querySelector(`#booking-${timeId}>.buttons`).innerHTML = `
+				//                 <button type="button" id="edit-button-${timeId}">edit</button>
+				//                 <button type="button" id="cancel-button-${timeId}">Cancel</button>
+				//             `
+				//         const cancelButton = document.querySelector(`#cancel-button-${timeId}`)
+				//         cancelButton.addEventListener("click", async function () {
+				//             let session = await getSession()
+				//             const choseDate = document.querySelector("#calendar-chose-date")
+				//             const choseTime = document.querySelector(`#booking-${timeId}>.time`)
+				//             const formObject = {};
+				//             formObject["cancelDate"] = choseDate.innerHTML;
+				//             formObject["cancelTime"] = choseTime.innerHTML;
+				//             formObject["teacherId"] = schedule.teacher_id;
+				//             formObject["type"] = session.user.type;
+				//             console.log(formObject)
+				//             const res = await fetch(`/admin/cancel/${session.user.id}`, {
+				//                 method: "DELETE",
+				//                 headers: {
+				//                     "Content-Type": "application/json",
+				//                 },
+				//                 body: JSON.stringify(formObject),
+				//             });
+				//             await createScheduleTable("teacher-id")
+				//         })
+				//     }
+				// }
 			}
 		}
 	}
@@ -512,115 +482,120 @@ async function getPendingSchedule() {
 
 // init Isotope
 async function IsotopeInIt() {
-	console.log('IsotopeInIt')
-	document.querySelector('.table-like').innerHTML = ''
-	let pendingSchedules = await getPendingSchedule()
-	for (let schedule of pendingSchedules) {
-		console.log(schedule)
-		document.querySelector('.table-like').innerHTML += `
-            <li class="table-like-item" id="pending-booking-${schedule.id}">
-                <div class="student-name">${schedule.student_name}</div>
-                <div class="booking-date">${moment(
-					schedule.booking_date
-				).format('YYYY-MM-DD')}</div>
-                <div class="booking-time">${moment(
-					schedule.booking_time,
-					'HH:mm a'
-				).format('h:mm a')}</div>
-                <div class="booking-details">${schedule.details}</div>
-                <div class="status">add</div>
-                <div class="action">
-                    <button type="button" class="btn btn-success accept">Accept</button>
-                    <button type="button" class="btn btn-danger decline">Decline</button>
-                </div>
-            </li>
-        `
-	}
-
-	var $table = $('.table-like').isotope({
-		layoutMode: 'vertical',
-		getSortData: {
-			studentName: '.student-name',
-			bookingDate: '.booking-date',
-			bookingTime: '.booking-time',
-			status: '.status'
+	let otherUserId = checkUrlId()
+	if (!otherUserId) {
+		document.querySelector('.table-like').innerHTML = ''
+		let pendingSchedules = await getPendingSchedule()
+		for (let schedule of pendingSchedules) {
+			console.log(schedule)
+			document.querySelector('.table-like').innerHTML += `
+                <li class="table-like-item" id="pending-booking-${schedule.id}">
+                    <div class="student-name">${schedule.student_name}</div>
+                    <div class="booking-date">${moment(
+						schedule.booking_date
+					).format('YYYY-MM-DD')}</div>
+                    <div class="booking-time">${moment(
+						schedule.booking_time,
+						'HH:mm a'
+					).format('h:mm a')}</div>
+                    <div class="booking-details">${schedule.details}</div>
+                    <div class="status">add</div>
+                    <div class="action">
+                        <button type="button" class="btn btn-success accept">Accept</button>
+                        <button type="button" class="btn btn-danger decline">Decline</button>
+                    </div>
+                </li>
+            `
 		}
-	})
 
-	// bind sort button click
-	$('#sorts').on('click', 'div', function () {
-		var sortValue = $(this).attr('data-sort-value')
-		$table.isotope({ sortBy: sortValue })
-	})
-
-	// change is-checked class on buttons
-	$('.button-group').each(function (i, buttonGroup) {
-		var $buttonGroup = $(buttonGroup)
-		$buttonGroup.on('click', 'div', function () {
-			$buttonGroup.find('.is-checked').removeClass('is-checked')
-			$(this).addClass('is-checked')
+		var $table = $('.table-like').isotope({
+			layoutMode: 'vertical',
+			getSortData: {
+				studentName: '.student-name',
+				bookingDate: '.booking-date',
+				bookingTime: '.booking-time',
+				status: '.status'
+			}
 		})
-	})
 
-	for (let schedule of pendingSchedules) {
-		console.log(schedule)
-		const acceptButton = document.querySelector(
-			`#pending-booking-${schedule.id}>.action>.accept`
-		)
-		acceptButton.addEventListener('click', async function () {
-			const formObject = {}
-			formObject['pendingDate'] = schedule.booking_date
-			formObject['pendingTime'] = schedule.booking_time
-			formObject['teacherId'] = schedule.teacher_id
-			formObject['studentId'] = schedule.student_id
-			formObject['studentStatus'] = schedule.student_status
-			formObject['teacherStatus'] = schedule.teacher_status
-			formObject['bookingStatus'] = schedule.booking_status
+		// bind sort button click
+		$('#sorts').on('click', 'div', function () {
+			var sortValue = $(this).attr('data-sort-value')
+			$table.isotope({ sortBy: sortValue })
+		})
 
-			const checkRes = await fetch(`/admin/checkcrash/${schedule.id}`, {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json'
-				},
-				body: JSON.stringify(formObject)
+		// change is-checked class on buttons
+		$('.button-group').each(function (i, buttonGroup) {
+			var $buttonGroup = $(buttonGroup)
+			$buttonGroup.on('click', 'div', function () {
+				$buttonGroup.find('.is-checked').removeClass('is-checked')
+				$(this).addClass('is-checked')
 			})
+		})
 
-			let result = await checkRes.json()
-			if (result == 'No Record') {
-				alert('you can add now!')
-				const addRes = await fetch(`/admin/accept/${schedule.id}`, {
-					method: 'PATCH',
+		for (let schedule of pendingSchedules) {
+			console.log(schedule)
+			const acceptButton = document.querySelector(
+				`#pending-booking-${schedule.id}>.action>.accept`
+			)
+			acceptButton.addEventListener('click', async function () {
+				const formObject = {}
+				formObject['pendingDate'] = schedule.booking_date
+				formObject['pendingTime'] = schedule.booking_time
+				formObject['teacherId'] = schedule.teacher_id
+				formObject['studentId'] = schedule.student_id
+				formObject['studentStatus'] = schedule.student_status
+				formObject['teacherStatus'] = schedule.teacher_status
+				formObject['bookingStatus'] = schedule.booking_status
+
+				const checkRes = await fetch(
+					`/admin/checkcrash/${schedule.id}`,
+					{
+						method: 'POST',
+						headers: {
+							'Content-Type': 'application/json'
+						},
+						body: JSON.stringify(formObject)
+					}
+				)
+
+				let result = await checkRes.json()
+				if (result == 'No Record') {
+					alert('you can add now!')
+					const addRes = await fetch(`/admin/accept/${schedule.id}`, {
+						method: 'PATCH',
+						headers: {
+							'Content-Type': 'application/json'
+						},
+						body: JSON.stringify(formObject)
+					})
+					console.log(addRes)
+					await createScheduleTable('teacher-id')
+					await IsotopeInIt()
+				} else {
+					console.log(result)
+					alert('This pending request crashed other bookings')
+				}
+			})
+			const declineButton = document.querySelector(
+				`#pending-booking-${schedule.id}>.action>.decline`
+			)
+			declineButton.addEventListener('click', async function () {
+				const formObject = {}
+				formObject['studentStatus'] = schedule.student_status
+				formObject['teacherStatus'] = schedule.teacher_status
+
+				const res = await fetch(`/admin/decline/${schedule.id}`, {
+					method: 'DELETE',
 					headers: {
 						'Content-Type': 'application/json'
 					},
 					body: JSON.stringify(formObject)
 				})
-				console.log(addRes)
 				await createScheduleTable('teacher-id')
 				await IsotopeInIt()
-			} else {
-				console.log(result)
-				alert('This pending request crashed other bookings')
-			}
-		})
-		const declineButton = document.querySelector(
-			`#pending-booking-${schedule.id}>.action>.decline`
-		)
-		declineButton.addEventListener('click', async function () {
-			const formObject = {}
-			formObject['studentStatus'] = schedule.student_status
-			formObject['teacherStatus'] = schedule.teacher_status
-
-			const res = await fetch(`/admin/decline/${schedule.id}`, {
-				method: 'DELETE',
-				headers: {
-					'Content-Type': 'application/json'
-				},
-				body: JSON.stringify(formObject)
 			})
-			await createScheduleTable('teacher-id')
-			await IsotopeInIt()
-		})
+		}
 	}
 }
 async function scheduleInputSubmit() {
