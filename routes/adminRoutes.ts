@@ -11,7 +11,11 @@ app.use(express.urlencoded({ extended: true }))
 
 export const adminRoutes = express.Router()
 adminRoutes.get('/', isLoggedIn, showAdmin)
-adminRoutes.get('/schedule/confirm/:type/:userId/:date', isLoggedIn, findConfirmedSchedules)
+adminRoutes.get(
+	'/schedule/confirm/:type/:userId/:date',
+	isLoggedIn,
+	findConfirmedSchedules
+)
 adminRoutes.get('/schedule/pending/:userId', isLoggedIn, findPendingSchedules)
 adminRoutes.get('/students', isLoggedIn, findAllStudents)
 adminRoutes.get('/teachers', isLoggedIn, findAllTeachers)
@@ -141,7 +145,7 @@ async function findPendingSchedules(
 async function findAllStudents(req: express.Request, res: express.Response) {
 	try {
 		let findAllStudents = await client.query(`
-        select users.* , image.image_icon
+        select student.id as student_id, users.* , image.image_icon
         from users Join student on users.id = student.user_id JOIN image on users.id = image.user_id;
         `)
 		res.json(findAllStudents.rows)
@@ -156,7 +160,7 @@ async function findAllStudents(req: express.Request, res: express.Response) {
 async function findAllTeachers(req: express.Request, res: express.Response) {
 	try {
 		let findAllTeachers = await client.query(`
-        select users.* , image.image_icon
+        select teacher.id as teacher_id, users.* , image.image_icon
         from users Join teacher on users.id = teacher.user_id JOIN image on users.id = image.user_id;
         `)
 		res.json(findAllTeachers.rows)
@@ -172,14 +176,14 @@ async function addSchedule(req: express.Request, res: express.Response) {
 	try {
 		console.log('received')
 		console.log(req.body)
-		console.log("req.body.type = ", req.body.type)
+		console.log('req.body.type = ', req.body.type)
 		console.log("req.body.type's type = ", typeof req.body.type)
 		console.log('req params = ', req.params.userId)
 
-		if (req.body.type = "teacher") {
-
+		if ((req.body.type = 'teacher')) {
 			let teacherId = await client.query(
-				`SELECT teacher.id FROM teacher JOIN users ON teacher.user_id = users.id WHERE users.id = $1`, [req.params.userId]
+				`SELECT teacher.id FROM teacher JOIN users ON teacher.user_id = users.id WHERE users.id = $1`,
+				[req.params.userId]
 			)
 			console.log(teacherId.rows[0].id)
 			let date = moment(req.body.inputDate).format('DD-MM-YYYY')
@@ -195,10 +199,11 @@ async function addSchedule(req: express.Request, res: express.Response) {
 					req.body.details
 				]
 			)
-		} else if (req.body.type = "student") {
-			console.log("1 step")
+		} else if ((req.body.type = 'student')) {
+			console.log('1 step')
 			let studentId = await client.query(
-				`SELECT student.id FROM student JOIN users ON student.user_id = users.id WHERE users.id = $1`, [req.params.userId]
+				`SELECT student.id FROM student JOIN users ON student.user_id = users.id WHERE users.id = $1`,
+				[req.params.userId]
 			)
 			console.log(studentId.rows[0].id)
 			let date = moment(req.body.inputDate).format('DD-MM-YYYY')

@@ -268,8 +268,14 @@ app.use('/admin', adminRoutes)
 app.use(express.static(path.join(__dirname, 'uploads')))
 
 app.get('/me', (req, res) => {
+	// res.json(req.session.user)
 	res.json(req.session.user)
 })
+
+// app.get('/me1', (req, res) => {
+// 	// res.json(req.session.user)
+// 	res.json(req.session.user)
+// })
 
 app.use(express.static(path.join(__dirname, 'template_design')))
 app.use(express.static(path.join(__dirname, 'public')))

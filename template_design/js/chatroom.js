@@ -269,32 +269,20 @@ async function getGrouplist() {
 					</p>
 				</div>
 			</div>
-			<div class="pt-1">
-				<p
-					class="small text-muted mb-1"
-				>
-					Just now
-				</p>
-				<span
-					class="badge bg-danger rounded-pill float-end"
-					>2</span
-				>
-			</div>
+
 		</a>
 	</li>
 	`
 }
 
-async function getPrivateChatRecord(data) {
+async function getPrivateChatRecord(data, time) {
 	let userContainerElem = document.querySelector('#record')
 	// console.log('getPublicChatRecord', data, '21e124e214214124', time)
 	userContainerElem.innerHTML = ''
-
+	console.log(time)
 	for (let userInfo of data) {
 		const timeFormat = userInfo.chat_message_time
-		let timeResult = timeFormat.split('')
-		console.log(`check time`, timeResult[8])
-		console.log('final!!!!', userInfo)
+
 		if (userInfo.sender_id === userInfo.user_id) {
 			// let imagePath = tutorInfo.image_icon ? `${await getImage(tutorInfo.image_icon)}` : "images/avatar/portrait-good-looking-brunette-young-asian-woman.jpg"
 			// console.log(`chat room 112321321232121321312${userInfo.username}`)
@@ -316,7 +304,7 @@ async function getPrivateChatRecord(data) {
 				<p
 				class="small ms-3 mb-3 rounded-3 text-muted float-end"
 				>
-				${userInfo.chat_message_time}
+				${time}
 				</p>
 				</div>
 
@@ -360,7 +348,7 @@ async function getPrivateChatRecord(data) {
 				<p
 					class="small ms-3 mb-3 rounded-3 text-muted float-end"
 				>
-					${userInfo.created_at}
+					${time}
 				</p>
 			</div>
 
@@ -536,17 +524,7 @@ async function getUserlist() {
 					</p>
 				</div>
 			</div>
-			<div class="pt-1">
-				<p
-					class="small text-muted mb-1"
-				>
-					Just now
-				</p>
-				<span
-					class="badge bg-danger rounded-pill float-end"
-					>2</span
-				>
-			</div>
+
 		</a>
 	</li>
 	`
