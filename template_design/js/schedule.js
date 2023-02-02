@@ -112,7 +112,7 @@ export async function createScheduleTable(htmlId) {
 					choseDate.innerHTML,
 					choseTime.innerHTML,
 					'Add',
-					session.user.type
+					session.type
 				)
 			})
 		}
@@ -124,7 +124,7 @@ export async function createScheduleTable(htmlId) {
 		let otherUserId = checkUrlId()
 		if (!otherUserId) {
 			if (schedule.booking_status == 'confirmed') {
-				if (session.user.type == 'teacher') {
+				if (session.type == 'teacher') {
 					document.querySelector(
 						`#booking-${timeId}>.student`
 					).innerHTML = schedule.student_name
@@ -158,20 +158,17 @@ export async function createScheduleTable(htmlId) {
 						formObject['cancelDate'] = choseDate.innerHTML
 						formObject['cancelTime'] = choseTime.innerHTML
 						formObject['studentId'] = schedule.student_id
-						formObject['type'] = session.user.type
+						formObject['type'] = session.type
 
 						console.log(formObject)
 
-						const res = await fetch(
-							`/admin/cancel/${session.user.id}`,
-							{
-								method: 'DELETE',
-								headers: {
-									'Content-Type': 'application/json'
-								},
-								body: JSON.stringify(formObject)
-							}
-						)
+						const res = await fetch(`/admin/cancel/${session.id}`, {
+							method: 'DELETE',
+							headers: {
+								'Content-Type': 'application/json'
+							},
+							body: JSON.stringify(formObject)
+						})
 						await createScheduleTable('teacher-id')
 					})
 				} else {
@@ -208,25 +205,22 @@ export async function createScheduleTable(htmlId) {
 						formObject['cancelDate'] = choseDate.innerHTML
 						formObject['cancelTime'] = choseTime.innerHTML
 						formObject['teacherId'] = schedule.teacher_id
-						formObject['type'] = session.user.type
+						formObject['type'] = session.type
 
 						console.log(formObject)
 
-						const res = await fetch(
-							`/admin/cancel/${session.user.id}`,
-							{
-								method: 'DELETE',
-								headers: {
-									'Content-Type': 'application/json'
-								},
-								body: JSON.stringify(formObject)
-							}
-						)
+						const res = await fetch(`/admin/cancel/${session.id}`, {
+							method: 'DELETE',
+							headers: {
+								'Content-Type': 'application/json'
+							},
+							body: JSON.stringify(formObject)
+						})
 						await createScheduleTable('teacher-id')
 					})
 				}
 			} else {
-				if (session.user.type == 'teacher') {
+				if (session.type == 'teacher') {
 					if (schedule.teacher_status == 'confirm') {
 						document.querySelector(
 							`#booking-${timeId}>.student`
@@ -262,11 +256,11 @@ export async function createScheduleTable(htmlId) {
 								formObject['cancelDate'] = choseDate.innerHTML
 								formObject['cancelTime'] = choseTime.innerHTML
 								formObject['studentId'] = schedule.student_id
-								formObject['type'] = session.user.type
+								formObject['type'] = session.type
 								console.log(formObject)
 
 								const res = await fetch(
-									`/admin/cancel/${session.user.id}`,
+									`/admin/cancel/${session.id}`,
 									{
 										method: 'DELETE',
 										headers: {
@@ -315,11 +309,11 @@ export async function createScheduleTable(htmlId) {
 								formObject['cancelDate'] = choseDate.innerHTML
 								formObject['cancelTime'] = choseTime.innerHTML
 								formObject['teacherId'] = schedule.teacher_id
-								formObject['type'] = session.user.type
+								formObject['type'] = session.type
 								console.log(formObject)
 
 								const res = await fetch(
-									`/admin/cancel/${session.user.id}`,
+									`/admin/cancel/${session.id}`,
 									{
 										method: 'DELETE',
 										headers: {
@@ -336,7 +330,7 @@ export async function createScheduleTable(htmlId) {
 			}
 		} else {
 			if (schedule.booking_status == 'confirmed') {
-				if (session.user.type == 'teacher') {
+				if (session.type == 'teacher') {
 					document.querySelector(
 						`#booking-${timeId}>.student`
 					).innerHTML = schedule.teacher_name
@@ -358,7 +352,7 @@ export async function createScheduleTable(htmlId) {
 					).innerHTML = schedule.booking_status
 				}
 			} else {
-				// if (session.user.type == "teacher") {
+				// if (session.type == "teacher") {
 				//     if (schedule.teacher_status == 'confirm') {
 				//         document.querySelector(`#booking-${timeId}>.student`).innerHTML = schedule.student_name
 				//         document.querySelector(`#booking-${timeId}>.details`).innerHTML = schedule.details
@@ -376,9 +370,9 @@ export async function createScheduleTable(htmlId) {
 				//             formObject["cancelDate"] = choseDate.innerHTML;
 				//             formObject["cancelTime"] = choseTime.innerHTML;
 				//             formObject["studentId"] = schedule.student_id;
-				//             formObject["type"] = session.user.type;
+				//             formObject["type"] = session.type;
 				//             console.log(formObject)
-				//             const res = await fetch(`/admin/cancel/${session.user.id}`, {
+				//             const res = await fetch(`/admin/cancel/${session.id}`, {
 				//                 method: "DELETE",
 				//                 headers: {
 				//                     "Content-Type": "application/json",
@@ -406,9 +400,9 @@ export async function createScheduleTable(htmlId) {
 				//             formObject["cancelDate"] = choseDate.innerHTML;
 				//             formObject["cancelTime"] = choseTime.innerHTML;
 				//             formObject["teacherId"] = schedule.teacher_id;
-				//             formObject["type"] = session.user.type;
+				//             formObject["type"] = session.type;
 				//             console.log(formObject)
-				//             const res = await fetch(`/admin/cancel/${session.user.id}`, {
+				//             const res = await fetch(`/admin/cancel/${session.id}`, {
 				//                 method: "DELETE",
 				//                 headers: {
 				//                     "Content-Type": "application/json",
