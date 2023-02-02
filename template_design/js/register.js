@@ -19,7 +19,7 @@ contactsFormFile.addEventListener('submit', async (e) => {
 	let data = await res.json()
 	// console.log(data)
 	if (res.ok) {
-		window.location.replace('/account.html')
+		window.location.replace('/admin')
 		alert('create account success')
 	} else {
 		alert('create account fail')
