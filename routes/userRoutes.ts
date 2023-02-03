@@ -7,7 +7,6 @@ import crypto from 'crypto'
 import { client } from '../util/db'
 import { User } from '../util/interface'
 import { formParsePromise } from '../util/formidable'
-import moment = require('moment')
 import { getUserByEmail } from '../DAO/userDao'
 
 // import { uploadInfo } from '../util/interface'

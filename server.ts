@@ -1,7 +1,6 @@
 import express from 'express'
 import HTTP from 'http'
 import path from 'path'
-import pg from 'pg'
 import dotenv from 'dotenv'
 import { Server as SocketIO } from 'socket.io'
 import expressSession from 'express-session'
@@ -9,6 +8,7 @@ import { userRoutes } from './routes/userRoutes'
 import { adminRoutes } from './routes/adminRoutes'
 import { grantExpress, expressSessionConfig } from './util/plugin-config'
 import { chatRoutes } from './routes/chatRoutes'
+import { client } from './util/db'
 const moment = require('moment')
 dotenv.config()
 let app = express()
@@ -41,17 +41,6 @@ io.use((socket, next) => {
 // app.use('/user', userRoutes)
 io.on('connection', (socket) => {
 	let req = socket.request as express.Request
-
-	let date = Date.now()
-
-	users = { name: req.session.user?.username }
-	users[socket.id] = { name: req.session.user?.username }
-
-	if (req.session.user) {
-		console.log(`已安排 ${users.name} 進入 chatroom`)
-		socket.join('even_' + date)
-		socket.request['session'].save()
-	}
 
 	socket.on('unsubscribe', function (room) {
 		try {
@@ -139,10 +128,6 @@ io.on('connection', (socket) => {
 			receiverUsername,
 			createdAt: created_time,
 			chatMessageTime: publicChat.chat_message_time
-		})
-
-		socket.on('disconnect', () => {
-			console.log(`${users.name} 已離開`)
 		})
 	})
 
