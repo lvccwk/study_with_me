@@ -14,7 +14,7 @@ https://templatemo.com/tm-575-leadership-event
 	--primary-color: #0dcaf0;
 	--secondary-color: #0d6efd;
 	--section-bg-color: #f0f8ff;
-	--dark-color: #000000;
+	--dark-color: #000000cc;
 	--navbar-bg-color: #273053;
 	--p-color: #717275;
 	--highlight-icon-color: #ff0100;
@@ -527,7 +527,6 @@ strong {
 	color: var(--white-color);
 	display: inline-block;
 	padding: 10px 20px;
-
 }
 
 .date-text {

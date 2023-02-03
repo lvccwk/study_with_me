@@ -8,12 +8,12 @@ import { client } from '../util/db'
 import { User } from '../util/interface'
 import { formParsePromise } from '../util/formidable'
 import moment = require('moment')
+import { getUserByEmail } from '../DAO/userDao'
 
 // import { uploadInfo } from '../util/interface'
 // import { sessionMiddleware } from '../server'
 let app = express()
 app.use(express.json())
-
 declare module 'express-session' {
 	interface SessionData {
 		counter?: number
@@ -27,50 +27,10 @@ userRoutes.get('/logout', logout)
 userRoutes.post('/register', register)
 userRoutes.get('/subject', getSubject)
 userRoutes.get('/login/google', loginGoogle)
-userRoutes.get('/tutorpage', getTutorInfo)
+userRoutes.get('/tutors', getTutorInfo)
 userRoutes.get('imageName', getTutorInfo)
 userRoutes.get('/studentpage', getStudentInfo)
 userRoutes.get('/homepage-tutor', getTutorHome)
-userRoutes.get('/chatroom', getUserList)
-userRoutes.get('/chatrecord', getChatRecord)
-userRoutes.get('/instantchat', instantChat)
-// userRoutes.get('/getgrouplist', instantChat)
-
-// userRoutes.get('/getgoogle', getGoogleInfo)
-
-// userRoutes.get('/chatroom', getUsername)
-// userRoutes.get('/login/google', getUserInfo)
-
-// async function getGoogleInfo(req: express.Request, res: express.Response) {
-// 	try {
-// 		const accessToken = req.session?.['grant'].response.access_token
-
-// 		// const fetchRes = await fetch(
-// 		// 	'https://www.googleapis.com/oauth2/v2/userinfo',
-// 		// 	{
-// 		// 		method: 'get',
-// 		// 		headers: {
-// 		// 			Authorization: `Bearer ${accessToken}`
-// 		// 		}
-// 		// 	}
-// 		// )
-
-// 		// const googleUserProfile = await fetchRes.json()
-// 		// let user = (
-// 		// 	await client.query(`SELECT * FROM users WHERE users.email = $1`, [
-// 		// 		googleUserProfile.email
-// 		// 	])
-// 		// ).rows[0]
-// 		// console.log(user)
-// 		console.log(accessToken)
-// 		res.json({
-// 			// data: user ? user.email : ''
-// 			data: accessToken
-// 		})
-// 	} catch (error) {
-// 		console.log(error)
-// 	}
-// }
 
 async function loginGoogle(
 	req: express.Request,
@@ -277,10 +237,7 @@ async function login(req: express.Request, res: express.Response) {
 			return
 		}
 
-		let selectUserResult = await client.query(
-			`select * from users where email = $1 `,
-			[email]
-		)
+		let selectUserResult = await getUserByEmail(email)
 
 		let foundUser = selectUserResult.rows[0]
 
@@ -302,7 +259,6 @@ async function login(req: express.Request, res: express.Response) {
 		let isTeacher = await client.query(
 			`select teacher.id from teacher join users on teacher.user_id = users.id where users.id = ${foundUser.id}`
 		)
-		console.log(isTeacher.rows[0])
 
 		if (isTeacher.rows[0]) {
 			foundUser['type'] = 'teacher'
@@ -453,110 +409,6 @@ async function getTutorHome(req: express.Request, res: express.Response) {
 			data: tutorInfo,
 			tutorImage,
 			message: 'select teacher, image and subject ok !'
-		})
-	} catch (error) {
-		logger.error(error)
-		res.status(500).json({
-			message: '[USR001] - Server error'
-		})
-	}
-}
-
-async function getUserList(req: express.Request, res: express.Response) {
-	try {
-		let selectUserResult = await client.query(
-			`select users.id,
-			users.username,
-			users.type,
-			image.image_icon
-		from users
-			left JOIN image ON users.id = image.user_id`
-		)
-
-		// let userImage = await client.query(
-		// 	`SELECT image_icon from image JOIN users ON image.user_id = users.id`
-		// )
-		let foundMember = selectUserResult.rows
-
-		res.json({
-			data: foundMember
-		})
-	} catch (error) {
-		logger.error(error)
-		res.status(500).json({
-			message: '[USR001] - Server error'
-		})
-	}
-}
-
-async function getChatRecord(req: express.Request, res: express.Response) {
-	try {
-		let databaseToPublicChats = await client.query(
-			`Select 
-			($1=users.id) as is_myself,
-			users.id, users.username, public_chat.chat_record, public_chat.created_at
-			FROM public_chat
-			JOIN users ON users.id = public_chat.user_id
-			ORDER BY public_chat.id ASC`,
-			[req.session['user']!['id']]
-		)
-
-		// let userImage = await client.query(
-		// 	`SELECT image_icon from image JOIN users ON image.user_id = users.id`
-		// )
-		let foundMember = databaseToPublicChats.rows
-
-		if (foundMember.length > 1) {
-			let timeResults = foundMember[0].created_at
-			// console.log(`check my time moment`, timeResults)
-
-			let timeResult = moment(timeResults).format(
-				'MMMM Do YYYY, h:mm:ss a'
-			)
-			// let timeResult = moment(timeResults).format('MMMM Do YYYY, h:mm:ss a')
-
-			res.json({
-				data: foundMember,
-				time: timeResult
-			})
-			return
-		}
-		res.status(500).json({
-			message: '[USR001] - Not foundMember'
-		})
-		return
-	} catch (error) {
-		logger.error(error)
-		res.status(500).json({
-			message: '[USR001] - Server error'
-		})
-	}
-}
-
-async function instantChat(req: express.Request, res: express.Response) {
-	try {
-		let databaseToPublicChats = await client.query(
-			`Select 
-			($1=users.id) as is_myself,
-			users.id, users.username, public_chat.chat_record
-			FROM public_chat
-			JOIN users ON users.id = public_chat.user_id
-			ORDER BY public_chat.id ASC`,
-			[req.session['user']!['id']]
-		)
-		// let userImage = await client.query(
-		// 	`SELECT image_icon from image JOIN users ON image.user_id = users.id`
-		// )
-		let foundMember = databaseToPublicChats.rows
-		console.log('hiihiihhihihi', databaseToPublicChats.rows)
-
-		let timeResults = databaseToPublicChats.rows[0].created_at
-		console.log(`check my time moment`, timeResults)
-
-		let timeResult = moment(timeResults).format('MMMM Do YYYY, h:mm:ss a')
-		res.json({
-			data: foundMember,
-			time: timeResult
 		})
 	} catch (error) {
 		logger.error(error)

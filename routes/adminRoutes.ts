@@ -1,6 +1,7 @@
 import express from 'express'
 import moment from 'moment'
 import path from 'path'
+import { BookingStuts } from '../util/model'
 import { client } from '../util/db'
 import { isLoggedIn } from '../util/guard'
 import { logger } from '../util/logger'
@@ -24,7 +25,6 @@ adminRoutes.delete('/cancel/:userId', isLoggedIn, cancelSchedule)
 adminRoutes.delete('/decline/:bookingId', isLoggedIn, declineSchedule)
 adminRoutes.post('/checkcrash/:bookingId', isLoggedIn, checkCrashedSchedule)
 adminRoutes.patch('/accept/:bookingId', isLoggedIn, acceptSchedule)
-adminRoutes.get('/viewotheruser', isLoggedIn, viewOtherUser)
 adminRoutes.get('/otheruser/:userId', isLoggedIn, getOtherUser)
 
 async function showAdmin(req: express.Request, res: express.Response) {
@@ -203,7 +203,7 @@ async function addSchedule(req: express.Request, res: express.Response) {
 			console.log(date)
 			await client.query(
 				`INSERT INTO bookings(teacher_id, student_id, booking_date, booking_time, details, booking_status, student_status, teacher_status, created_by, created_at, updated_at)
-				VALUES ($1, $2, $3, $4, $5, 'pending', 'confirm', 'pending', 'student', now(), now())`,
+				VALUES ($1, $2, $3, $4, $5, 'pending', 'confirm', ${BookingStuts.PENDING}, 'student', now(), now())`,
 				[
 					req.body.teacherId,
 					studentId.rows[0].id,
@@ -268,9 +268,23 @@ async function checkCrashedSchedule(
 	res: express.Response
 ) {
 	try {
-		console.log(req.body)
-		let date = moment(req.body.pendingDate).format('DD-MM-YYYY')
-		console.log([req.body.teacherId, req.body.pendingTime, date])
+		let { teacherId, studentId, pendingTime, pendingDate } = req.body
+
+		if (!teacherId || !studentId || !pendingTime || !pendingDate) {
+			res.status(400).json({
+				message: '[USR001] -invalid'
+			})
+			return
+		}
+		let date = moment(pendingDate).format('DD-MM-YYYY')
+
+		if (!date) {
+			res.status(400).json({
+				message: '[USR001] -invalid date'
+			})
+			return
+		}
+		console.log([teacherId, pendingTime, date])
 		let crashedBooking = await client.query(
 			`
         with view_students AS (
@@ -306,13 +320,17 @@ async function checkCrashedSchedule(
             join view_students on bookings.student_id = view_students.student_id
             join view_teachers on bookings.teacher_id = view_teachers.teacher_id
             WHERE view_teachers.teacher_id = $1 AND booking_time = $2 AND booking_date = $3 AND booking_status = 'confirmed' AND view_students.student_id != $4;`,
-			[req.body.teacherId, req.body.pendingTime, date, req.body.studentId]
+			[teacherId, pendingTime, date, studentId]
 		)
 		console.log(`crashedBooking = ${crashedBooking.rows[0]}`)
 		if (crashedBooking.rows[0]) {
 			res.json(crashedBooking.rows[0])
 		} else {
-			res.json('No Record')
+			res.json('no')
+			// res.json({
+			// 	data: [],
+			// 	message: `selected 0 record.`
+			// })
 		}
 	} catch (error) {
 		logger.error(error)
@@ -343,19 +361,6 @@ async function acceptSchedule(req: express.Request, res: express.Response) {
 			[req.params.bookingId]
 		)
 		res.json('ok')
-	} catch (error) {
-		logger.error(error)
-		res.status(500).json({
-			message: '[USR001] - Server error'
-		})
-	}
-}
-
-async function viewOtherUser(req: express.Request, res: express.Response) {
-	try {
-		res.sendFile(
-			`${path.join(__dirname, '..', 'private', 'accountforview.html')}`
-		)
 	} catch (error) {
 		logger.error(error)
 		res.status(500).json({

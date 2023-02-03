@@ -1,115 +1,127 @@
-// import express from 'express'
-// import http from 'http'
-// import { Server as SocketIO } from 'socket.io'
-// import { client } from '../util/db'
-// import { User } from '../util/interface'
-// import { logger } from '../util/logger'
-// import moment = require('moment')
-// export const chatRoutes = express.Router()
-// //....
-// const app = express()
-// app.use(express.json())
-// const server = new http.Server(app)
-// const io = new SocketIO(server)
+import express from 'express'
+// import { checkPassword } from '../util/hash'
+import { logger } from '../util/logger'
+import { client } from '../util/db'
+import { User } from '../util/interface'
+import moment = require('moment')
+import { isLoggedInAPI } from '../util/guard'
 
-// declare module 'express-session' {
-// 	interface SessionData {
-// 		counter?: number
-// 		user?: User
-// 	}
-// }
+// import { uploadInfo } from '../util/interface'
+// import { sessionMiddleware } from '../server'
+let app = express()
+app.use(express.json())
+declare module 'express-session' {
+	interface SessionData {
+		counter?: number
+		user?: User
+	}
+}
 
-// io.on('chatroom/:id', function (socket) {
-// 	console.log(socket)
-// 	socket.emit('message', 'welcome to chatroom')
-// })
+export const chatRoutes = express.Router()
+chatRoutes.get('/chatroom', getUserList)
+chatRoutes.get('/chatrecord', isLoggedInAPI, getChatRecord)
+chatRoutes.get('/instantchat', isLoggedInAPI, instantChat)
 
-// chatRoutes.get('pm/:username', messageHistory)
-// chatRoutes.get('pm', sendMessage)
-// chatRoutes.get('/welcome', getWelcomeMsg)
-// chatRoutes.get('/chathistory', getMsgHistory)
-// // chatRoutes.post('createMessage', createMessage)
+async function getUserList(req: express.Request, res: express.Response) {
+	try {
+		let selectUserResult = await client.query(
+			`select users.id,
+			users.username,
+			users.type,
+			image.image_icon
+		from users
+			left JOIN image ON users.id = image.user_id`
+		)
 
-// async function getMsgHistory(req: express.Request, res: express.Response) {
-// 	try {
-// 		let selectUserResult = await client.query(
-// 			`select content from chatroom`
-// 		)
+		// let userImage = await client.query(
+		// 	`SELECT image_icon from image JOIN users ON image.user_id = users.id`
+		// )
+		let foundMember = selectUserResult.rows
 
-// 		let foundMember = selectUserResult.rows
+		res.json({
+			data: foundMember
+		})
+	} catch (error) {
+		logger.error(error)
+		res.status(500).json({
+			message: '[USR001] - Server error'
+		})
+	}
+}
 
-// 		res.json({
-// 			data: foundMember
-// 		})
-// 	} catch (error) {
-// 		logger.error(error)
-// 		res.status(500).json({
-// 			message: '[USR001] - Server error'
-// 		})
-// 	}
-// }
+async function getChatRecord(req: express.Request, res: express.Response) {
+	try {
+		let databaseToPublicChats = await client.query(
+			`Select 
+			($1=users.id) as is_myself,
+			users.id, users.username, public_chat.chat_record, public_chat.created_at
+			FROM public_chat
+			JOIN users ON users.id = public_chat.user_id
+			ORDER BY public_chat.id ASC`,
+			[req.session['user']!['id']]
+		)
 
-// async function getWelcomeMsg(req: express.Request, res: express.Response) {
-// 	try {
-// 		let selectUserResult = await client.query(
-// 			`select content from chatroom where from_user = 7 `
-// 		)
+		// let userImage = await client.query(
+		// 	`SELECT image_icon from image JOIN users ON image.user_id = users.id`
+		// )
+		let foundMember = databaseToPublicChats.rows
 
-// 		let foundMember = selectUserResult.rows
-// 		console.log(foundMember)
-// 		res.json({
-// 			data: foundMember
-// 		})
-// 	} catch (error) {
-// 		logger.error(error)
-// 		res.status(500).json({
-// 			message: '[USR001] - Server error'
-// 		})
-// 	}
-// }
+		if (foundMember.length > 1) {
+			let timeResults = foundMember[0].created_at
+			// console.log(`check my time moment`, timeResults)
 
-// // create new chatroom function do not finish yet - with insert database function
-// async function sendMessage(req: express.Request, res: express.Response) {
-// 	try {
-// 		let { chatroom_id, message } = req.body
-// 		let date = Date.now()
-// 		let format_date = moment(date).format('MMMM Do YYYY, h:mm:ss a')
+			let timeResult = moment(timeResults).format(
+				'MMMM Do YYYY, h:mm:ss a'
+			)
+			// let timeResult = moment(timeResults).format('MMMM Do YYYY, h:mm:ss a')
 
-// 		await client.query(
-// 			`INSERT INTO chatroom (from_user,to_user,content,created_at, updated_at) values ($1,$2,$3,now(),now())`,
-// 			[chatroom_id, , message]
-// 		)
+			res.json({
+				data: foundMember,
+				time: timeResult
+			})
+			return
+		}
+		res.status(500).json({
+			message: '[USR001] - Not foundMember'
+		})
+		return
+	} catch (error) {
+		logger.error(error)
+		res.status(500).json({
+			message: '[USR001] - Server error'
+		})
+	}
+}
 
-// 		io.emit('get_user_id')
+async function instantChat(req: express.Request, res: express.Response) {
+	try {
+		let databaseToPublicChats = await client.query(
+			`Select 
+			($1=users.id) as is_myself,
+			users.id, users.username, public_chat.chat_record
+			FROM public_chat
+			JOIN users ON users.id = public_chat.user_id
+			ORDER BY public_chat.id ASC`,
+			[req.session['user']!['id']]
+		)
+		// let userImage = await client.query(
+		// 	`SELECT image_icon from image JOIN users ON image.user_id = users.id`
+		// )
+		let foundMember = databaseToPublicChats.rows
+		console.log('hiihiihhihihi', databaseToPublicChats.rows)
 
-// 		res.json({
-// 			data: format_date
-// 		})
-// 	} catch (error) {
-// 		logger.error(error)
-// 		res.status(500).json({
-// 			message: '[USR002] - Server error'
-// 		})
-// 	}
-// }
-// // send message history do not finish yet - call chat history to chatroom.js
-// async function messageHistory(req: express.Request, res: express.Response) {
-// 	try {
-// 		let connectUser = await client.query(
-// 			`select * from chatroom
-// 			where (from_user = 7  and to_user = 4 ) or (from_user = 4 and to_user = 7)
-// 			`
-// 		)
+		let timeResults = databaseToPublicChats.rows[0].created_at
+		console.log(`check my time moment`, timeResults)
 
-// 		let foundUser = connectUser.rows
-
-// 		res.json({
-// 			data: foundUser
-// 		})
-// 	} catch (error) {
-// 		logger.error(error)
-// 		res.status(500).json({
-// 			message: '[USR002] - Server error'
-// 		})
-// 	}
-// }
+		let timeResult = moment(timeResults).format('MMMM Do YYYY, h:mm:ss a')
+		res.json({
+			data: foundMember,
+			time: timeResult
+		})
+	} catch (error) {
+		logger.error(error)
+		res.status(500).json({
+			message: '[USR001] - Server error'
+		})
+	}
+}

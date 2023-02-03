@@ -74,7 +74,8 @@ CREATE TABLE image(
     image_icon VARCHAR(255),
     created_at TIMESTAMP,
     updated_at TIMESTAMP
-) --//9
+);
+--//9
 CREATE TABLE public_chat(
     id SERIAL primary key,
     user_id INTEGER,
@@ -87,7 +88,8 @@ CREATE TABLE public_chat(
     chat_message_time TIME,
     created_at TIMESTAMP,
     updated_at TIMESTAMP
-) --//10
+);
+--//10
 CREATE TABLE bookings(
     id SERIAL primary key,
     teacher_id INTEGER,

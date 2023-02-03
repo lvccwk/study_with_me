@@ -7,26 +7,19 @@ import { Server as SocketIO } from 'socket.io'
 import expressSession from 'express-session'
 import { userRoutes } from './routes/userRoutes'
 import { adminRoutes } from './routes/adminRoutes'
-import { grantExpress, expressSessionConfig } from './plugin-config'
-import moment = require('moment')
+import { grantExpress, expressSessionConfig } from './util/plugin-config'
+import { chatRoutes } from './routes/chatRoutes'
+const moment = require('moment')
 dotenv.config()
 let app = express()
 let server = new HTTP.Server(app)
 export const io = new SocketIO(server)
 app.use(express.json())
 
-export const client = new pg.Client({
-	database: process.env.DB_NAME,
-	user: process.env.DB_USERNAME,
-	password: process.env.DB_PASSWORD
-})
-
 export interface chatroom {
 	clan: string
 	name: string
 }
-
-client.connect()
 
 export const sessionMiddleware = expressSession({
 	secret: 'study with me chatroom',
@@ -45,10 +38,6 @@ io.use((socket, next) => {
 	sessionMiddleware(req, res, next as express.NextFunction)
 })
 
-let users: any = {}
-// let messages: Message[] = []
-
-app.use(userRoutes)
 // app.use('/user', userRoutes)
 io.on('connection', (socket) => {
 	let req = socket.request as express.Request
@@ -100,31 +89,6 @@ io.on('connection', (socket) => {
 			})
 		}
 	})
-	//public
-	// socket.on('chat message', async ([msg, id]) => {
-	// 	let req = socket.request as express.Request
-
-	// 	const roomId = id + '-' + String(req.session.user?.id)
-	// 	console.log({ roomId })
-
-	// 	let username = req.session.user?.username
-	// 	let userId = req.session.user?.id
-
-	// 	//user id here
-	// 	console.log(`睇下user id : ${userId}`)
-
-	// 	await client.query(
-	// 		`INSERT INTO public_chat (user_id,chat_record,chat_message_time,created_at,updated_at) values ($1,$2,now(),now(),now())`,
-	// 		[userId, msg]
-	// 	)
-
-	// 	io.to(roomId).emit('chat message', {
-	// 		senderId: userId,
-	// 		senderUsername: username,
-	// 		msg,
-	// 		receiverId: 0
-	// 	})
-	// })
 
 	//private
 	socket.on('chat message', async ([msg, receiverId]) => {
@@ -262,25 +226,18 @@ app.post('/getuserandroomid', async (req, res) => {
 		// io.to(socRoomName).emit('greeting-in-room', `${roomName}既人， halo 我係MC`)
 	}
 })
-
-// app.use(express.static('uploads'))
-app.use('/admin', adminRoutes)
-app.use(express.static(path.join(__dirname, 'uploads')))
-
 app.get('/me', (req, res) => {
 	// res.json(req.session.user)
 	res.json(req.session.user)
 })
 
-// app.get('/me1', (req, res) => {
-// 	// res.json(req.session.user)
-// 	res.json(req.session.user)
-// })
-
+app.use(userRoutes)
+app.use(chatRoutes)
+app.use('/admin', adminRoutes)
+app.use(express.static(path.join(__dirname, 'uploads')))
 app.use(express.static(path.join(__dirname, 'template_design')))
 app.use(express.static(path.join(__dirname, 'public')))
 app.use('/admin', express.static(path.join(__dirname, 'private')))
-app.use(express.static('private'))
 app.use((req, res) => {
 	res.redirect('404.html')
 })

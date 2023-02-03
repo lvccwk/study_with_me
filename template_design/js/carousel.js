@@ -14,7 +14,7 @@ async function showUserCarousel(type) {
 		for (let student of studentList) {
 			carousel.innerHTML += `
                 <div class="carousel-cell" id="carousel-userId-${student.id}">
-                    <a href="/admin/viewotheruser?id=${student.id}">
+                    <a href="/admin/viewotheruser.html?id=${student.id}">
                         <img class="carousel-cell-image"
                             data-flickity-lazyload="/${student.image_icon}"
                             alt="tulip" />

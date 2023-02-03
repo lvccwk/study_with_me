@@ -1,5 +1,5 @@
 import grant from 'grant'
-import { env } from './util/env'
+import { env } from './env'
 import expressSession from 'express-session'
 
 export const grantExpress = grant.express({
