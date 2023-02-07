@@ -152,6 +152,7 @@ io.on('connection', (socket) => {
 			)
 		).rows[0]
 
+		console.log('dwqdwqdwqdwqwdq', publicChat)
 		let receiverUsername = ''
 		if (receiverId) {
 			receiverUsername = (
@@ -160,6 +161,7 @@ io.on('connection', (socket) => {
 				])
 			).rows[0].username
 		}
+		console.log('check', receiverUsername)
 
 		let created_time = moment(publicChat.created_at).format(
 			'MMMM Do YYYY, h:mm:ss a'
@@ -266,8 +268,14 @@ app.use('/admin', adminRoutes)
 app.use(express.static(path.join(__dirname, 'uploads')))
 
 app.get('/me', (req, res) => {
-	res.json(req.session)
+	// res.json(req.session.user)
+	res.json(req.session.user)
 })
+
+// app.get('/me1', (req, res) => {
+// 	// res.json(req.session.user)
+// 	res.json(req.session.user)
+// })
 
 app.use(express.static(path.join(__dirname, 'template_design')))
 app.use(express.static(path.join(__dirname, 'public')))

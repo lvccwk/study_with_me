@@ -17,7 +17,7 @@ contactsFormFile.addEventListener('submit', async (e) => {
 	//3. post request handling
 
 	let data = await res.json()
-	// console.log(data)
+	console.log(data.data)
 	if (res.ok) {
 		window.location.replace('/admin')
 		alert('create account success')

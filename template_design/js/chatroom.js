@@ -17,7 +17,7 @@ form.addEventListener('submit', async function (e) {
 			socket.emit('chat message', [input.value, userId])
 			// console.log('message123123123', [input.value, userId])
 			// socket.emit('unsubscribe', '123_64')
-
+			console.log('睇清楚啲', input.value, userId)
 			input.value = ''
 
 			let res = await fetch(`/newChatMessage`, {
@@ -94,6 +94,16 @@ async function instantChat({
 	createdAt,
 	chatMessageTime
 }) {
+	console.log({
+		senderId,
+		senderUsername,
+		msg,
+		receiverID,
+		receiverUsername,
+		createdAt,
+		chatMessageTime
+	})
+
 	try {
 		const ownerId = localStorage.getItem('ownerId')
 		// console.log('12312312312321123123321', {
@@ -259,17 +269,7 @@ async function getGrouplist() {
 					</p>
 				</div>
 			</div>
-			<div class="pt-1">
-				<p
-					class="small text-muted mb-1"
-				>
-					Just now
-				</p>
-				<span
-					class="badge bg-danger rounded-pill float-end"
-					>2</span
-				>
-			</div>
+
 		</a>
 	</li>
 	`
@@ -279,9 +279,10 @@ async function getPrivateChatRecord(data, time) {
 	let userContainerElem = document.querySelector('#record')
 	// console.log('getPublicChatRecord', data, '21e124e214214124', time)
 	userContainerElem.innerHTML = ''
-
+	console.log(time)
 	for (let userInfo of data) {
-		// console.log('final!!!!', userInfo)
+		const timeFormat = userInfo.chat_message_time
+
 		if (userInfo.sender_id === userInfo.user_id) {
 			// let imagePath = tutorInfo.image_icon ? `${await getImage(tutorInfo.image_icon)}` : "images/avatar/portrait-good-looking-brunette-young-asian-woman.jpg"
 			// console.log(`chat room 112321321232121321312${userInfo.username}`)
@@ -342,7 +343,7 @@ async function getPrivateChatRecord(data, time) {
 						background-color: #f5f6f7;
 					"
 				>
-				${userInfo.chat_record}
+				${userInfo.chat_message_time}
 				</p>
 				<p
 					class="small ms-3 mb-3 rounded-3 text-muted float-end"
@@ -523,17 +524,7 @@ async function getUserlist() {
 					</p>
 				</div>
 			</div>
-			<div class="pt-1">
-				<p
-					class="small text-muted mb-1"
-				>
-					Just now
-				</p>
-				<span
-					class="badge bg-danger rounded-pill float-end"
-					>2</span
-				>
-			</div>
+
 		</a>
 	</li>
 	`
@@ -578,7 +569,7 @@ async function getUserAndRoomId(userId) {
 	let data = result.data
 	let time = result.time
 	// console.log(data)
-	// console.log(`checkcheck12321312`, time)
+
 	localStorage.setItem('senderId', data.sender)
 	localStorage.setItem('receiverId', data.receiver)
 
