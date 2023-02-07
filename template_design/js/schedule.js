@@ -260,73 +260,73 @@ export async function createScheduleTable(htmlId) {
                     document.querySelector(`#booking-${timeId}>.status`).innerHTML = schedule.booking_status
                 }
             } else {
-                // if (session.user.type == "teacher") {
-                //     if (schedule.teacher_status == 'confirm') {
-                //         document.querySelector(`#booking-${timeId}>.student`).innerHTML = schedule.student_name
-                //         document.querySelector(`#booking-${timeId}>.details`).innerHTML = schedule.details
-                //         document.querySelector(`#booking-${timeId}>.status`).innerHTML = schedule.booking_status
-                //         document.querySelector(`#booking-${timeId}>.buttons`).innerHTML = `
-                //                 <button type="button" id="edit-button-${timeId}">edit</button>
-                //                 <button type="button" id="cancel-button-${timeId}">Cancel</button>
-                //             `
-                //         const cancelButton = document.querySelector(`#cancel-button-${timeId}`)
-                //         cancelButton.addEventListener("click", async function () {
-                //             let session = await getSession()
-                //             const choseDate = document.querySelector("#calendar-chose-date")
-                //             const choseTime = document.querySelector(`#booking-${timeId}>.time`)
+                if (session.user.type == "teacher") {
+                    if (schedule.teacher_status == 'confirm') {
+                        document.querySelector(`#booking-${timeId}>.student`).innerHTML = schedule.student_name
+                        document.querySelector(`#booking-${timeId}>.details`).innerHTML = schedule.details
+                        document.querySelector(`#booking-${timeId}>.status`).innerHTML = schedule.booking_status
+                        document.querySelector(`#booking-${timeId}>.buttons`).innerHTML = `
+                                <button type="button" id="edit-button-${timeId}">edit</button>
+                                <button type="button" id="cancel-button-${timeId}">Cancel</button>
+                            `
+                        const cancelButton = document.querySelector(`#cancel-button-${timeId}`)
+                        cancelButton.addEventListener("click", async function () {
+                            let session = await getSession()
+                            const choseDate = document.querySelector("#calendar-chose-date")
+                            const choseTime = document.querySelector(`#booking-${timeId}>.time`)
 
-                //             const formObject = {};
+                            const formObject = {};
 
-                //             formObject["cancelDate"] = choseDate.innerHTML;
-                //             formObject["cancelTime"] = choseTime.innerHTML;
-                //             formObject["studentId"] = schedule.student_id;
-                //             formObject["type"] = session.user.type;
-                //             console.log(formObject)
+                            formObject["cancelDate"] = choseDate.innerHTML;
+                            formObject["cancelTime"] = choseTime.innerHTML;
+                            formObject["studentId"] = schedule.student_id;
+                            formObject["type"] = session.user.type;
+                            console.log(formObject)
 
-                //             const res = await fetch(`/admin/cancel/${session.user.id}`, {
-                //                 method: "DELETE",
-                //                 headers: {
-                //                     "Content-Type": "application/json",
-                //                 },
-                //                 body: JSON.stringify(formObject),
-                //             });
-                //             await createScheduleTable("teacher-id")
-                //         })
-                //     }
-                // } else {
-                //     if (schedule.student_status == 'confirm') {
-                //         document.querySelector(`#booking-${timeId}>.student`).innerHTML = schedule.teacher_name
-                //         document.querySelector(`#booking-${timeId}>.details`).innerHTML = schedule.details
-                //         document.querySelector(`#booking-${timeId}>.status`).innerHTML = schedule.booking_status
-                //         document.querySelector(`#booking-${timeId}>.buttons`).innerHTML = `
-                //                 <button type="button" id="edit-button-${timeId}">edit</button>
-                //                 <button type="button" id="cancel-button-${timeId}">Cancel</button>
-                //             `
-                //         const cancelButton = document.querySelector(`#cancel-button-${timeId}`)
-                //         cancelButton.addEventListener("click", async function () {
-                //             let session = await getSession()
-                //             const choseDate = document.querySelector("#calendar-chose-date")
-                //             const choseTime = document.querySelector(`#booking-${timeId}>.time`)
+                            const res = await fetch(`/admin/cancel/${session.user.id}`, {
+                                method: "DELETE",
+                                headers: {
+                                    "Content-Type": "application/json",
+                                },
+                                body: JSON.stringify(formObject),
+                            });
+                            await createScheduleTable("teacher-id")
+                        })
+                    }
+                } else {
+                    if (schedule.student_status == 'confirm') {
+                        document.querySelector(`#booking-${timeId}>.student`).innerHTML = schedule.teacher_name
+                        document.querySelector(`#booking-${timeId}>.details`).innerHTML = schedule.details
+                        document.querySelector(`#booking-${timeId}>.status`).innerHTML = schedule.booking_status
+                        document.querySelector(`#booking-${timeId}>.buttons`).innerHTML = `
+                                <button type="button" id="edit-button-${timeId}">edit</button>
+                                <button type="button" id="cancel-button-${timeId}">Cancel</button>
+                            `
+                        const cancelButton = document.querySelector(`#cancel-button-${timeId}`)
+                        cancelButton.addEventListener("click", async function () {
+                            let session = await getSession()
+                            const choseDate = document.querySelector("#calendar-chose-date")
+                            const choseTime = document.querySelector(`#booking-${timeId}>.time`)
 
-                //             const formObject = {};
+                            const formObject = {};
 
-                //             formObject["cancelDate"] = choseDate.innerHTML;
-                //             formObject["cancelTime"] = choseTime.innerHTML;
-                //             formObject["teacherId"] = schedule.teacher_id;
-                //             formObject["type"] = session.user.type;
-                //             console.log(formObject)
+                            formObject["cancelDate"] = choseDate.innerHTML;
+                            formObject["cancelTime"] = choseTime.innerHTML;
+                            formObject["teacherId"] = schedule.teacher_id;
+                            formObject["type"] = session.user.type;
+                            console.log(formObject)
 
-                //             const res = await fetch(`/admin/cancel/${session.user.id}`, {
-                //                 method: "DELETE",
-                //                 headers: {
-                //                     "Content-Type": "application/json",
-                //                 },
-                //                 body: JSON.stringify(formObject),
-                //             });
-                //             await createScheduleTable("teacher-id")
-                //         })
-                //     }
-                // }
+                            const res = await fetch(`/admin/cancel/${session.user.id}`, {
+                                method: "DELETE",
+                                headers: {
+                                    "Content-Type": "application/json",
+                                },
+                                body: JSON.stringify(formObject),
+                            });
+                            await createScheduleTable("teacher-id")
+                        })
+                    }
+                }
             }
         }
     }
